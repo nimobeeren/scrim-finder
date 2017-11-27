@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import Post from './Post';
 
-class App extends Component {
-  render() {
-    return (
-      <h1>Hello There!</h1>
-    );
-  }
+import './../styles/normalize.css'
+
+export default class App extends Component {
+	render() {
+		return (
+			<div>
+				<Post
+					teamName="Nehox"
+					level="Top"
+					maps={['cache', 'inferno', 'overpass']}
+					server={true}/>
+			</div>
+		);
+	}
 }
-
-export default App;
