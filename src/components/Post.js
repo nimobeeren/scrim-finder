@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import PostActions from './PostActions';
-import PostMaps from './PostMaps';
+import PostMapPool from './PostMapPool';
 
 import './styles/Post.css';
 
@@ -36,7 +36,10 @@ export default class Post extends Component {
 						<td>Level:</td>
 						<td>{level}</td>
 					</tr>
-					<PostMaps maps={maps} />
+					<tr>
+						<td>Maps:</td>
+						<PostMapPool maps={maps}/>
+					</tr>
 					<tr>
 						<td>Server:</td>
 						<td>{server}</td>
