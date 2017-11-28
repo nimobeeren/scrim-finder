@@ -10,7 +10,7 @@ export default class App extends Component {
 				<Post
 					teamName="Nehox"
 					level="Top"
-					maps={['cache', 'inferno', 'overpass']}
+					maps={['inferno', 'cache', 'overpass']}
 					server={true}/>
 			</div>
 		);
