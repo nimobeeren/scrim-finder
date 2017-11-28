@@ -1,3 +1,23 @@
 .post {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 15px;
     border: 1px solid black;
+}
+
+h3 {
+    margin: 0;
+}
+
+.post__age {
+    font-size: 14px;
+    color: dimgray;
+}
+
+table {
+    margin: 10px 0;
+}
+
+td:first-child {
+    padding-right: 10px;
 }

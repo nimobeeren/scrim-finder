@@ -17,7 +17,7 @@ export default class PostMaps extends Component {
 
 		return (
 			<tr>
-				<td>Maps</td>
+				<td>Maps:</td>
 				<td>{stringMaps}</td>
 			</tr>
 		);

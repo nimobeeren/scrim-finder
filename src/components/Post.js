@@ -33,12 +33,12 @@ export default class Post extends Component {
 				<div className="post__age">10 minutes ago</div>
 				<table>
 					<tr>
-						<td>Level</td>
+						<td>Level:</td>
 						<td>{level}</td>
 					</tr>
 					<PostMaps maps={maps} />
 					<tr>
-						<td>Server</td>
+						<td>Server:</td>
 						<td>{server}</td>
 					</tr>
 				</table>
