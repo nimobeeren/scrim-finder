@@ -6,7 +6,7 @@ class PostActions extends Component {
 	render() {
 		return (
 			<div>
-				<button>GO</button>
+				<a className="button">GO</a>
 			</div>
 		);
 	}
