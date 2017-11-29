@@ -1,0 +1,9 @@
+@import './../colors';
+
+.map {
+	display: inline-block;
+	margin: 3px 6px 3px 0;
+	padding: 2px;
+	background: $accent-color;
+	color: black;
+}

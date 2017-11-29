@@ -23,3 +23,6 @@ yarn-error.log*
 # IntelliJ stuff
 .idea/
 *.iml
+
+# Processed CSS
+/src/styles/**/*.css
