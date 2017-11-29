@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PostActions from './PostActions';
 import PostMapPool from './PostMapPool';
 
-import './styles/Post.css';
+import '../../styles/components/Post.css';
 
 export default class Post extends Component {
 	static propTypes = {

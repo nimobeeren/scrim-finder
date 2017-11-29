@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles/PostActions.css';
+import '../../styles/components/PostActions.css';
 
 class PostActions extends Component {
 	render() {

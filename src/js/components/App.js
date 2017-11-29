@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Post from './Post';
 
-import './../styles/normalize.css'
+import '../../styles/normalize.css'
 
 export default class App extends Component {
 	render() {

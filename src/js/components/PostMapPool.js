@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/PostMapPool.css';
+import '../../styles/components/PostMapPool.css';
 
 export default class PostMapPool extends Component {
 	static propTypes = {
