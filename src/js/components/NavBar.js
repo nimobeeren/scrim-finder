@@ -16,7 +16,7 @@ class NavBar extends Component {
 						<Button label="Log in"/>
 					</div>
 					<div className="nav__item">
-						<Button label="About"/>
+						<Button className="btn--secondary" label="About"/>
 					</div>
 				</div>
 			</nav>

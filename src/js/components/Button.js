@@ -6,7 +6,7 @@ import './../../styles/components/Button.css';
 class Button extends Component {
 	render() {
 		return (
-			<button className="btn" onClick={this.props.handleClick}>
+			<button className={this.props.className} onClick={this.props.handleClick}>
 				{this.props.label}
 			</button>
 		);
