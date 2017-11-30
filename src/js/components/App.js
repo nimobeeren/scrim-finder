@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Post from './Post';
 import NavBar from './NavBar';
 
-import '../../styles/normalize.css';
 import '../../styles/main.css';
 
 class App extends Component {

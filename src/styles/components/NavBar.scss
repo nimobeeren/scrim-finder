@@ -5,6 +5,7 @@ nav {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	background: darken($primary-color, 10%);
 	color: $white;
 	height: 70px;
 }
@@ -23,4 +24,8 @@ nav {
 
 .nav__item {
 	margin: 0 10px;
+}
+
+h1 {
+	font-size: 28px;
 }
