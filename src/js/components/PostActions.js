@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import '../../styles/components/PostActions.css';
+import Button from './Button';
 
 class PostActions extends Component {
 	render() {
 		return (
 			<div>
-				<a className="button">GO</a>
+				<Button label="GO"/>
 			</div>
 		);
 	}

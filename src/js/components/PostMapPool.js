@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../../styles/components/PostMapPool.css';
 
-export default class PostMapPool extends Component {
+class PostMapPool extends Component {
 	static propTypes = {
 		maps: PropTypes.array
 	};
@@ -27,3 +27,5 @@ export default class PostMapPool extends Component {
 		);
 	}
 }
+
+export default PostMapPool;

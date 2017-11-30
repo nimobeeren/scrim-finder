@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import PostActions from './PostActions';
@@ -6,7 +6,7 @@ import PostMapPool from './PostMapPool';
 
 import '../../styles/components/Post.css';
 
-export default class Post extends Component {
+class Post extends Component {
 	static propTypes = {
 		teamName: PropTypes.string,
 		level: PropTypes.string.isRequired,
@@ -31,7 +31,7 @@ export default class Post extends Component {
 			<div className="post">
 				<h3>{title}</h3>
 				<div className="post__age">10 minutes ago</div>
-				<table>
+				<table><tbody>
 					<tr>
 						<td>Level:</td>
 						<td>{level}</td>
@@ -44,9 +44,11 @@ export default class Post extends Component {
 						<td>Server:</td>
 						<td>{server}</td>
 					</tr>
-				</table>
-				<PostActions />
+				</tbody></table>
+				<PostActions/>
 			</div>
 		);
 	}
 }
+
+export default Post;

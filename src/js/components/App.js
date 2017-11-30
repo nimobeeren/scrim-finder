@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Post from './Post';
+import NavBar from './NavBar';
 
 import '../../styles/normalize.css';
 import '../../styles/main.css';
 
-export default class App extends Component {
+class App extends Component {
 	render() {
 		return (
 			<div>
+				<NavBar/>
 				<Post
 					teamName="Nehox"
 					level="Top"
@@ -17,3 +19,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default App;

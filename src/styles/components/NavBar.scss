@@ -1,0 +1,26 @@
+@import './../colors';
+
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	color: $white;
+	height: 70px;
+}
+
+.nav-left, .nav-right {
+	display: flex;
+}
+
+.nav-left {
+	flex-direction: row;
+}
+
+.nav-right {
+	flex-direction: row-reverse;
+}
+
+.nav__item {
+	margin: 0 10px;
+}
