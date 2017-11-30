@@ -7,13 +7,6 @@ import PostMapPool from './PostMapPool';
 import '../../styles/components/Post.css';
 
 class Post extends Component {
-	static propTypes = {
-		teamName: PropTypes.string,
-		level: PropTypes.string.isRequired,
-		maps: PropTypes.object,
-		server: PropTypes.bool
-	};
-
 	static serverState(state) {
 		if (typeof state === 'undefined') {
 			return "On/Off";
@@ -50,5 +43,12 @@ class Post extends Component {
 		);
 	}
 }
+
+Post.propTypes = {
+	teamName: PropTypes.string,
+	level: PropTypes.string.isRequired,
+	maps: PropTypes.object,
+	server: PropTypes.bool
+};
 
 export default Post;
