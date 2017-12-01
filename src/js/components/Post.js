@@ -7,18 +7,18 @@ import PostMapPool from './PostMapPool';
 import '../../styles/components/Post.css';
 
 class Post extends Component {
-	static serverState(state) {
-		if (typeof state === 'undefined') {
+	serverState() {
+		if (typeof this.props.server === 'undefined') {
 			return "On/Off";
 		}
-		return state ? "On" : "Off";
+		return this.props.server ? "On" : "Off";
 	}
 
 	render() {
-		const title = this.props.teamName || "Anonymous",
+		const title = this.props.teamName,
 			level = this.props.level,
 			maps = this.props.maps,
-			server = Post.serverState(this.props.server);
+			server = this.serverState();
 
 		return (
 			<div className="post">
@@ -47,8 +47,13 @@ class Post extends Component {
 Post.propTypes = {
 	teamName: PropTypes.string,
 	level: PropTypes.string.isRequired,
-	maps: PropTypes.object,
+	maps: PropTypes.array,
 	server: PropTypes.bool
+};
+Post.defaultProps = {
+	teamName: "Anonymous",
+	level: "High",
+	maps: [],
 };
 
 export default Post;

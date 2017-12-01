@@ -6,7 +6,7 @@ import './../../styles/components/Button.css';
 class Button extends Component {
 	render() {
 		return (
-			<button className={this.props.className} onClick={this.props.handleClick}>
+			<button className={this.props.className} onClick={this.props.onClick}>
 				{this.props.label}
 			</button>
 		);
@@ -15,7 +15,7 @@ class Button extends Component {
 
 Button.propTypes = {
 	label: PropTypes.string,
-	handleClick: PropTypes.func
+	onClick: PropTypes.func
 };
 Button.defaultProps = {
 	label: "Button"

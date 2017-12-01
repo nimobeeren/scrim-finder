@@ -10,14 +10,14 @@ class PostList extends Component {
 		return (
 			<div className="post-list">
 				{
-					this.props.posts.map((post, i) => (
+					this.props.posts.map((post, i) =>
 						<Post
 							key={'post' + i}
 							teamName={post.teamName}
 							level={post.level}
 							maps={post.maps}
 							server={post.server}/>
-					))
+					)
 				}
 			</div>
 		);

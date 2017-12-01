@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import '../../styles/components/PostMapPool.css';
 
 class PostMapPool extends Component {
-	static propTypes = {
-		maps: PropTypes.array
-	};
-
 	render() {
 		let sortedMaps;
-		if (Array.isArray(this.props.maps)) {
+		if (Array.isArray(this.props.maps) && this.props.maps.length > 0) {
 			sortedMaps = this.props.maps.sort();
 		} else {
 			sortedMaps = ["any"];
@@ -19,13 +15,20 @@ class PostMapPool extends Component {
 		return (
 			<td>
 				{
-					sortedMaps.map(map =>
-						<div className="map">{map}</div>
+					sortedMaps.map((map, i) =>
+						<div className="map" key={"map" + i}>{map}</div>
 					)
 				}
 			</td>
 		);
 	}
 }
+
+PostMapPool.propTypes = {
+	maps: PropTypes.array
+};
+PostMapPool.defaultProps = {
+	maps: []
+};
 
 export default PostMapPool;
