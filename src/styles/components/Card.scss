@@ -1,0 +1,16 @@
+@import './../colors';
+
+.card {
+	max-width: 500px;
+	margin: 25px auto;
+	padding: 15px;
+	background: $white;
+	border-radius: 3px;
+	color: black;
+}
+
+.card--secondary {
+	background: transparent;
+	border: 2px solid $white;
+	color: $white;
+}

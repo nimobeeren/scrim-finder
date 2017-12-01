@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import PostActions from './PostActions';
+import Card from './Card';
 import PostMapPool from './PostMapPool';
+import PostActions from './PostActions';
 
 import '../../styles/components/Post.css';
 
@@ -21,7 +22,7 @@ class Post extends Component {
 			server = this.serverState();
 
 		return (
-			<div className="post">
+			<Card className="card">
 				<h3>{title}</h3>
 				<div className="post__age">10 minutes ago</div>
 				<table><tbody>
@@ -39,7 +40,7 @@ class Post extends Component {
 					</tr>
 				</tbody></table>
 				<PostActions/>
-			</div>
+			</Card>
 		);
 	}
 }
