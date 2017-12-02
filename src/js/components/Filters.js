@@ -5,7 +5,7 @@ import './../../styles/components/Filters.css';
 
 import Card from './Card';
 import Checkbox from './Checkbox';
-import FilterServer from "./FilterServer";
+import RadioGroup from './RadioGroup';
 
 class Filters extends Component {
 	constructor(props) {
@@ -43,6 +43,15 @@ class Filters extends Component {
 				<fieldset>
 					<legend>Maps</legend>
 					{this.createMapCheckboxes()}
+				</fieldset>
+				<fieldset>
+					<legend>Server</legend>
+					<RadioGroup
+						items={{
+							noPreference: "On/Off",
+							on: "On",
+							off: "Off"
+						}}/>
 				</fieldset>
 			</Card>
 		);
