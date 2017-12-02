@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import './../../styles/components/Filters.css';
+
 import Card from './Card';
 import Checkbox from './Checkbox';
-
-import './../../styles/components/Filters.css';
+import FilterServer from "./FilterServer";
 
 class Filters extends Component {
 	constructor(props) {
@@ -23,6 +24,14 @@ class Filters extends Component {
 		));
 	}
 
+	createMapCheckboxes() {
+		return this.props.maps.map((mapName, i) => (
+			<Checkbox
+				label={mapName}
+				key={"checkbox-map" + i}/>
+		));
+	}
+
 	render() {
 		return (
 			<Card className="card card--secondary">
@@ -30,6 +39,10 @@ class Filters extends Component {
 				<fieldset>
 					<legend>Level</legend>
 					{this.createLevelCheckboxes()}
+				</fieldset>
+				<fieldset>
+					<legend>Maps</legend>
+					{this.createMapCheckboxes()}
 				</fieldset>
 			</Card>
 		);
