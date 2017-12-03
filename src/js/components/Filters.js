@@ -53,6 +53,16 @@ class Filters extends Component {
 							off: "Off"
 						}}/>
 				</fieldset>
+				<fieldset>
+					<legend>Post age</legend>
+					<RadioGroup
+						items={{
+							min5: "< 5 minutes",
+							min15: "< 15 minutes",
+							hour1: "< 1 hour",
+							hour3: "< 3 hours"
+						}}/>
+				</fieldset>
 			</Card>
 		);
 	}
