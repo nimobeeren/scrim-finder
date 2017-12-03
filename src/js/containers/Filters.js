@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import './../../styles/components/Filters.css';
+import '../../styles/components/Filters.css';
 
-import Card from './Card';
-import Checkbox from './Checkbox';
-import RadioGroup from './RadioGroup';
+import Card from './../components/Card';
+import Checkbox from './../components/Checkbox';
+import RadioGroup from './../components/RadioGroup';
 
 class Filters extends Component {
 	constructor(props) {
@@ -72,9 +72,11 @@ class Filters extends Component {
 	}
 }
 
-Filters.propTypes = {
-	levels: PropTypes.array.isRequired,
-	maps: PropTypes.array.isRequired
-};
+function mapStateToProps(state) {
+	return {
+		levels: state.allLevels,
+		maps: state.allMaps
+	};
+}
 
-export default Filters;
+export default connect(mapStateToProps)(Filters);

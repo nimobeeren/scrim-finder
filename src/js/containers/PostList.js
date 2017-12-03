@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Post from '../components/Post';
-
 import '../../styles/components/PostList.css';
+
+import Post from '../components/Post';
 
 class PostList extends Component {
 	render() {
