@@ -61,8 +61,10 @@ class Filters extends Component {
 								min5: "< 5 mins",
 								min15: "< 15 mins",
 								hour1: "< 1 hour",
-								hour3: "< 3 hours"
-							}}/>
+								hour3: "< 3 hours",
+								any: "Any"
+							}}
+							defaultItem={"any"}/>
 					</fieldset>
 				</div>
 			</Card>
