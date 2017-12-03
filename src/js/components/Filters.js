@@ -36,33 +36,35 @@ class Filters extends Component {
 		return (
 			<Card className="card card--secondary">
 				<h3>Filters</h3>
-				<fieldset>
-					<legend>Level</legend>
-					{this.createLevelCheckboxes()}
-				</fieldset>
-				<fieldset>
-					<legend>Maps</legend>
-					{this.createMapCheckboxes()}
-				</fieldset>
-				<fieldset>
-					<legend>Server</legend>
-					<RadioGroup
-						items={{
-							noPreference: "On/Off",
-							on: "On",
-							off: "Off"
-						}}/>
-				</fieldset>
-				<fieldset>
-					<legend>Post age</legend>
-					<RadioGroup
-						items={{
-							min5: "< 5 minutes",
-							min15: "< 15 minutes",
-							hour1: "< 1 hour",
-							hour3: "< 3 hours"
-						}}/>
-				</fieldset>
+				<div className="filters">
+					<fieldset>
+						<legend>Level</legend>
+						{this.createLevelCheckboxes()}
+					</fieldset>
+					<fieldset>
+						<legend>Maps</legend>
+						{this.createMapCheckboxes()}
+					</fieldset>
+					<fieldset>
+						<legend>Server</legend>
+						<RadioGroup
+							items={{
+								noPreference: "On/Off",
+								on: "On",
+								off: "Off"
+							}}/>
+					</fieldset>
+					<fieldset>
+						<legend>Post age</legend>
+						<RadioGroup
+							items={{
+								min5: "< 5 mins",
+								min15: "< 15 mins",
+								hour1: "< 1 hour",
+								hour3: "< 3 hours"
+							}}/>
+					</fieldset>
+				</div>
 			</Card>
 		);
 	}

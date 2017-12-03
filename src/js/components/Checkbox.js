@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './../../styles/components/Checkbox.css';
 
 class Checkbox extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			isChecked: this.props.isChecked

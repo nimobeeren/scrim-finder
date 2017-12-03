@@ -1,11 +1,13 @@
 @import './../colors';
 
-h4 {
-	margin: 0;
+.filters {
+	display: flex;
+	justify-content: space-between;
 }
 
 fieldset {
-	display: inline-block;
+	flex-basis: 0;
+	flex-grow: 1;
 	border-radius: 10px;
 	border: 2px solid rgba(255, 255, 255, 0.2);
 }
