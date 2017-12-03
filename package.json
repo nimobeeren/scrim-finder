@@ -1,7 +1,8 @@
 {
   "name": "scrim-finder",
+  "description": "A web app to let you find, organize and schedule competitive CSGO matches",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "http://2id60.win.tue.nl/~s160823/",
   "dependencies": {
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
@@ -21,5 +22,12 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nimobeeren/scrim-finder.git"
+  },
+  "keywords": [],
+  "author": "Nimo Beeren",
+  "license": "MIT"
 }
