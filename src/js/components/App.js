@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
+import '../../styles/main.css';
+
 import NavBar from './NavBar';
 import Filters from './Filters';
-import PostList from './PostList';
-
-import '../../styles/main.css';
+import PostList from '../containers/PostList';
 
 const allLevels = [
 	"Low",
@@ -24,26 +24,7 @@ class App extends Component {
 				<NavBar/>
 				<Filters levels={allLevels} maps={allMaps}/>
 				<PostList
-					levels={allLevels}
-					posts={[
-						{
-							teamName: "Nehox",
-							level: "Top",
-							maps: ["cache", "overpass", "nuke", "cbble", "mirage", "train"],
-							server: true
-						},
-						{
-							teamName: "Team Adrian",
-							level: "High",
-						},
-						{
-							teamName: "MouseMafia",
-							level: "Medium",
-							maps: ["cache", "overpass", "cbble", "mirage"],
-							server: false
-						}
-					]}
-					/>
+					levels={allLevels}/>
 			</div>
 		);
 	}

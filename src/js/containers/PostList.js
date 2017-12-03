@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import Post from './Post';
+import Post from '../components/Post';
 
-import './../../styles/components/PostList.css';
+import '../../styles/components/PostList.css';
 
 class PostList extends Component {
 	render() {
@@ -24,6 +25,12 @@ class PostList extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return {
+		posts: state.posts
+	};
+}
+
 PostList.propTypes = {
 	posts: PropTypes.array
 };
@@ -31,4 +38,4 @@ PostList.defaultProps = {
 	posts: []
 };
 
-export default PostList;
+export default connect(mapStateToProps)(PostList);
