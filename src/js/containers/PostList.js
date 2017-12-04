@@ -17,7 +17,8 @@ class PostList extends Component {
 							teamName={post.teamName}
 							level={post.level}
 							maps={post.maps}
-							server={post.server}/>
+							server={post.server}
+							created={post.created}/>
 					)
 				}
 			</div>

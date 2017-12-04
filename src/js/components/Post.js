@@ -8,23 +8,54 @@ import PostMapPool from './PostMapPool';
 import PostActions from './PostActions';
 
 class Post extends Component {
-	serverState() {
+	getServerPrefString() {
 		if (typeof this.props.server === 'undefined') {
 			return "On/Off";
 		}
 		return this.props.server ? "On" : "Off";
 	}
 
+	getAgeString() {
+		let age = Date.now() - this.props.created;
+		console.log(this.props.teamName, age);
+
+		let seconds = age / 1000;
+		if (seconds < 30) {
+			return "Just now";
+		}
+		if (seconds < 60) {
+			let floored = Math.floor(seconds);
+			return `${floored} seconds ago`;
+		}
+
+		let minutes = seconds / 60;
+		if (minutes < 60) {
+			let floored = Math.floor(minutes);
+			return `${floored} minute${floored === 1 ? "" : "s"} ago`;
+		}
+
+		let hours = minutes / 60;
+		if (hours < 24) {
+			let floored = Math.floor(hours);
+			return `${floored} hour${floored === 1 ? "" : "s"} ago`;
+		}
+
+		let days = hours / 24;
+		let floored = Math.floor(days);
+		return `${floored} day${floored === 1 ? "" : "s"} ago`;
+	}
+
 	render() {
 		const title = this.props.teamName,
 			level = this.props.level,
 			maps = this.props.maps,
-			server = this.serverState();
+			server = this.getServerPrefString(),
+			age = this.getAgeString();
 
 		return (
 			<Card className="card">
 				<h3>{title}</h3>
-				<div className="post__age">10 minutes ago</div>
+				<div className="post__age">{age}</div>
 				<table><tbody>
 					<tr>
 						<td>Level:</td>
@@ -49,12 +80,14 @@ Post.propTypes = {
 	teamName: PropTypes.string,
 	level: PropTypes.string.isRequired,
 	maps: PropTypes.array,
-	server: PropTypes.bool
+	server: PropTypes.bool,
+	created: PropTypes.number
 };
 Post.defaultProps = {
 	teamName: "Anonymous",
 	level: "High",
 	maps: [],
+	created: Date.now()
 };
 
 export default Post;
