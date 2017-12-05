@@ -58,7 +58,7 @@ class Post extends Component {
 		return (
 			<Card className="card">
 				<h3>{title}</h3>
-				<div className="post__age">{age}</div>
+				<div className="post-age">{age}</div>
 				<table><tbody>
 					<tr>
 						<td>Level:</td>

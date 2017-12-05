@@ -1,0 +1,21 @@
+@import '../colors';
+
+.popup-background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.popup-content {
+	margin: 50px auto;
+	padding: 25px;
+	max-width: 600px;
+	background: $white;
+	border-radius: 3px;
+}
+
+.btn-wrapper {
+	display: inline-block;
+	margin-right: 25px;
+}
