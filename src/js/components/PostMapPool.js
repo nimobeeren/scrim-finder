@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../../styles/components/PostMapPool.css';
 
+
 const PostMapPool = (props) => {
 	let sortedMaps;
 	if (Array.isArray(props.maps) && props.maps.length > 0) {

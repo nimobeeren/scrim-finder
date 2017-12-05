@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './../../styles/components/Button.css';
 
+
 const Button = (props) => (
 	<button className={props.className} onClick={props.onClick}>
 		{props.label}

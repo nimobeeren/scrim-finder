@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import '../../styles/components/Post.css';
-
 import Card from './Card';
 import PostMapPool from './PostMapPool';
 import PostActions from './PostActions';
+import '../../styles/components/Post.css';
+
 
 class Post extends Component {
 	getServerPrefString() {
