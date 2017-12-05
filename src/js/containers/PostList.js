@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Post from '../components/Post';
-import '../../styles/components/PostList.css';
+import '../../styles/containers/PostList.css';
 
 
 class PostList extends Component {

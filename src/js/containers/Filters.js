@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {changeFilter} from '../actions/FilterActions';
 import RadioGroup from '../components/RadioGroup';
 import CheckboxGroup from "../components/CheckboxGroup";
-import '../../styles/components/Filters.css';
+import '../../styles/containers/Filters.css';
 
 
 class Filters extends Component {

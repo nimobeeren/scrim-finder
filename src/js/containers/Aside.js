@@ -4,7 +4,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 import Button from '../components/Button';
-import '../../styles/components/Aside.css';
+import '../../styles/containers/Aside.css';
 
 
 class Aside extends Component {

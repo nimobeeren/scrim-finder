@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import PostForm from '../containers/PostForm';
-import '../../styles/components/Popup.css';
+import '../../styles/containers/Popup.css';
 
 
 const Popup = (props) => {
