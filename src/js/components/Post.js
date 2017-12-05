@@ -9,10 +9,14 @@ import '../../styles/components/Post.css';
 
 class Post extends Component {
 	getServerPrefString() {
-		if (typeof this.props.server === 'undefined') {
-			return "On/Off";
+		switch(this.props.server) {
+			case 'on':
+				return "On";
+			case 'off':
+				return "Off";
+			default:
+				return "On/Off";
 		}
-		return this.props.server ? "On" : "Off";
 	}
 
 	getAgeString() {
@@ -79,7 +83,7 @@ Post.propTypes = {
 	teamName: PropTypes.string,
 	level: PropTypes.string.isRequired,
 	maps: PropTypes.array,
-	server: PropTypes.bool,
+	server: PropTypes.string,
 	created: PropTypes.number
 };
 Post.defaultProps = {

@@ -12,11 +12,7 @@ class RadioGroup extends Component {
 		// Determine the item to be selected by default
 		let selectedItem;
 		const {items, defaultItem} = this.props;
-		if (defaultItem && items[defaultItem]) {
-			selectedItem = defaultItem;
-		} else {
-			selectedItem = Object.keys(items)[0];
-		}
+		selectedItem = defaultItem || items[0].value;
 
 		// Set the selected item
 		this.state = {
@@ -39,24 +35,18 @@ class RadioGroup extends Component {
 	}
 
 	createRadioButtons() {
-		let radioButtons = [];
-		const items = this.props.items;
+		const {items} = this.props;
 
-		for (let itemKey in items) {
-			if (items.hasOwnProperty(itemKey)) {
-				radioButtons.push((
-					<label key={itemKey}>
-						<input
-							type="radio"
-							value={itemKey}
-							checked={this.state.selectedItem === itemKey}
-							onChange={this.handleChange}/>
-						{items[itemKey]}
-					</label>
-				))
-			}
-		}
-		return radioButtons;
+		return items.map(item => (
+			<label key={item.value}>
+				<input
+					type="radio"
+					value={item.value}
+					checked={this.state.selectedItem === item.value}
+					onChange={this.handleChange}/>
+				{item.label}
+			</label>
+		));
 	}
 
 	render() {
@@ -69,7 +59,7 @@ class RadioGroup extends Component {
 }
 
 RadioGroup.propTypes = {
-	items: PropTypes.object.isRequired,
+	items: PropTypes.array.isRequired,
 	defaultItem: PropTypes.string,
 	onChange: PropTypes.func
 };

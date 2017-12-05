@@ -10,7 +10,7 @@ export class Checkbox extends Component {
 
 		// Set default state
 		this.state = {
-			isChecked: this.props.isChecked || false
+			isChecked: this.props.isChecked
 		};
 
 		// Bind event handler

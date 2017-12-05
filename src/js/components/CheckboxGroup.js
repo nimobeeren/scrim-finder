@@ -45,14 +45,14 @@ class CheckboxGroup extends Component {
 
 	render() {
 		const {items} = this.props;
-		return Object.keys(items).map((item, i) => (
-			<Checkbox key={i} label={item} checked={items[item]} onChange={this.handleChange}/>
+		return items.map(item => (
+			<Checkbox key={item.value} label={item.label} checked={item.isChecked} onChange={this.handleChange}/>
 		));
 	}
 }
 
 CheckboxGroup.propTypes = {
-	items: PropTypes.object.isRequired,
+	items: PropTypes.array.isRequired,
 	onChange: PropTypes.func
 };
 

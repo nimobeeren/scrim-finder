@@ -3,7 +3,7 @@ const allPosts = [
 		teamName: "Nehox",
 		level: "Top",
 		maps: ["cache", "overpass", "nuke", "cbble", "mirage", "train"],
-		server: true,
+		server: 'on',
 		created: 1512468376986
 	},
 	{
@@ -15,7 +15,7 @@ const allPosts = [
 		teamName: "MouseMafia",
 		level: "Medium",
 		maps: ["cache", "overpass", "cbble", "mirage"],
-		server: false,
+		server: 'off',
 		created: 1512382348943
 	}
 ];
@@ -36,9 +36,7 @@ const postReducer = (state = null, action) => {
 				}
 
 				// Check if server matches filter
-				if (!(typeof post.server === 'undefined'
-						|| typeof allowedServer === 'undefined'
-						|| post.server === allowedServer)) {
+				if (post.server && post.server !== 'any' && allowedServer !== 'any' && post.server !== allowedServer) {
 					return false;
 				}
 

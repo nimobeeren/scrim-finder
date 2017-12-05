@@ -48,18 +48,9 @@ class Filters extends Component {
 	}
 
 	handleServerChanged(e, state) {
-		// Determine new server filter state
-		// TODO: Don't do bools here
-		let serverState;
-		if (state.selectedItem === 'on') {
-			serverState = true;
-		} else if (state.selectedItem === 'off') {
-			serverState = false;
-		} // else undefined
-
 		// Set new server filter state
 		let newState = this.state;
-		newState.allowedServer = serverState;
+		newState.allowedServer = state.selectedItem;
 		this.setState(newState);
 
 		// Call action creator
@@ -70,16 +61,16 @@ class Filters extends Component {
 		// Determine maximum post age in milliseconds
 		let maxAge;
 		switch(state.selectedItem) {
-			case 'min5':
+			case '5mins':
 				maxAge = (5 * 60 + 59) * 1000;
 				break;
-			case 'min15':
+			case '15mins':
 				maxAge = (15 * 60 + 59) * 1000;
 				break;
-			case 'hour1':
+			case '1hour':
 				maxAge = (60 + 59) * 60 * 1000;
 				break;
-			case 'hour3':
+			case '3hours':
 				maxAge = (3 * 60 + 59) * 60 * 1000;
 				break;
 			default:
@@ -98,20 +89,74 @@ class Filters extends Component {
 
 	createLevelCheckboxes() {
 		const {levels} = this.props;
-		let items = {};
-		for (let i = 0; i < levels.length; i++) {
-			items[levels[i]] = false;
-		}
+		const items = levels.map(level => {
+			return {
+				value: level.toLowerCase(),
+				label: level,
+				isChecked: false
+			}
+		});
 		return <CheckboxGroup items={items} onChange={this.handleLevelChanged}/>;
 	}
 
 	createMapCheckboxes() {
 		const {maps} = this.props;
-		let items = {};
-		for (let i = 0; i < maps.length; i++) {
-			items[maps[i]] = false;
-		}
-		return <CheckboxGroup items={items} onChange={this.handleMapChanged}/>
+		const items = maps.map(mapName => {
+			return {
+				value: mapName.toLowerCase(),
+				label: mapName,
+				isChecked: false
+			}
+		});
+		return <CheckboxGroup items={items} onChange={this.handleMapChanged}/>;
+	}
+
+	createServerRadioButtons() {
+		return <RadioGroup
+			items={[
+				{
+					value: 'any',
+					label: "On/Off"
+				},
+				{
+					value: 'on',
+					label: "On"
+				},
+				{
+					value: 'off',
+					label: "Off"
+				}
+			]}
+			defaultItem={'any'}
+			onChange={this.handleServerChanged}/>;
+	}
+
+	createAgeRadioButtons() {
+		return <RadioGroup
+			items={[
+				{
+					value: '5mins',
+					label: "< 5 mins"
+				},
+				{
+					value: '15mins',
+					label: "< 15 mins"
+				},
+				{
+					value: '1hour',
+					label: "< 1 hour"
+				},
+				{
+					value: '3hours',
+					label: "< 3 hours"
+				},
+				{
+					value: 'any',
+					label: "Any"
+				}
+			]}
+			defaultItem={'any'}
+			onChange={this.handleAgeChanged}/>
 	}
 
 	render() {
@@ -129,26 +174,11 @@ class Filters extends Component {
 					</fieldset>
 					<fieldset>
 						<legend>Server</legend>
-						<RadioGroup
-							items={{
-								noPreference: "On/Off",
-								on: "On",
-								off: "Off"
-							}}
-							onChange={this.handleServerChanged}/>
+						{this.createServerRadioButtons()}
 					</fieldset>
 					<fieldset>
 						<legend>Post age</legend>
-						<RadioGroup
-							items={{
-								min5: "< 5 mins",
-								min15: "< 15 mins",
-								hour1: "< 1 hour",
-								hour3: "< 3 hours",
-								any: "Any"
-							}}
-							defaultItem={'any'}
-							onChange={this.handleAgeChanged}/>
+						{this.createAgeRadioButtons()}
 					</fieldset>
 				</div>
 			</Card>
