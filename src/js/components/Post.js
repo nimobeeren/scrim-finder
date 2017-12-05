@@ -17,7 +17,6 @@ class Post extends Component {
 
 	getAgeString() {
 		let age = Date.now() - this.props.created;
-		console.log(this.props.teamName, age);
 
 		let seconds = age / 1000;
 		if (seconds < 30) {

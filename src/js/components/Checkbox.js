@@ -3,35 +3,45 @@ import PropTypes from 'prop-types';
 
 import './../../styles/components/Checkbox.css';
 
-class Checkbox extends Component {
+
+export class Checkbox extends Component {
 	constructor(props) {
 		super(props);
+
+		// Set default state
 		this.state = {
-			isChecked: this.props.isChecked
+			isChecked: this.props.isChecked || false
 		};
-		this.toggleChecked = this.toggleChecked.bind(this);
+
+		// Bind event handler
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	toggleChecked() {
-		this.setState({
+	handleChange(e) {
+		// Toggle checked state
+		const newState = {
 			isChecked: !this.state.isChecked
-		});
+		};
+		this.setState(newState);
 
-		if (typeof this.props.onChange === 'function') {
-			this.props.onChange();
+		// Call original event handler
+		const {onChange} = this.props;
+		if (typeof onChange === 'function') {
+			onChange(e, newState);
 		}
-
 	}
 
 	render() {
+		const {label} = this.props;
+		const {isChecked} = this.state;
 		return (
 			<label>
 				<input
 					type="checkbox"
-					value={this.props.label}
-					checked={this.state.isChecked}
-					onChange={this.toggleChecked}/>
-				{this.props.label}
+					value={label}
+					checked={isChecked}
+					onChange={this.handleChange}/>
+				{label}
 			</label>
 		);
 	}

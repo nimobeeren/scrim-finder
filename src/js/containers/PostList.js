@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import '../../styles/components/PostList.css';
@@ -31,12 +30,5 @@ function mapStateToProps(state) {
 		posts: state.posts
 	};
 }
-
-PostList.propTypes = {
-	posts: PropTypes.array
-};
-PostList.defaultProps = {
-	posts: []
-};
 
 export default connect(mapStateToProps)(PostList);

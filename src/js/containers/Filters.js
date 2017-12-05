@@ -1,35 +1,117 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import {changeFilter} from '../actions/FilterActions';
+import Card from '../components/Card';
+import RadioGroup from '../components/RadioGroup';
+import CheckboxGroup from "../components/CheckboxGroup";
 import '../../styles/components/Filters.css';
 
-import Card from './../components/Card';
-import Checkbox from './../components/Checkbox';
-import RadioGroup from './../components/RadioGroup';
 
 class Filters extends Component {
 	constructor(props) {
 		super(props);
+
+		// Set default state
 		this.state = {
-			levelFilter: [],
-			mapFilter: []
+			allowedLevels: [],
+			allowedMaps: [],
+			allowedServer: undefined,
+			maxAllowedAge: 'any'
+		};
+
+		// Bind event handlers
+		this.handleLevelChanged = this.handleLevelChanged.bind(this);
+		this.handleMapChanged = this.handleMapChanged.bind(this);
+		this.handleServerChanged = this.handleServerChanged.bind(this);
+		this.handleAgeChanged = this.handleAgeChanged.bind(this);
+	}
+
+	handleFilterChanged(e, state) {
+		// Call action creator
+		this.props.changeFilter(state);
+	}
+
+	handleLevelChanged(e, state) {
+		let newState = this.state;
+		newState.allowedLevels = state.checkedItems;
+		this.setState(newState);
+		this.handleFilterChanged(e, newState);
+	}
+
+	handleMapChanged(e, state) {
+		let newState = this.state;
+		newState.allowedMaps = state.checkedItems;
+		this.setState(newState);
+		this.handleFilterChanged(e, newState);
+	}
+
+	handleServerChanged(e, state) {
+		// Determine new server filter state
+		// TODO: Don't do bools here
+		let serverState;
+		if (state.selectedItem === 'on') {
+			serverState = true;
+		} else if (state.selectedItem === 'off') {
+			serverState = false;
+		} // else undefined
+
+		// Set new server filter state
+		let newState = this.state;
+		newState.allowedServer = serverState;
+		this.setState(newState);
+
+		// Call action creator
+		this.handleFilterChanged(e, newState);
+	}
+
+	handleAgeChanged(e, state) {
+		// Determine maximum post age in milliseconds
+		let maxAge;
+		switch(state.selectedItem) {
+			case 'min5':
+				maxAge = (5 * 60 + 59) * 1000;
+				break;
+			case 'min15':
+				maxAge = (15 * 60 + 59) * 1000;
+				break;
+			case 'hour1':
+				maxAge = (60 + 59) * 60 * 1000;
+				break;
+			case 'hour3':
+				maxAge = (3 * 60 + 59) * 60 * 1000;
+				break;
+			default:
+				maxAge = false;
+				break;
 		}
+
+		// Set new age filter state
+		let newState = this.state;
+		newState.maxAllowedAge = maxAge;
+		this.setState(newState);
+
+		// Call action creator
+		this.handleFilterChanged(e, newState);
 	}
 
 	createLevelCheckboxes() {
-		return this.props.levels.map((level, i) => (
-			<Checkbox
-				label={level}
-				key={"checkbox-level" + i}/>
-		));
+		const {levels} = this.props;
+		let items = {};
+		for (let i = 0; i < levels.length; i++) {
+			items[levels[i]] = false;
+		}
+		return <CheckboxGroup items={items} onChange={this.handleLevelChanged}/>;
 	}
 
 	createMapCheckboxes() {
-		return this.props.maps.map((mapName, i) => (
-			<Checkbox
-				label={mapName}
-				key={"checkbox-map" + i}/>
-		));
+		const {maps} = this.props;
+		let items = {};
+		for (let i = 0; i < maps.length; i++) {
+			items[maps[i]] = false;
+		}
+		return <CheckboxGroup items={items} onChange={this.handleMapChanged}/>
 	}
 
 	render() {
@@ -52,7 +134,8 @@ class Filters extends Component {
 								noPreference: "On/Off",
 								on: "On",
 								off: "Off"
-							}}/>
+							}}
+							onChange={this.handleServerChanged}/>
 					</fieldset>
 					<fieldset>
 						<legend>Post age</legend>
@@ -64,7 +147,8 @@ class Filters extends Component {
 								hour3: "< 3 hours",
 								any: "Any"
 							}}
-							defaultItem={"any"}/>
+							defaultItem={'any'}
+							onChange={this.handleAgeChanged}/>
 					</fieldset>
 				</div>
 			</Card>
@@ -79,4 +163,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(Filters);
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		changeFilter: changeFilter
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
