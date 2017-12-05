@@ -3,7 +3,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import {changeFilter} from '../actions/FilterActions';
-import Card from '../components/Card';
 import RadioGroup from '../components/RadioGroup';
 import CheckboxGroup from "../components/CheckboxGroup";
 import '../../styles/components/Filters.css';
@@ -161,27 +160,29 @@ class Filters extends Component {
 
 	render() {
 		return (
-			<Card className="card card--secondary">
-				<h3>Filters</h3>
+			<div className="filters-wrapper">
 				<div className="filters">
-					<fieldset>
-						<legend>Level</legend>
-						{this.createLevelCheckboxes()}
-					</fieldset>
-					<fieldset>
-						<legend>Maps</legend>
-						{this.createMapCheckboxes()}
-					</fieldset>
-					<fieldset>
-						<legend>Server</legend>
-						{this.createServerRadioButtons()}
-					</fieldset>
-					<fieldset>
-						<legend>Post age</legend>
-						{this.createAgeRadioButtons()}
-					</fieldset>
+					<h3>Filters</h3>
+					<div className="filters-content">
+						<fieldset>
+							<legend>Level</legend>
+							{this.createLevelCheckboxes()}
+						</fieldset>
+						<fieldset>
+							<legend>Maps</legend>
+							{this.createMapCheckboxes()}
+						</fieldset>
+						<fieldset>
+							<legend>Server</legend>
+							{this.createServerRadioButtons()}
+						</fieldset>
+						<fieldset>
+							<legend>Post age</legend>
+							{this.createAgeRadioButtons()}
+						</fieldset>
+					</div>
 				</div>
-			</Card>
+			</div>
 		);
 	}
 }

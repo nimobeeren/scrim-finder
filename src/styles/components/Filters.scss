@@ -1,6 +1,18 @@
 @import './../colors';
 
+.filters-wrapper {
+	background: darken($primary-color, 5%);
+	padding: 10px 0 25px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
 .filters {
+	max-width: 500px;
+	margin: 0 auto;
+	color: $white;
+}
+
+.filters-content {
 	display: flex;
 	justify-content: space-between;
 }
