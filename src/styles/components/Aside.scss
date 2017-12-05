@@ -1,0 +1,14 @@
+@import '../colors';
+
+aside {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-grow: 0;
+	width: 250px;
+	background: darken($primary-color, 5%);
+}
+
+.create-post {
+	padding: 25px;
+}

@@ -1,16 +1,22 @@
 import React from 'react';
 
-
 import NavBar from './NavBar';
+import Aside from './Aside';
 import Filters from '../containers/Filters';
 import PostList from '../containers/PostList';
-import '../../styles/main.css';
+import '../../styles/components/App.css';
+
 
 const App = () => (
 	<div>
 		<NavBar/>
-		<Filters/>
-		<PostList/>
+		<div className="wrapper">
+			<Aside/>
+			<main>
+				<Filters/>
+				<PostList/>
+			</main>
+		</div>
 	</div>
 );
 

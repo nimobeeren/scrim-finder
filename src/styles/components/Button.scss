@@ -1,4 +1,4 @@
-@import './../colors';
+@import '../colors';
 
 button {
 	display: flex;
@@ -20,4 +20,10 @@ button {
 	background: transparent;
 	border: 2px solid $accent-color;
 	color: $accent-color;
+}
+
+.btn--large {
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
 }

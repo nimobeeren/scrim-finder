@@ -1,4 +1,4 @@
-@import './colors.scss';
+@import '../colors';
 
 html, body {
 	margin: 0;
@@ -8,4 +8,12 @@ html, body {
 
 body {
 	background: $primary-color;
+}
+
+.wrapper {
+	display: flex;
+}
+
+main {
+	flex-grow: 1;
 }
