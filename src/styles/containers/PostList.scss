@@ -1,3 +1,11 @@
+@import '../colors';
+
 .post-list {
 	margin: 0 25px;
+}
+
+.post-list__empty {
+	color: $white;
+	font-size: 24px;
+	text-align: center;
 }
