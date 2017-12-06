@@ -1,4 +1,4 @@
-const draftingPost = (state = null, action) => {
+const draftingPostReducer = (state = null, action) => {
 	switch(action.type) {
 		case 'DRAFT_POST':
 			return true;
@@ -18,4 +18,4 @@ const draftingPost = (state = null, action) => {
 	}
 };
 
-export default draftingPost;
+export default draftingPostReducer;

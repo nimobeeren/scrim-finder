@@ -1,4 +1,4 @@
-const getFilters = (state = null, action) => {
+const filtersReducer = (state = null, action) => {
 	switch(action.type) {
 		case 'FILTER_CHANGED':
 			return action.payload;
@@ -12,4 +12,4 @@ const getFilters = (state = null, action) => {
 	}
 };
 
-export default getFilters;
+export default filtersReducer;

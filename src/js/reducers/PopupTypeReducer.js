@@ -1,4 +1,4 @@
-const popupType = (state = null, action) => {
+const popupTypeReducer = (state = null, action) => {
 	switch (action.type) {
 		case 'OPEN_POST_REPLY':
 			// Pass on the popup type from the action
@@ -14,4 +14,4 @@ const popupType = (state = null, action) => {
 	}
 };
 
-export default popupType;
+export default popupTypeReducer;

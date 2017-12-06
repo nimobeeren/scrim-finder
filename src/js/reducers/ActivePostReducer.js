@@ -1,4 +1,4 @@
-const getActivePost = (state = null, action) => {
+const activePostReducer = (state = null, action) => {
 	switch (action.type) {
 		case 'OPEN_POST_REPLY':
 			return action.payload;
@@ -8,4 +8,4 @@ const getActivePost = (state = null, action) => {
 	}
 };
 
-export default getActivePost;
+export default activePostReducer;
