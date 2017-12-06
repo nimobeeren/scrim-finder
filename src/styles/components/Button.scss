@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../breakpoints';
 
 .btn {
 	display: inline-flex;
@@ -34,4 +35,28 @@
 	width: 150px;
 	height: 60px;
 	font-size: 20px;
+}
+
+.btn--about {
+	border-radius: 50%;
+	width: 40px;
+}
+
+.btn--about::before {
+	content: "i";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+@media (min-width: $bp-large) {
+	.btn--about {
+		width: 100px;
+		border-radius: 3px;
+	}
+
+	.btn--about::before {
+		content: "About";
+		font-size: 18px;
+		font-weight: normal;
+	}
 }

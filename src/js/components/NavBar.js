@@ -14,7 +14,7 @@ const NavBar = () => (
 				<Button className="btn" label="Log in" onClick={() => alert("Not yet implemented")}/>
 			</div>
 			<div className="nav__item">
-				<Button className="btn btn--secondary" label="About" onClick={() => alert("Not yet implemented")}/>
+				<Button className="btn btn--secondary btn--about" label="" onClick={() => alert("Not yet implemented")}/>
 			</div>
 		</div>
 	</nav>
