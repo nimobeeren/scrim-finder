@@ -55,9 +55,17 @@ class PostForm extends Component {
 	}
 
 	handleSubmit(e) {
-		const {teamName, level, maps, server} = this.state;
-		this.props.createPost({teamName, level, maps, server});
 		e.preventDefault();
+		const {maps} = this.state;
+
+		// Validate form
+		if (maps.length === 0) {
+			alert("Please select at least one map");
+			return;
+		}
+
+		// Create new post
+		this.props.createPost(this.state);
 	}
 
 	createLevelRadioButtons() {
@@ -70,7 +78,7 @@ class PostForm extends Component {
 		});
 		return <RadioGroup
 			items={items}
-			defaultItem={'medium'}
+			defaultItem={"Medium"}
 			onChange={this.handleLevelChange}/>;
 	}
 

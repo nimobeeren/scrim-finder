@@ -49,14 +49,17 @@ class Post extends Component {
 	}
 
 	render() {
-		const title = this.props.teamName,
-			level = this.props.level,
-			maps = this.props.maps,
+		let {teamName, level, maps} = this.props,
 			server = this.getServerPrefString(),
 			age = this.getAgeString();
 
+		// Make sure team name is not empty or only whitespace
+		if (!teamName || teamName.match(/^ *$/) !== null) {
+			teamName = "Anonymous";
+		}
+
 		return (
-			<Card className="card" title={title} subtitle={age}>
+			<Card className="card" title={teamName} subtitle={age}>
 				<table className="post__fields"><tbody>
 					<tr>
 						<td>Level:</td>

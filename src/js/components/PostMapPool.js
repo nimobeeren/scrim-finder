@@ -6,7 +6,9 @@ import '../../styles/components/PostMapPool.css';
 
 const PostMapPool = (props) => {
 	let sortedMaps;
-	if (Array.isArray(props.maps) && props.maps.length > 0) {
+	if (props.maps.length === 8) {
+		sortedMaps = ["any"];
+	} else if (Array.isArray(props.maps) && props.maps.length > 0) {
 		sortedMaps = props.maps.sort();
 	} else {
 		sortedMaps = ["any"];
