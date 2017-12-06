@@ -1,12 +1,13 @@
 @import '../colors';
+@import '../breakpoints';
 
 .filters {
 	background: darken($primary-color, 5%);
-	padding: 10px 0 25px;
 }
 
 .filters__content {
 	max-width: 500px;
+	padding: 10px 25px 25px;
 	margin: 0 auto;
 	color: $white;
 }
@@ -18,7 +19,7 @@
 
 .filters__fields {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 }
 
 .filters fieldset {
@@ -26,4 +27,15 @@
 	flex-grow: 1;
 	border-radius: 10px;
 	border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.filters label {
+	display: flex;
+	align-items: center;
+}
+
+@media (min-width: $bp-large) {
+	.filters__fields {
+		flex-direction: row;
+	}
 }

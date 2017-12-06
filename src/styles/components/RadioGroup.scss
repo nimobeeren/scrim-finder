@@ -1,3 +1,24 @@
+@import '../breakpoints';
+
 .radio {
 	display: block;
+	font-size: 20px;
+}
+
+.radio input {
+	width: calc(13px * 1.5);
+	height: calc(13px * 1.5);
+	transform: scale(1.5);
+}
+
+@media (min-width: $bp-large) {
+	.radio {
+		font-size: 16px;
+	}
+
+	.radio input {
+		width: 13px;
+		height: 13px;
+		transform: none;
+	}
 }
