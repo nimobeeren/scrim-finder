@@ -13,7 +13,7 @@ const CreatePost = (props) => {
 	if (props.drafting) {
 		return (
 			<div className="create-post__wrapper">
-				<Card className="card" title="Create a post">
+				<Card className="card card--secondary" title="Create a post">
 					<PostForm/>
 				</Card>
 			</div>

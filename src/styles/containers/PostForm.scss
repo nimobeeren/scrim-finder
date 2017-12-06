@@ -3,7 +3,7 @@
 .post-form fieldset {
 	margin: 10px 0;
 	border-radius: 10px;
-	border: 1px solid rgba(0, 0, 0, 0.3);
+	border: $light-border;
 }
 
 .post-form input[type="text"] {
@@ -19,11 +19,12 @@
 
 .post-form .invalid {
 	border-color: $error-red;
-	box-shadow: 0 0 3px transparentize($error-red, 0.5);
+	box-shadow: 0 0 8px $error-red;
 }
 
 .post-form .invalid legend {
 	color: $error-red;
+	background: $primary-color;
 }
 
 .post-form .invalid legend::after {
