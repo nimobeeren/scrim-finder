@@ -24,6 +24,10 @@
 }
 
 .btn--nav {
+	margin-left: 15px;
+}
+
+.btn--shrink {
 	width: 80px;
 	height: 35px;
 }
@@ -44,10 +48,12 @@
 	font-size: 20px;
 }
 
+// Hidden about button
 .btn--about {
 	display: none;
 	border-radius: 50%;
-	width: 40px;
+	width: 35px;
+	height: 35px;
 }
 
 .btn--about::before {
@@ -57,15 +63,20 @@
 }
 
 @media (min-width: $bp-small) {
-	//
+	// Small about button
 	.btn--about {
-		display: block;
+		display: inline-flex;
 	}
 }
 
 @media (min-width: $bp-medium) {
-	.btn--nav {
+	.btn--shrink {
 		width: 100px;
+		height: 40px;
+	}
+
+	.btn--about {
+		width: 40px;
 		height: 40px;
 	}
 }

@@ -12,9 +12,11 @@ const App = () => (
 	<div>
 		<Popup/>
 		<NavBar/>
-		<Filters/>
-		<CreatePost/>
-		<PostList/>
+		<main>
+			<Filters/>
+			<CreatePost/>
+			<PostList/>
+		</main>
 	</div>
 );
 

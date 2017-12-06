@@ -17,23 +17,17 @@ nav {
 	margin: 0 auto;
 }
 
-.nav__item {
-	display: inline-flex;
-	justify-content: center;
-	margin-left: 10px;
+.nav__group {
+	display: flex;
+	justify-content: right;
+	align-items: center;
 }
 
 nav h1 {
 	margin: 0;
-	font-size: 20px;
+	font-size: 22px;
 	white-space: nowrap;
 	cursor: default;
-}
-
-@media (min-width: $bp-small) {
-	nav h1 {
-		font-size: 22px;
-	}
 }
 
 @media (min-width: $bp-medium) {
@@ -45,9 +39,5 @@ nav h1 {
 @media (min-width: $bp-large) {
 	nav {
 		padding: 0 15px;
-	}
-
-	.nav__item {
-		margin-left: 20px;
 	}
 }
