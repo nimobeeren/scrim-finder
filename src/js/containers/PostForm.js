@@ -6,19 +6,72 @@ import {createPost, cancelPost} from '../actions/CreatePostActions';
 import CheckboxGroup from '../components/CheckboxGroup';
 import RadioGroup from '../components/RadioGroup';
 import Button from '../components/Button';
+import SubmitButton from "../components/SubmitButton";
 import '../../styles/containers/PostForm.css';
 
 
 class PostForm extends Component {
+	constructor(props) {
+		super(props);
+
+		// Bind event handlers
+		this.handleTeamNameChange = this.handleTeamNameChange.bind(this);
+		this.handleLevelChange = this.handleLevelChange.bind(this);
+		this.handleMapsChange = this.handleMapsChange.bind(this);
+		this.handleServerChange = this.handleServerChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+
+		// Set default state
+		this.state = {
+			teamName: "",
+			level: "Medium",
+			maps: [],
+			server: 'any'
+		}
+	}
+
+	handleTeamNameChange(e) {
+		this.setState({
+			teamName: e.target.value
+		});
+	}
+
+	handleLevelChange(e) {
+		this.setState({
+			level: e.target.value
+		});
+	}
+
+	handleMapsChange(e, state) {
+		this.setState({
+			maps: state.checkedItems
+		});
+	}
+
+	handleServerChange(e) {
+		this.setState({
+			server: e.target.value
+		});
+	}
+
+	handleSubmit(e) {
+		const {teamName, level, maps, server} = this.state;
+		this.props.createPost({teamName, level, maps, server});
+		e.preventDefault();
+	}
+
 	createLevelRadioButtons() {
 		const {levels} = this.props;
 		const items = levels.map(level => {
 			return {
-				value: level.toLowerCase(),
+				value: level,
 				label: level
 			}
 		});
-		return <RadioGroup items={items} defaultItem={'medium'}/>;
+		return <RadioGroup
+			items={items}
+			defaultItem={'medium'}
+			onChange={this.handleLevelChange}/>;
 	}
 
 	createMapCheckboxes() {
@@ -30,7 +83,9 @@ class PostForm extends Component {
 				isChecked: false
 			}
 		});
-		return <CheckboxGroup items={items}/>;
+		return <CheckboxGroup
+			items={items}
+			onChange={this.handleMapsChange}/>;
 	}
 
 	createServerRadioButtons() {
@@ -49,15 +104,19 @@ class PostForm extends Component {
 					label: "Off"
 				}
 			]}
-			defaultItem={'any'}/>;
+			defaultItem={'any'}
+			onChange={this.handleServerChange}/>;
 	}
 
 	render() {
 		return (
-			<div className="post-form">
+			<form className="post-form" onSubmit={this.handleSubmit}>
 				<fieldset>
 					<legend>Team Name</legend>
-					<input type="text" placeholder="Anonymous"/>
+					<input
+						type="text"
+						placeholder="Anonymous"
+						onChange={this.handleTeamNameChange}/>
 				</fieldset>
 				<fieldset>
 					<legend>Level</legend>
@@ -72,12 +131,12 @@ class PostForm extends Component {
 					{this.createServerRadioButtons()}
 				</fieldset>
 				<div className="post-form__btn-wrapper">
-					<Button className="btn" label="Create" onClick={this.props.handleCreate}/>
+					<SubmitButton className="btn" label="Create"/>
 				</div>
 				<div className="post-form__btn-wrapper">
 					<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
 				</div>
-			</div>
+			</form>
 		);
 	}
 }
@@ -91,7 +150,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		handleCreate: createPost,
+		createPost,
 		handleCancel: cancelPost
 	}, dispatch);
 }

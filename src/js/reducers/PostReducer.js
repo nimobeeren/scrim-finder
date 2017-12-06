@@ -1,4 +1,4 @@
-const allPosts = [
+let allPosts = [
 	{
 		teamName: "Nehox",
 		level: "Top",
@@ -16,41 +16,69 @@ const allPosts = [
 		level: "Medium",
 		maps: ["cache", "overpass", "cbble", "mirage"],
 		server: 'off',
-		created: 1512382348943
+		created: 1512567784656
 	}
 ];
 
+const filterPosts = (posts, filters) => {
+	if (!filters) {
+		return posts;
+	}
+
+	const {allowedLevels, allowedMaps, allowedServer, maxAllowedAge} = filters;
+	return posts.filter(post => {
+		// Check if post level matches filter
+		if (allowedLevels.length > 0 && !allowedLevels.includes(post.level)) {
+			return false;
+		}
+
+		// Check if post maps include filter
+		if (post.maps && allowedMaps.length > 0 && !post.maps.some(map => allowedMaps.includes(map))) {
+			return false;
+		}
+
+		// Check if server matches filter
+		if (!(typeof allowedServer === 'undefined' || typeof post.server === 'undefined'
+				|| allowedServer === 'any' || post.server === 'any'
+				|| post.server === allowedServer)) {
+			return false;
+		}
+
+		// Check if post age matches filter
+		const now = Date.now();
+		if (maxAllowedAge && now - post.created > maxAllowedAge) {
+			return false;
+		}
+
+		// Let this one through
+		return true;
+	});
+};
+
 const postReducer = (state = null, action) => {
 	switch (action.type) {
+		case 'CREATE_POST':
+			// Add creation date to new post
+			const newPost = action.payload;
+			newPost.created = Date.now();
+
+			// Add new post to the list and return the list
+			allPosts = allPosts.concat([newPost]); // has to be a new object, .push does NOT work
+			return filterPosts(allPosts, state.filters)
+				.sort((a, b) => a.created < b.created);
+
 		case 'FILTER_CHANGED':
-			const {allowedLevels, allowedMaps, allowedServer, maxAllowedAge} = action.payload;
-			return allPosts.filter(post => {
-				// Check if post level matches filter
-				if (allowedLevels.length > 0 && !allowedLevels.includes(post.level)) {
-					return false;
-				}
+			return filterPosts(allPosts, action.payload)
+				.sort((a, b) => a.created < b.created);
 
-				// Check if post maps include filter
-				if (post.maps && allowedMaps.length > 0 && !post.maps.some(map => allowedMaps.includes(map))) {
-					return false;
-				}
-
-				// Check if server matches filter
-				if (post.server && post.server !== 'any' && allowedServer !== 'any' && post.server !== allowedServer) {
-					return false;
-				}
-
-				// Check if post age matches filter
-				const now = Date.now();
-				if (maxAllowedAge && now - post.created > maxAllowedAge) {
-					return false;
-				}
-
-				// Let this one through
-				return true;
-			});
 		default:
-			return allPosts;
+			if (state && state.posts) {
+				return state.posts;
+			} else {
+				return allPosts.sort((a, b) => {
+					return a.created < b.created
+				});
+			}
 	}
 };
 

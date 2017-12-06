@@ -5,6 +5,7 @@ import AllLevelsReducer from './AllLevelsReducer';
 import AllMapsReducer from './AllMapsReducer';
 import PopupReducer from './PopupReducer';
 import DraftingPostReducer from './DraftingPostReducer';
+import FiltersReducer from './FiltersReducer';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 	allLevels: AllLevelsReducer,
 	allMaps: AllMapsReducer,
 	popupType: PopupReducer,
-	draftingPost: DraftingPostReducer
+	draftingPost: DraftingPostReducer,
+	filters: FiltersReducer
 });
 
 export default rootReducer;
