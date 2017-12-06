@@ -4,11 +4,7 @@ const filtersReducer = (state = null, action) => {
 			return action.payload;
 
 		default:
-			if (state && state.filters){
-				return state.filters;
-			} else {
-				return null;
-			}
+			return state;
 	}
 };
 
