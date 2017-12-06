@@ -17,7 +17,8 @@ class PostReplyForm extends Component {
 	}
 
 	handleSubmit(e) {
-		this.props.sendPostReply(/* form data */);
+		alert('Not yet implemented');
+		// this.props.sendPostReply(/* form data */);
 		e.preventDefault();
 	}
 
