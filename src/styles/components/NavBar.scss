@@ -1,41 +1,53 @@
-@import './../colors';
+@import '../colors';
 @import '../breakpoints';
 
 nav {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
 	background: darken($primary-color, 10%);
 	color: $white;
 	height: 70px;
+	padding: 0 15px;
 }
 
-.nav__left, .nav__right {
+.nav__content {
 	display: flex;
-}
-
-.nav__left {
-	flex-direction: row;
-}
-
-.nav__right {
-	flex-direction: row-reverse;
+	justify-content: space-between;
 	align-items: center;
-
+	max-width: 1000px;
+	height: 100%;
+	margin: 0 auto;
 }
 
 .nav__item {
-	margin: 0 10px;
+	display: inline-flex;
+	justify-content: center;
+	margin-left: 10px;
 }
 
 nav h1 {
-	font-size: 22px;
+	margin: 0;
+	font-size: 20px;
 	white-space: nowrap;
+	cursor: default;
+}
+
+@media (min-width: $bp-small) {
+	nav h1 {
+		font-size: 22px;
+	}
 }
 
 @media (min-width: $bp-medium) {
 	nav h1 {
 		font-size: 28px;
+	}
+}
+
+@media (min-width: $bp-large) {
+	nav {
+		padding: 0 15px;
+	}
+
+	.nav__item {
+		margin-left: 20px;
 	}
 }
