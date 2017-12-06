@@ -21,6 +21,12 @@
 	background: darken($accent-color, 5%);
 }
 
+.btn--nav {
+	width: 80px;
+	height: 35px;
+	margin: 0 20px;
+ }
+
 .btn--secondary {
 	background: transparent;
 	border: 2px solid $accent-color;
@@ -38,6 +44,7 @@
 }
 
 .btn--about {
+	display: none;
 	border-radius: 50%;
 	width: 40px;
 }
@@ -48,7 +55,22 @@
 	font-weight: bold;
 }
 
+@media (min-width: $bp-small) {
+	//
+	.btn--about {
+		display: block;
+	}
+}
+
+@media (min-width: $bp-medium) {
+	.btn--nav {
+		width: 100px;
+		height: 40px;
+	}
+}
+
 @media (min-width: $bp-large) {
+	// Normal about button
 	.btn--about {
 		width: 100px;
 		border-radius: 3px;

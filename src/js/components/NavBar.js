@@ -10,12 +10,8 @@ const NavBar = () => (
 			<h1 className="nav__item">CSGO Scrim Finder</h1>
 		</div>
 		<div className="nav__right">
-			<div className="nav__item">
-				<Button className="btn" label="Log in" onClick={() => alert("Not yet implemented")}/>
-			</div>
-			<div className="nav__item">
-				<Button className="btn btn--secondary btn--about" label="" onClick={() => alert("Not yet implemented")}/>
-			</div>
+			<Button className="btn btn--nav" label="Log in" onClick={() => alert("Not yet implemented")}/>
+			<Button className="btn btn--secondary btn--about" label="" onClick={() => alert("Not yet implemented")}/>
 		</div>
 	</nav>
 );
