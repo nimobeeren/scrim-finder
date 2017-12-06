@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from './Card';
 import PostMapPool from './PostMapPool';
-import PostActions from './PostActions';
+import PostActions from '../containers/PostControls';
 import '../../styles/components/Post.css';
 
 
@@ -74,7 +74,7 @@ class Post extends Component {
 						<td>{server}</td>
 					</tr>
 				</tbody></table>
-				<PostActions/>
+				<PostActions post={this.props}/>
 			</Card>
 		);
 	}

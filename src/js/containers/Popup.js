@@ -1,26 +1,33 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-import PostForm from '../containers/PostForm';
+import PostReplyForm from "./PostReplyForm";
 import '../../styles/containers/Popup.css';
 
 
 const Popup = (props) => {
-	if (props.popupType === 'create-post') {
-		return (
-			<div className="popup__background">
-				<div className="popup__content">
-					<PostForm/>
+	switch (props.popupType) {
+		case 'POST_REPLY':
+			const {activePost} = props;
+			return (
+				<div className="popup__background">
+					<div className="popup__content">
+						<PostReplyForm
+							teamName={activePost.teamName}
+							maps={activePost.maps}/>
+					</div>
 				</div>
-			</div>
-		)
+			);
+
+		default:
+			return null;
 	}
-	return null;
 };
 
 function mapStateToProps(state) {
 	return {
-		popupType: state.popupType
+		popupType: state.popupType,
+		activePost: state.activePost
 	};
 }
 
