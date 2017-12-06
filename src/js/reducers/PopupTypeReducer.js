@@ -1,15 +1,15 @@
 const popupTypeReducer = (state = null, action) => {
 	switch (action.type) {
-		case 'OPEN_POST_REPLY':
+		case 'REPLY_DRAFT':
 			// Pass on the popup type from the action
-			return "POST_REPLY";
+			return "REPLY_SEND";
 
-		case 'POST_REPLY':
+		case 'REPLY_SEND':
 			// Close popup after sending reply
 			return null;
 
-		case 'CLOSE_POPUP':
-			// No popup is open
+		case 'REPLY_CANCEL':
+			// Close popup when cancelling reply
 			return null;
 
 		default:

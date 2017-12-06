@@ -1,6 +1,6 @@
 const activePostReducer = (state = null, action) => {
 	switch (action.type) {
-		case 'OPEN_POST_REPLY':
+		case 'REPLY_DRAFT':
 			return action.payload;
 
 		default:

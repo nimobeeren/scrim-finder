@@ -1,12 +1,12 @@
 const draftingPostReducer = (state = null, action) => {
 	switch(action.type) {
-		case 'DRAFT_POST':
+		case 'POST_DRAFT':
 			return true;
 
-		case 'CANCEL_POST':
+		case 'POST_CANCEL':
 			return false;
 
-		case 'CREATE_POST':
+		case 'POST_CREATE':
 			return false;
 
 		default:

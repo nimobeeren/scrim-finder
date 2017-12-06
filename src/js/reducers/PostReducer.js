@@ -57,7 +57,7 @@ const filterPosts = (posts, filters) => {
 
 const postReducer = (state = null, action) => {
 	switch (action.type) {
-		case 'CREATE_POST':
+		case 'POST_CREATE':
 			// Add creation date to new post
 			const newPost = action.payload;
 			newPost.created = Date.now();

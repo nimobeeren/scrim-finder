@@ -1,18 +1,18 @@
 export const createPostButtonClick = () => {
 	return {
-		type: 'DRAFT_POST'
+		type: 'POST_DRAFT'
 	};
 };
 
 export const createPost = (post) => {
 	return {
-		type: 'CREATE_POST',
+		type: 'POST_CREATE',
 		payload: post
 	};
 };
 
 export const cancelPost = () => {
 	return {
-		type: 'CANCEL_POST'
+		type: 'POST_CANCEL'
 	};
 };
