@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import '../../styles/components/RadioGroup.css';
+
 
 class RadioGroup extends Component {
 	constructor(props) {
@@ -38,7 +40,7 @@ class RadioGroup extends Component {
 		const {items} = this.props;
 
 		return items.map(item => (
-			<label key={item.value}>
+			<label className="radio" key={item.value}>
 				<input
 					type="radio"
 					value={item.value}

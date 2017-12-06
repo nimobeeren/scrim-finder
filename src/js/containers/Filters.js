@@ -160,10 +160,10 @@ class Filters extends Component {
 
 	render() {
 		return (
-			<div className="filters-wrapper">
-				<div className="filters">
-					<h3>Filters</h3>
-					<div className="filters-content">
+			<div className="filters">
+				<div className="filters__content">
+					<h3 className="filters__title">Filters</h3>
+					<div className="filters__fields">
 						<fieldset>
 							<legend>Level</legend>
 							{this.createLevelCheckboxes()}

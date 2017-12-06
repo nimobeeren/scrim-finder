@@ -12,7 +12,7 @@ class Aside extends Component {
 		return (
 			<aside>
 				<div className="create-post">
-					<Button className="btn--large" label="Create post" onClick={this.props.handleClick}/>
+					<Button className="btn btn--large" label="Create post" onClick={this.props.handleClick}/>
 				</div>
 			</aside>
 		);

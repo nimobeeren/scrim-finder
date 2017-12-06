@@ -35,7 +35,7 @@ export class Checkbox extends Component {
 		const {label} = this.props;
 		const {isChecked} = this.state;
 		return (
-			<label>
+			<label className="checkbox">
 				<input
 					type="checkbox"
 					value={label}

@@ -8,8 +8,8 @@ import '../../styles/containers/Popup.css';
 const Popup = (props) => {
 	if (props.popupType === 'create-post') {
 		return (
-			<div className="popup-background">
-				<div className="popup-content">
+			<div className="popup__background">
+				<div className="popup__content">
 					<PostForm/>
 				</div>
 			</div>

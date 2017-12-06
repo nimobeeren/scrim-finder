@@ -1,19 +1,19 @@
 @import './../colors';
 
-h3 {
+.post__title {
 	margin: 0;
 	font-size: 24px;
 }
 
-.post-age {
+.post__age {
 	font-size: 14px;
 	color: dimgray;
 }
 
-table {
+.post__fields {
 	margin: 10px 0;
 }
 
-td:first-child {
+.post__fields td:first-child {
 	padding-right: 10px;
 }

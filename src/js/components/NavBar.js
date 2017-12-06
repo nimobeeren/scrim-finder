@@ -6,15 +6,15 @@ import './../../styles/components/NavBar.css';
 
 const NavBar = () => (
 	<nav>
-		<div className="nav-left">
-			<h1 className="nav-item">CSGO Scrim Finder</h1>
+		<div className="nav__left">
+			<h1 className="nav__item">CSGO Scrim Finder</h1>
 		</div>
-		<div className="nav-right">
-			<div className="nav-item">
-				<Button label="Log in"/>
+		<div className="nav__right">
+			<div className="nav__item">
+				<Button className="btn" label="Log in"/>
 			</div>
-			<div className="nav-item">
-				<Button className="btn--secondary" label="About"/>
+			<div className="nav__item">
+				<Button className="btn btn--secondary" label="About"/>
 			</div>
 		</div>
 	</nav>

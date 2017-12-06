@@ -9,8 +9,8 @@ import '../../styles/containers/CreatePost.css';
 
 const CreatePost = (props) => {
 	return (
-		<div className="create-post-btn-wrapper">
-			<Button className="btn--large" label="Create post" onClick={props.handleClick}/>
+		<div className="create-post-btn__wrapper">
+			<Button className="btn btn--large" label="Create post" onClick={props.handleClick}/>
 		</div>
 	)
 };

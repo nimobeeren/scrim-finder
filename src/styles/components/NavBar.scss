@@ -10,23 +10,23 @@ nav {
 	height: 70px;
 }
 
-.nav-left, .nav-right {
+.nav__left, .nav__right {
 	display: flex;
 }
 
-.nav-left {
+.nav__left {
 	flex-direction: row;
 }
 
-.nav-right {
+.nav__right {
 	flex-direction: row-reverse;
 }
 
-.nav-item {
+.nav__item {
 	margin: 0 10px;
 }
 
-h1 {
+nav h1 {
 	font-size: 28px;
 	white-space: nowrap;
 }

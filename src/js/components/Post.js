@@ -57,9 +57,9 @@ class Post extends Component {
 
 		return (
 			<Card className="card">
-				<h3>{title}</h3>
-				<div className="post-age">{age}</div>
-				<table><tbody>
+				<h3 className="post__title">{title}</h3>
+				<div className="post__age">{age}</div>
+				<table className="post__fields"><tbody>
 					<tr>
 						<td>Level:</td>
 						<td>{level}</td>

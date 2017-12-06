@@ -5,7 +5,7 @@ import Button from './Button';
 
 const PostActions = () => (
 	<div>
-		<Button label="GO"/>
+		<Button className="btn" label="GO"/>
 	</div>
 );
 
