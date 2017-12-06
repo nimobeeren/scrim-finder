@@ -8,7 +8,7 @@
 	width: 100px;
 	height: 40px;
 	background: $accent-color;
-	border-style: none;
+	border: none;
 	border-radius: 3px;
 	font-size: 18px;
 	text-align: center;
@@ -16,10 +16,18 @@
 	cursor: pointer;
 }
 
+.btn:hover {
+	background: darken($accent-color, 5%);
+}
+
 .btn--secondary {
 	background: transparent;
 	border: 2px solid $accent-color;
 	color: $accent-color;
+}
+
+.btn--secondary:hover {
+	background: rgba(255, 255, 255, 0.05);
 }
 
 .btn--large {
