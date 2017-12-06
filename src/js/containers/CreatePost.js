@@ -12,9 +12,11 @@ import '../../styles/containers/CreatePost.css';
 const CreatePost = (props) => {
 	if (props.drafting) {
 		return (
-			<Card className="card" title="Create a post">
-				<PostForm/>
-			</Card>
+			<div className="create-post__wrapper">
+				<Card className="card" title="Create a post">
+					<PostForm/>
+				</Card>
+			</div>
 		);
 	} else {
 		return (
