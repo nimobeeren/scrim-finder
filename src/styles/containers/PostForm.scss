@@ -1,3 +1,5 @@
+@import '../colors';
+
 .post-form fieldset {
 	margin: 10px 0;
 	border-radius: 10px;
@@ -13,4 +15,17 @@
 .post-form__btn-wrapper {
 	display: inline-block;
 	margin-right: 10px;
+}
+
+.post-form .invalid {
+	border-color: $error-red;
+	box-shadow: 0 0 3px transparentize($error-red, 0.5);
+}
+
+.post-form .invalid legend {
+	color: $error-red;
+}
+
+.post-form .invalid legend::after {
+	content: " (select at least one)";
 }

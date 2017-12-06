@@ -60,7 +60,7 @@ class PostForm extends Component {
 
 		// Validate form
 		if (maps.length === 0) {
-			alert("Please select at least one map");
+			document.getElementById('new-post-maps').className = 'invalid';
 			return;
 		}
 
@@ -130,7 +130,7 @@ class PostForm extends Component {
 					<legend>Level</legend>
 					{this.createLevelRadioButtons()}
 				</fieldset>
-				<fieldset>
+				<fieldset id="new-post-maps">
 					<legend>Maps</legend>
 					{this.createMapCheckboxes()}
 				</fieldset>
