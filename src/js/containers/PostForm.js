@@ -6,19 +6,19 @@ import {createPost, cancelPost} from '../actions/CreatePostActions';
 import CheckboxGroup from '../components/CheckboxGroup';
 import RadioGroup from '../components/RadioGroup';
 import Button from '../components/Button';
+import '../../styles/containers/PostForm.css';
 
 
 class PostForm extends Component {
-	createLevelCheckboxes() {
+	createLevelRadioButtons() {
 		const {levels} = this.props;
 		const items = levels.map(level => {
 			return {
 				value: level.toLowerCase(),
-				label: level,
-				isChecked: false
+				label: level
 			}
 		});
-		return <CheckboxGroup items={items}/>;
+		return <RadioGroup items={items} defaultItem={'medium'}/>;
 	}
 
 	createMapCheckboxes() {
@@ -54,15 +54,14 @@ class PostForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<h3>Create a post</h3>
+			<div className="post-form">
 				<fieldset>
 					<legend>Team Name</legend>
-					<input type="text"/>
+					<input type="text" placeholder="Anonymous"/>
 				</fieldset>
 				<fieldset>
 					<legend>Level</legend>
-					{this.createLevelCheckboxes()}
+					{this.createLevelRadioButtons()}
 				</fieldset>
 				<fieldset>
 					<legend>Maps</legend>
@@ -72,8 +71,12 @@ class PostForm extends Component {
 					<legend>Server</legend>
 					{this.createServerRadioButtons()}
 				</fieldset>
-				<Button className="btn" label="Create" onClick={this.props.handleCreate}/>
-				<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
+				<div className="post-form__btn-wrapper">
+					<Button className="btn" label="Create" onClick={this.props.handleCreate}/>
+				</div>
+				<div className="post-form__btn-wrapper">
+					<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
+				</div>
 			</div>
 		);
 	}

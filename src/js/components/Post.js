@@ -56,9 +56,7 @@ class Post extends Component {
 			age = this.getAgeString();
 
 		return (
-			<Card className="card">
-				<h3 className="post__title">{title}</h3>
-				<div className="post__age">{age}</div>
+			<Card className="card" title={title} subtitle={age}>
 				<table className="post__fields"><tbody>
 					<tr>
 						<td>Level:</td>

@@ -1,7 +1,6 @@
 export const createPostButtonClick = () => {
 	return {
-		type: 'OPEN_POPUP',
-		payload: 'create-post'
+		type: 'DRAFT_POST'
 	};
 };
 
@@ -14,6 +13,6 @@ export const createPost = (post) => {
 
 export const cancelPost = () => {
 	return {
-		type: 'CLOSE_POPUP'
+		type: 'CANCEL_POST'
 	};
 };

@@ -1,4 +1,4 @@
-const openPopup = (state = null, action) => {
+const popupType = (state = null, action) => {
 	switch(action.type) {
 		case 'OPEN_POPUP':
 			// Set popupType to the one passed through the action
@@ -12,4 +12,4 @@ const openPopup = (state = null, action) => {
 	}
 };
 
-export default openPopup;
+export default popupType;
