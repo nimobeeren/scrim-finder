@@ -11,10 +11,10 @@ const NavBar = () => (
 		</div>
 		<div className="nav__right">
 			<div className="nav__item">
-				<Button className="btn" label="Log in"/>
+				<Button className="btn" label="Log in" onClick={() => alert("Not yet implemented")}/>
 			</div>
 			<div className="nav__item">
-				<Button className="btn btn--secondary" label="About"/>
+				<Button className="btn btn--secondary" label="About" onClick={() => alert("Not yet implemented")}/>
 			</div>
 		</div>
 	</nav>
