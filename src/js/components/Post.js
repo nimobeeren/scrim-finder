@@ -9,7 +9,7 @@ import '../../styles/components/Post.css';
 
 class Post extends Component {
 	getServerPrefString() {
-		switch(this.props.server) {
+		switch (this.props.server) {
 			case 'on':
 				return "On";
 			case 'off':
@@ -60,7 +60,8 @@ class Post extends Component {
 
 		return (
 			<Card className="card" title={teamName} subtitle={age}>
-				<table className="post__fields"><tbody>
+				<table className="post__fields">
+					<tbody>
 					<tr>
 						<td>Level:</td>
 						<td>{level}</td>
@@ -73,7 +74,8 @@ class Post extends Component {
 						<td>Server:</td>
 						<td>{server}</td>
 					</tr>
-				</tbody></table>
+					</tbody>
+				</table>
 				<PostActions post={this.props}/>
 			</Card>
 		);

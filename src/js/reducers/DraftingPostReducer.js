@@ -1,5 +1,5 @@
 const draftingPostReducer = (state = null, action) => {
-	switch(action.type) {
+	switch (action.type) {
 		case 'POST_DRAFT':
 			return true;
 

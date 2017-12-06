@@ -59,7 +59,7 @@ class Filters extends Component {
 	handleAgeChanged(e, state) {
 		// Determine maximum post age in milliseconds
 		let maxAge;
-		switch(state.selectedItem) {
+		switch (state.selectedItem) {
 			case '5mins':
 				maxAge = (5 * 60 + 59) * 1000;
 				break;
