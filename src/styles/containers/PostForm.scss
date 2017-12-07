@@ -18,11 +18,11 @@
 }
 
 .post-form .invalid {
-	border-color: $error-red;
+	border-color: transparentize($error-red, 0.1);
 }
 
 .post-form .invalid legend {
-	color: $error-red;
+	color: transparentize($error-red, 0.1);
 	background: $primary-color;
 }
 
