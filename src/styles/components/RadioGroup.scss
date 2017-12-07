@@ -6,9 +6,12 @@
 }
 
 .radio input {
+	position: relative;
+	top: 1px;
 	width: calc(13px * 1.3);
 	height: calc(13px * 1.3);
 	transform: scale(1.3);
+	margin-right: 6px;
 }
 
 @media (min-width: $bp-large) {
@@ -20,5 +23,6 @@
 		width: 13px;
 		height: 13px;
 		transform: none;
+		margin-right: 3px;
 	}
 }
