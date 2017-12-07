@@ -72,8 +72,8 @@ const postReducer = (state = null, action) => {
 				.sort((a, b) => b.created - a.created);
 
 		default:
-			if (state && state.posts) {
-				return state.posts;
+			if (state) {
+				return state;
 			} else {
 				return allPosts.sort((a, b) => b.created - a.created);
 			}

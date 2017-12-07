@@ -10,11 +10,7 @@ const draftingPostReducer = (state = null, action) => {
 			return false;
 
 		default:
-			if (state && typeof state.draftingPost === 'boolean') {
-				return state.draftingPost;
-			} else {
-				return false;
-			}
+			return state || false;
 	}
 };
 
