@@ -65,7 +65,10 @@ class PostForm extends Component {
 		}
 
 		// Create new post
-		this.props.createPost(this.state);
+		this.props.createPost({
+			post: this.state,
+			filters: this.props.filters
+		});
 	}
 
 	createLevelRadioButtons() {
@@ -152,7 +155,8 @@ class PostForm extends Component {
 function mapStateToProps(state) {
 	return {
 		levels: state.allLevels,
-		maps: state.allMaps
+		maps: state.allMaps,
+		filters: state.filters
 	};
 }
 

@@ -59,12 +59,13 @@ const postReducer = (state = null, action) => {
 	switch (action.type) {
 		case 'POST_CREATE':
 			// Add creation date to new post
-			const newPost = action.payload;
+			const newPost = action.payload.post;
 			newPost.created = Date.now();
 
 			// Add new post to the list and return the list
 			allPosts = allPosts.concat([newPost]); // has to be a new object, .push does NOT work
-			return filterPosts(allPosts, state.filters)
+			return filterPosts(allPosts, action.payload.filters)
+				.concat([newPost]) // always show the new post in the list
 				.sort((a, b) => b.created - a.created);
 
 		case 'FILTER_CHANGED':
