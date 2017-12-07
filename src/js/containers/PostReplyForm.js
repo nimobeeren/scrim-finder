@@ -14,6 +14,7 @@ class PostReplyForm extends Component {
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 	}
 
 	handleSubmit(e) {
@@ -22,8 +23,16 @@ class PostReplyForm extends Component {
 		e.preventDefault();
 	}
 
+	handleCancel(e) {
+		// Close the popup
+		document.querySelector('.popup__wrapper').classList.add('popup__wrapper--slideout');
+		document.querySelector('.popup__background').classList.add('popup__background--fadeout');
+		setTimeout(this.props.cancelPostReply, 300); // wait for animation to end
+		e.preventDefault();
+	}
+
 	render() {
-		const {teamName, maps, handleCancel} = this.props;
+		const {teamName, maps} = this.props;
 		return (
 			<Card className="card" title={"Replying to " + teamName}>
 				<form className="post-reply-form" onSubmit={this.handleSubmit}>
@@ -39,7 +48,7 @@ class PostReplyForm extends Component {
 						<SubmitButton className="btn" label="Send"/>
 					</div>
 					<div className="post-reply-form__btn-wrapper">
-						<Button className="btn" label="Cancel" onClick={handleCancel}/>
+						<Button className="btn" label="Cancel" onClick={this.handleCancel}/>
 					</div>
 				</form>
 			</Card>
@@ -50,7 +59,7 @@ class PostReplyForm extends Component {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		sendPostReply,
-		handleCancel: cancelPostReply
+		cancelPostReply
 	}, dispatch);
 }
 

@@ -11,10 +11,12 @@ const Popup = (props) => {
 			const {activePost} = props;
 			return (
 				<div className="popup__background">
-					<div className="popup__content">
-						<PostReplyForm
-							teamName={activePost.teamName}
-							maps={activePost.maps}/>
+					<div className="popup__wrapper">
+						<div className="popup__content">
+							<PostReplyForm
+								teamName={activePost.teamName}
+								maps={activePost.maps}/>
+						</div>
 					</div>
 				</div>
 			);

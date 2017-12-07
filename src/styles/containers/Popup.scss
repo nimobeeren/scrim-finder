@@ -3,16 +3,66 @@
 .popup__background {
 	position: fixed;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+	animation: 300ms forwards;
+	animation-name: fadein;
 	z-index: 1;
 }
 
+.popup__background--fadeout {
+	animation-name: fadeout;
+}
+
+.popup__wrapper {
+	width: 100%;
+	padding: 15px;
+	animation: 500ms forwards;
+	animation-name: slidein;
+}
+
+.popup__wrapper--slideout {
+	animation-name: slideout;
+}
+
 .popup__content {
-	flex-grow: 1;
-	margin: 50px 15px;
+	margin: 0 auto;
 	max-width: 450px;
+}
+
+@keyframes slidein {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideout {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fadein {
+	0% {
+		background: transparent;
+	}
+	100% {
+		background: rgba(0, 0, 0, 0.8);
+	}
+}
+
+@keyframes fadeout {
+	0% {
+		background: rgba(0, 0, 0, 0.8);
+	}
+	100% {
+		background: transparent;
+	}
 }
