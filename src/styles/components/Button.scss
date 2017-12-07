@@ -25,9 +25,13 @@
 	margin-left: 15px;
 }
 
-.btn--shrink {
+.btn--small {
 	width: 80px;
 	height: 35px;
+}
+
+.btn--shrink {
+	@extend .btn--small;
 }
 
 .btn--secondary {
