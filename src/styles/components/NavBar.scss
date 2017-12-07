@@ -1,5 +1,4 @@
-@import '../colors';
-@import '../breakpoints';
+@import '../globals';
 
 nav {
 	background: darken($primary-color, 10%);
