@@ -162,7 +162,7 @@ class Filters extends Component {
 		return (
 			<div className="filters">
 				<div className="filters__content">
-					<h3 className="filters__title">Filters</h3>
+					<h3>Filters</h3>
 					<div className="filters__fields">
 						<fieldset>
 							<legend>Level</legend>
