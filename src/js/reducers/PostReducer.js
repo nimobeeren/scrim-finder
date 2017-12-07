@@ -65,19 +65,17 @@ const postReducer = (state = null, action) => {
 			// Add new post to the list and return the list
 			allPosts = allPosts.concat([newPost]); // has to be a new object, .push does NOT work
 			return filterPosts(allPosts, state.filters)
-				.sort((a, b) => a.created < b.created);
+				.sort((a, b) => b.created - a.created);
 
 		case 'FILTER_CHANGED':
 			return filterPosts(allPosts, action.payload)
-				.sort((a, b) => a.created < b.created);
+				.sort((a, b) => b.created - a.created);
 
 		default:
 			if (state && state.posts) {
 				return state.posts;
 			} else {
-				return allPosts.sort((a, b) => {
-					return a.created < b.created
-				});
+				return allPosts.sort((a, b) => b.created - a.created);
 			}
 	}
 };
