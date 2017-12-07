@@ -127,6 +127,7 @@ class PostForm extends Component {
 					<input
 						type="text"
 						placeholder="Anonymous"
+						autoFocus
 						onChange={this.handleTeamNameChange}/>
 				</fieldset>
 				<fieldset>

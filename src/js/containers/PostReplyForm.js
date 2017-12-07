@@ -28,7 +28,7 @@ class PostReplyForm extends Component {
 			<Card className="card" title={"Replying to " + teamName}>
 				<form className="post-reply-form" onSubmit={this.handleSubmit}>
 					<h4>What map do you want to play?</h4>
-					<select>
+					<select autoFocus>
 						{maps.map(mapName => (
 							<option key={mapName} value={mapName}>{mapName}</option>
 						))}
