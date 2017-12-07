@@ -59,6 +59,8 @@
 }
 
 .btn--about::before {
+	position: absolute; // needed for text-decoration to work
+	text-decoration: none;
 	content: "i";
 	font-size: 20px;
 	font-weight: bold;
