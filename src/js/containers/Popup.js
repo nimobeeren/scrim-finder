@@ -7,7 +7,7 @@ import '../../styles/containers/Popup.css';
 
 const Popup = (props) => {
 	switch (props.popupType) {
-		case 'REPLY_SEND':
+		case 'POPUP_REPLY':
 			const {activePost} = props;
 			return (
 				<div className="popup__background">
