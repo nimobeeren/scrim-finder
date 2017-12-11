@@ -1,0 +1,30 @@
+.filters {
+  background: #20265c; }
+
+.filters__content {
+  max-width: 500px;
+  padding: 10px 25px 25px;
+  margin: 0 auto;
+  color: #fafafa; }
+
+.filters h3 {
+  margin: 0;
+  font-size: 24px; }
+
+.filters__fields {
+  display: flex;
+  flex-direction: column; }
+
+.filters fieldset {
+  flex-basis: 0;
+  flex-grow: 1;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2); }
+
+.filters label {
+  display: flex;
+  align-items: center; }
+
+@media (min-width: 540px) {
+  .filters__fields {
+    flex-direction: row; } }

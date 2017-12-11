@@ -1,0 +1,72 @@
+.btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  background: #f99d1c;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: center;
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+  color: #fafafa;
+  cursor: pointer; }
+
+.btn:hover {
+  background: #f59206; }
+
+.btn--nav {
+  margin-left: 15px; }
+
+.btn--small, .btn--shrink {
+  width: 80px;
+  height: 35px; }
+
+.btn--secondary {
+  background: transparent;
+  border: 2px solid #f99d1c;
+  color: #f99d1c; }
+
+.btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.05); }
+
+.btn--large {
+  width: 150px;
+  height: 60px;
+  font-size: 20px; }
+
+.btn--about {
+  display: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px; }
+
+.btn--about::before {
+  position: absolute;
+  text-decoration: none;
+  content: "i";
+  font-size: 20px;
+  font-weight: bold; }
+
+@media (min-width: 390px) {
+  .btn--about {
+    display: inline-flex; } }
+
+@media (min-width: 460px) {
+  .btn--shrink {
+    width: 100px;
+    height: 40px; }
+  .btn--about {
+    width: 40px;
+    height: 40px; } }
+
+@media (min-width: 540px) {
+  .btn--about {
+    width: 100px;
+    border-radius: 3px; }
+  .btn--about::before {
+    content: "About";
+    font-size: 18px;
+    font-weight: normal; } }

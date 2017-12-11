@@ -1,0 +1,23 @@
+.post-form fieldset {
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2); }
+
+.post-form input[type="text"] {
+  display: block;
+  width: 99%;
+  font-size: 16px; }
+
+.post-form__btn-wrapper {
+  display: inline-block;
+  margin-right: 10px; }
+
+.post-form .invalid {
+  border-color: rgba(240, 0, 0, 0.9); }
+
+.post-form .invalid legend {
+  color: rgba(240, 0, 0, 0.9);
+  background: #272e6f; }
+
+.post-form .invalid legend::after {
+  content: " (select at least one)"; }

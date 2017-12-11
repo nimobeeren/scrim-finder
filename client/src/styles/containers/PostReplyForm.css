@@ -1,0 +1,20 @@
+.post-reply-form h4 {
+  margin: 5px 0; }
+
+.post-reply-form select {
+  width: 100px;
+  margin: 10px 0;
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+  font-size: 18px; }
+
+.post-reply-form textarea {
+  display: block;
+  width: 99%;
+  height: 100px;
+  margin: 10px 0 15px;
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+  resize: none; }
+
+.post-reply-form__btn-wrapper {
+  display: inline-block;
+  margin-right: 10px; }

@@ -1,33 +1,25 @@
 {
-  "name": "scrim-finder",
+  "name": "scrim-finder-server",
+  "version": "0.2.0",
   "description": "A web app to let you find, organize and schedule competitive CSGO matches",
-  "version": "0.1.0",
   "homepage": "http://2id60.win.tue.nl/~s160823/",
+  "main": "server.js",
   "dependencies": {
-    "node-sass-chokidar": "0.0.3",
-    "npm-run-all": "^4.1.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-redux": "^5.0.6",
-    "react-scripts": "1.0.17",
-    "redux": "^3.7.2"
+    "npm-run-all": "^4.1.2"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm-run-all -p server client",
+    "server": "node server.js",
+    "client": "node start-client.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nimobeeren/scrim-finder.git"
+    "url": "git+https://github.com/nimobeeren/scrim-finder.git"
   },
-  "keywords": [],
   "author": "Nimo Beeren",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nimobeeren/scrim-finder/issues"
+  }
 }
