@@ -1,8 +1,8 @@
 {
   "name": "scrim-finder-server",
   "version": "0.2.0",
-  "description": "A web app to let you find, organize and schedule competitive CSGO matches",
-  "homepage": "http://2id60.win.tue.nl/~s160823/",
+  "description": "A web app to find, organize and schedule competitive CSGO matches",
+  "homepage": "http://2id60.win.tue.nl:8823/",
   "main": "server.js",
   "dependencies": {
     "express": "^4.16.2",
