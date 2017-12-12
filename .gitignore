@@ -9,6 +9,9 @@ node_modules/
 # production
 /client/build
 
+# processed CSS
+/client/src/styles/**/*.css
+
 # misc
 .DS_Store
 .env.local
@@ -23,6 +26,3 @@ yarn-error.log*
 # IntelliJ stuff
 .idea/
 *.iml
-
-# Processed CSS
-/src/styles/**/*.css
