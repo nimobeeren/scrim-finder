@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Card from '../components/Card';
-import PostMapPool from '../components/PostMapPool';
+import PostMapPool from './PostMapPool';
 import PostActions from './PostControls';
 import '../../styles/components/Post.css';
 
