@@ -1,9 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = 8823;
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/api/test', (req, res) => {
-	res.send("Hello world");
+	res.send("Hello world!");
 });
 
-app.listen(PORT, () => console.log("Server listening on port " + PORT));
+module.exports = app;
