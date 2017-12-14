@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 
 import PostReducer from './PostReducer';
-import AllLevelsReducer from './AllLevelsReducer';
-import AllMapsReducer from './AllMapsReducer';
+import LevelNameReducer from './LevelNameReducer';
+import MapNameReducer from './MapNameReducer';
 import PopupReducer from './PopupTypeReducer';
 import DraftingPostReducer from './DraftingPostReducer';
 import FiltersReducer from './FiltersReducer';
@@ -11,8 +11,8 @@ import ActivePostReducer from './ActivePostReducer';
 
 const rootReducer = combineReducers({
 	posts: PostReducer,
-	allLevels: AllLevelsReducer,
-	allMaps: AllMapsReducer,
+	levelNames: LevelNameReducer,
+	mapNames: MapNameReducer,
 	popupType: PopupReducer,
 	draftingPost: DraftingPostReducer,
 	filters: FiltersReducer,

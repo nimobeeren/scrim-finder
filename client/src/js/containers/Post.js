@@ -1,21 +1,31 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import Card from './Card';
-import PostMapPool from './PostMapPool';
-import PostActions from '../containers/PostControls';
+import Card from '../components/Card';
+import PostMapPool from '../components/PostMapPool';
+import PostActions from './PostControls';
 import '../../styles/components/Post.css';
 
 
 class Post extends Component {
+	getLevelString() {
+		// Convert a number-based level to a textual level
+		let number = this.props.level;
+		if (!number || Number.isNaN(number) || number >= this.props.levelNames.length) {
+			number = 2;
+		}
+		return this.props.levelNames[number];
+	}
+
 	getServerPrefString() {
-		switch (this.props.server) {
-			case 'on':
-				return "On";
-			case 'off':
-				return "Off";
-			default:
-				return "On/Off";
+		const {server} = this.props;
+		if (typeof server === 'undefined') {
+			return "On/Off";
+		} else if (server) {
+			return "On";
+		} else {
+			return "Off";
 		}
 	}
 
@@ -49,7 +59,8 @@ class Post extends Component {
 	}
 
 	render() {
-		let {teamName, level, maps} = this.props,
+		let {teamName, maps} = this.props,
+			level = this.getLevelString(),
 			server = this.getServerPrefString(),
 			age = this.getAgeString();
 
@@ -82,18 +93,24 @@ class Post extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return {
+		levelNames: state.levelNames
+	};
+}
+
 Post.propTypes = {
 	teamName: PropTypes.string,
-	level: PropTypes.string.isRequired,
+	level: PropTypes.number,
 	maps: PropTypes.array,
-	server: PropTypes.string,
+	server: PropTypes.bool,
 	created: PropTypes.number
 };
 Post.defaultProps = {
 	teamName: "Anonymous",
-	level: "High",
+	level: 2,
 	maps: [],
 	created: Date.now()
 };
 
-export default Post;
+export default connect(mapStateToProps)(Post);

@@ -189,8 +189,8 @@ class Filters extends Component {
 
 function mapStateToProps(state) {
 	return {
-		levels: state.allLevels,
-		maps: state.allMaps
+		levels: state.levelNames,
+		maps: state.mapNames
 	};
 }
 

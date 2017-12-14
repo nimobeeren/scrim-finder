@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Post from '../components/Post';
+import Post from './Post';
 import '../../styles/containers/PostList.css';
 
 
@@ -38,7 +38,7 @@ class PostList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		posts: state.posts
+		posts: state.posts.items
 	};
 }
 

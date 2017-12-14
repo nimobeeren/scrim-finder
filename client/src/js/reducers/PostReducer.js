@@ -1,25 +1,3 @@
-let allPosts = [
-	{
-		teamName: "Nehox",
-		level: "Top",
-		maps: ["cache", "overpass", "nuke", "cbble", "mirage", "train"],
-		server: 'on',
-		created: 1512661640044
-	},
-	{
-		teamName: "Team Adrian",
-		level: "High",
-		created: 1512661104665
-	},
-	{
-		teamName: "MouseMafia",
-		level: "Medium",
-		maps: ["cache", "overpass", "cbble", "mirage"],
-		server: 'off',
-		created: 1512659878073
-	}
-];
-
 const filterPosts = (posts, filters) => {
 	if (!filters) {
 		return posts;
@@ -55,30 +33,44 @@ const filterPosts = (posts, filters) => {
 	});
 };
 
-const postReducer = (state = null, action) => {
+function postReducer(state = {
+						 isFetching: false,
+						 items: []
+					 },
+					 action) {
 	switch (action.type) {
-		case 'POST_CREATE':
-			// Add creation date to new post
-			const newPost = action.payload.post;
-			newPost.created = Date.now();
+		// case 'POST_CREATE':
+		// 	// Add creation date to new post
+		// 	const newPost = action.payload.post;
+		// 	newPost.created = Date.now();
+		//
+		// 	// Add new post to the list and return the list
+		// 	allPosts = allPosts.concat([newPost]); // has to be a new object, .push does NOT work
+		// 	return filterPosts(allPosts, action.payload.filters)
+		// 		.concat([newPost]) // always show the new post in the list
+		// 		.sort((a, b) => b.created - a.created);
+		//
+		// case 'FILTER_CHANGED':
+		// 	const posts = await getPosts();
+		// 	return filterPosts(posts, action.payload)
+		// 		.sort((a, b) => b.created - a.created);
 
-			// Add new post to the list and return the list
-			allPosts = allPosts.concat([newPost]); // has to be a new object, .push does NOT work
-			return filterPosts(allPosts, action.payload.filters)
-				.concat([newPost]) // always show the new post in the list
-				.sort((a, b) => b.created - a.created);
+		case 'REQUEST_POSTS':
+			return Object.assign({}, state, {
+				isFetching: true
+			});
 
-		case 'FILTER_CHANGED':
-			return filterPosts(allPosts, action.payload)
-				.sort((a, b) => b.created - a.created);
+		case 'RECEIVE_POSTS':
+			return Object.assign({}, state, {
+				isFetching: false,
+				filters: action.filters,
+				items: action.posts,
+				lastUpdated: action.receivedAt
+			});
 
 		default:
-			if (state) {
-				return state;
-			} else {
-				return allPosts.sort((a, b) => b.created - a.created);
-			}
+			return state;
 	}
-};
+}
 
 export default postReducer;
