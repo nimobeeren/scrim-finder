@@ -17,5 +17,38 @@ module.exports = {
 		}
 		const collection = db.collection('posts');
 		return collection.find().toArray();
+	},
+
+	createPost: async function (post) {
+		if (!db) {
+			db = await connect();
+		}
+		const collection = db.collection('posts');
+
+		let doc = {};
+
+		if (post.teamName) {
+			doc.teamName = post.teamName;
+		}
+
+		if (post.maps) {
+			doc.maps = post.maps;
+		}
+
+		// Level must be parsable as integer
+		let parsedLevel = parseInt(post.level);
+		if (!Number.isNaN(parsedLevel)) {
+			doc.level = parsedLevel;
+		}
+
+		// Server attribute must be boolean
+		if (typeof server === 'boolean') {
+			doc.server = server;
+		}
+
+		// Always include a creation date
+		doc.created = Date.now();
+
+		return collection.insertOne(doc);
 	}
 };
