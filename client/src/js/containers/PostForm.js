@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import {createPost, cancelPost} from '../actions/CreatePostActions';
+import {createPost, cancelPostDraft} from '../actions/CreatePostActions';
 import CheckboxGroup from '../components/CheckboxGroup';
 import RadioGroup from '../components/RadioGroup';
 import Button from '../components/Button';
@@ -65,10 +65,10 @@ class PostForm extends Component {
 		}
 
 		// Create new post
-		this.props.createPost({
-			post: this.state,
-			filters: this.props.filters
-		});
+		this.props.createPost(
+			this.state,
+			this.props.filters
+		);
 	}
 
 	createLevelRadioButtons() {
@@ -164,7 +164,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		createPost,
-		handleCancel: cancelPost
+		handleCancel: cancelPostDraft
 	}, dispatch);
 }
 

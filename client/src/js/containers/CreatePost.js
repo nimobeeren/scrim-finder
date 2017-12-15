@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 
-import {createPostButtonClick} from "../actions/CreatePostActions";
+import {createPostDraft} from "../actions/CreatePostActions";
 import Card from '../components/Card';
 import PostForm from './PostForm';
 import Button from '../components/Button';
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		handleClick: createPostButtonClick
+		handleClick: createPostDraft
 	}, dispatch);
 }
 

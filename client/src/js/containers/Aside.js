@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {createPostButtonClick} from "../actions/CreatePostActions";
+import {createPostDraft} from "../actions/CreatePostActions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
@@ -21,7 +21,7 @@ class Aside extends Component {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		handleClick: createPostButtonClick
+		handleClick: createPostDraft
 	}, dispatch);
 }
 

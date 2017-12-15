@@ -15,14 +15,10 @@ export function receivePosts(filters, posts) {
 }
 
 export function fetchPosts(filters = null) {
-	return function(dispatch) {
-		dispatch(requestPosts);
-		return fetch('/api/posts')
-			.then(response => {
-				return response.json();
-			})
-			.then(json => {
-				dispatch(receivePosts(filters, json));
-			});
+	return async function(dispatch) {
+		dispatch(requestPosts(filters));
+		const response = await fetch('/api/posts');
+		const json = await response.json();
+		dispatch(receivePosts(filters, json));
 	}
 }
