@@ -5,6 +5,7 @@ const db = require('./db');
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+// Use Express middleware to parse JSON requests
 app.use('/api/posts', express.json());
 
 app.get('/api/test', (req, res) => {
@@ -12,7 +13,25 @@ app.get('/api/test', (req, res) => {
 });
 
 app.get('/api/posts', async (req, res) => {
-	const posts = await db.getPosts();
+	// Get encoded query string from URL
+	const query = req.query.filters;
+
+	// Decode and parse query as JSON
+	let filters = null;
+	if (query) {
+		try {
+			filters = JSON.parse(decodeURIComponent(query));
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				res.status(400).send("Bad filters parameter");
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	// Get posts that match filters from database
+	const posts = await db.getPosts(filters);
 	res.send(posts);
 });
 

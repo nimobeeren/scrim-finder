@@ -11,26 +11,47 @@ async function connect() {
 }
 
 module.exports = {
-	getPosts: async function () {
+	getPosts: async function (filters) {
+		// Make sure we have an active database connection
 		if (!db) {
 			db = await connect();
 		}
+
 		const collection = db.collection('posts');
-		return collection.find().toArray();
+
+		let query = {};
+		if (filters) {
+			if (filters.level) {
+				if (Array.isArray(filters.level) && filters.level.length > 0) {
+					// level can be given as an array...
+					query.level = {
+						$in: filters.level
+					}
+				} else {
+					// ...or as a single value
+					query.level = filters.level;
+				}
+			}
+		}
+
+		return collection.find(query).toArray();
 	},
 
 	createPost: async function (post) {
+		// Make sure we have an active database connection
 		if (!db) {
 			db = await connect();
 		}
-		const collection = db.collection('posts');
 
+		// Create a document to instert into the database
 		let doc = {};
 
+		// Set team name if requested
 		if (post.teamName) {
 			doc.teamName = post.teamName;
 		}
 
+		// Set maps if requested
 		if (post.maps) {
 			doc.maps = post.maps;
 		}
@@ -49,6 +70,8 @@ module.exports = {
 		// Always include a creation date
 		doc.created = Date.now();
 
+		// Insert document into the post collection
+		const collection = db.collection('posts');
 		return collection.insertOne(doc);
 	}
 };
