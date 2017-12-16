@@ -28,7 +28,7 @@ router.route('/posts')
 		const posts = await db.getPosts(filters);
 		res.send(posts);
 	})
-	.put(async (req, res) => {
+	.post(async (req, res) => {
 		try {
 			await db.createPost(req.body);
 			res.status(200).send("Post created");

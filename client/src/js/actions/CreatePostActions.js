@@ -45,7 +45,7 @@ export function createPost(post, filters) {
 	return async function (dispatch) {
 		dispatch(requestCreatePost(post));
 		const response = await fetch('/api/posts', {
-			method: 'PUT',
+			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(post)
 		});
