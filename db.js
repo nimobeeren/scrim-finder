@@ -41,7 +41,10 @@ module.exports = {
 				// maps can be given as an array...
 				if (filters.maps.length > 0) {
 					query.maps = {
-						$in: filters.maps
+						$not: {
+							$exists: true,
+							$nin: filters.maps
+						}
 					};
 				}
 			} else {
