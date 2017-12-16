@@ -1,36 +1,41 @@
 import {fetchPosts} from "./PostActions";
 
+export const CREATE_POST_DRAFT = 'CREATE_POST_DRAFT';
 export function createPostDraft() {
 	return {
-		type: 'CREATE_POST_DRAFT'
+		type: CREATE_POST_DRAFT
 	};
 }
 
+export const CANCEL_POST_DRAFT = 'CANCEL_POST_DRAFT';
 export function cancelPostDraft() {
 	return {
-		type: 'CANCEL_POST_DRAFT'
+		type: CANCEL_POST_DRAFT
 	};
 }
 
+export const REQUEST_CREATE_POST = 'REQUEST_CREATE_POST';
 export function requestCreatePost(post) {
 	return {
-		type: 'REQUEST_CREATE_POST',
+		type: REQUEST_CREATE_POST,
 		post
 	};
 }
 
+export const SUCCESS_CREATE_POST = 'SUCCESS_CREATE_POST';
 export function successCreatePost(post, filters, response) {
 	return {
-		type: 'SUCCESS_CREATE_POST',
+		type: SUCCESS_CREATE_POST,
 		post,
 		filters,
 		response
 	};
 }
 
+export const FAIL_CREATE_POST = 'FAIL_CREATE_POST';
 export function failCreatePost(post, response) {
 	return {
-		type: 'FAIL_CREATE_POST',
+		type: FAIL_CREATE_POST,
 		post,
 		response
 	}

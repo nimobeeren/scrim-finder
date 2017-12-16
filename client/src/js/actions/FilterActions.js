@@ -1,9 +1,10 @@
 import { fetchPosts } from './PostActions';
 
 
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 function changeFilter(filters) {
 	return {
-		type: 'CHANGE_FILTER',
+		type: CHANGE_FILTER,
 		filters
 	};
 }

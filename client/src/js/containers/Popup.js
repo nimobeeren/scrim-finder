@@ -1,13 +1,14 @@
 import React from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import PostReplyForm from "./PostReplyForm";
+import { PopupTypes } from "../reducers/PopupTypeReducer";
 import '../../styles/containers/Popup.css';
 
 
 const Popup = (props) => {
 	switch (props.popupType) {
-		case 'POPUP_REPLY':
+		case PopupTypes.reply:
 			const {activePost} = props;
 			return (
 				<div className="popup__background">

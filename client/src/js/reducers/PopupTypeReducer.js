@@ -1,21 +1,31 @@
-const popupTypeReducer = (state = null, action) => {
-	switch (action.type) {
-		case 'REPLY_DRAFT':
-			// Open the post reply popup
-			return "POPUP_REPLY";
+import {
+	CREATE_REPLY_DRAFT,
+	CANCEL_REPLY_DRAFT,
+	SEND_REPLY
+} from "../actions/PostReplyActions";
 
-		case 'REPLY_SEND':
-			// Close popup after sending reply
+export const PopupTypes = {
+	reply: 'POPUP_REPLY'
+};
+
+function popupTypeReducer(state = null, action) {
+	switch (action.type) {
+		case CREATE_REPLY_DRAFT:
+			// Open the post reply popup
+			return PopupTypes.reply;
+
+		case CANCEL_REPLY_DRAFT:
+			// Close popup when cancelling reply
 			return null;
 
-		case 'REPLY_CANCEL':
-			// Close popup when cancelling reply
+		case SEND_REPLY:
+			// Close popup after sending reply
 			return null;
 
 		default:
 			// Leave popup type the same
 			return state;
 	}
-};
+}
 
 export default popupTypeReducer;

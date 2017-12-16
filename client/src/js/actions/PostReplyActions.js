@@ -1,19 +1,22 @@
-export const openPostReply = (post) => {
+export const CREATE_REPLY_DRAFT = 'CREATE_REPLY_DRAFT';
+export function openPostReply(post) {
 	return {
-		type: 'REPLY_DRAFT',
-		payload: post
+		type: CREATE_REPLY_DRAFT,
+		post
 	};
-};
+}
 
-export const cancelPostReply = () => {
+export const CANCEL_REPLY_DRAFT = 'CANCEL_REPLY_DRAFT';
+export function cancelPostReply() {
 	return {
-		type: 'REPLY_CANCEL'
+		type: CANCEL_REPLY_DRAFT
 	};
-};
+}
 
-export const sendPostReply = (reply) => {
+export const SEND_REPLY = 'SEND_REPLY';
+export function sendPostReply(reply) {
 	return {
-		type: 'REPLY_SEND',
+		type: SEND_REPLY,
 		payload: reply
 	};
-};
+}
