@@ -101,9 +101,20 @@ module.exports = {
 			doc.level = parsedLevel;
 		}
 
-		// Server attribute must be boolean
-		if (typeof server === 'boolean') { //FIXME
-			doc.server = server;
+		// Server attribute must be boolean-ish
+		if (typeof post.server !== 'undefined' && post.server !== null) {
+			let parsedServer;
+			if (typeof post.server === 'boolean') {
+				parsedServer = post.server;
+			} else {
+				const serverStr = post.server.toString().toLowerCase();
+				parsedServer = (
+					serverStr === 'true'
+					|| serverStr === '1'
+					|| serverStr === 'on'
+				);
+			}
+			doc.server = parsedServer;
 		}
 
 		// Always include a creation date
