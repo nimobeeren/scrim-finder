@@ -10,7 +10,7 @@ function changeFilter(filters) {
 }
 
 export function changeFilterAndFetch(filters) {
-	return function(dispatch) {
+	return function (dispatch) {
 		dispatch(changeFilter(filters));
 		dispatch(fetchPosts(filters));
 	}

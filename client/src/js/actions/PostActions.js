@@ -1,5 +1,5 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
-export function requestPosts(filters) {
+function requestPosts(filters) {
 	return {
 		type: REQUEST_POSTS,
 		filters
@@ -7,7 +7,7 @@ export function requestPosts(filters) {
 }
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export function receivePosts(filters, posts) {
+function receivePosts(filters, posts) {
 	return {
 		type: RECEIVE_POSTS,
 		filters,
@@ -17,7 +17,7 @@ export function receivePosts(filters, posts) {
 }
 
 export function fetchPosts(filters = null) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		dispatch(requestPosts(filters));
 
 		console.log(filters);

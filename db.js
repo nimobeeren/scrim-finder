@@ -102,7 +102,7 @@ module.exports = {
 		}
 
 		// Server attribute must be boolean
-		if (typeof server === 'boolean') {
+		if (typeof server === 'boolean') { //FIXME
 			doc.server = server;
 		}
 

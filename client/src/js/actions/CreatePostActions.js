@@ -1,4 +1,4 @@
-import {fetchPosts} from "./PostActions";
+import { fetchPosts } from "./PostActions";
 
 export const CREATE_POST_DRAFT = 'CREATE_POST_DRAFT';
 export function createPostDraft() {
@@ -15,7 +15,7 @@ export function cancelPostDraft() {
 }
 
 export const REQUEST_CREATE_POST = 'REQUEST_CREATE_POST';
-export function requestCreatePost(post) {
+function requestCreatePost(post) {
 	return {
 		type: REQUEST_CREATE_POST,
 		post
@@ -23,7 +23,7 @@ export function requestCreatePost(post) {
 }
 
 export const SUCCESS_CREATE_POST = 'SUCCESS_CREATE_POST';
-export function successCreatePost(post, filters, response) {
+function successCreatePost(post, filters, response) {
 	return {
 		type: SUCCESS_CREATE_POST,
 		post,
@@ -33,7 +33,7 @@ export function successCreatePost(post, filters, response) {
 }
 
 export const FAIL_CREATE_POST = 'FAIL_CREATE_POST';
-export function failCreatePost(post, response) {
+function failCreatePost(post, response) {
 	return {
 		type: FAIL_CREATE_POST,
 		post,
@@ -42,11 +42,11 @@ export function failCreatePost(post, response) {
 }
 
 export function createPost(post, filters) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		dispatch(requestCreatePost(post));
 		const response = await fetch('/api/posts', {
 			method: 'PUT',
-			headers: { "Content-Type": "application/json" },
+			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(post)
 		});
 

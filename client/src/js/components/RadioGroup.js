@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import '../../styles/components/RadioGroup.css';
@@ -10,6 +10,9 @@ class RadioGroup extends Component {
 
 		// Allow event handler to set component state
 		this.handleChange = this.handleChange.bind(this);
+
+		// Allow function to read component state
+		this.shouldBeChecked = this.shouldBeChecked.bind(this);
 
 		// Determine the item to be selected by default
 		let selectedItem;
@@ -36,25 +39,24 @@ class RadioGroup extends Component {
 		}
 	}
 
-	createRadioButtons() {
-		const {items} = this.props;
-
-		return items.map(item => (
-			<label className="radio" key={item.value}>
-				<input
-					type="radio"
-					value={item.value}
-					checked={this.state.selectedItem === item.value}
-					onChange={this.handleChange}/>
-				{item.label}
-			</label>
-		));
+	shouldBeChecked(item) {
+		return this.state.selectedItem === item.value.toString();
 	}
 
 	render() {
+		const {items} = this.props;
 		return (
 			<div>
-				{this.createRadioButtons()}
+				{items.map(item => (
+					<label className="radio" key={item.value}>
+						<input
+							type="radio"
+							value={item.value}
+							checked={this.shouldBeChecked(item)}
+							onChange={this.handleChange}/>
+						{item.label}
+					</label>
+				))}
 			</div>
 		);
 	}

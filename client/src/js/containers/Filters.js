@@ -34,7 +34,6 @@ class Filters extends Component {
 
 	handleLevelChanged(e, state) {
 		let newState = this.state;
-		console.log(state.checkedItems);
 		newState.level = state.checkedItems.map(n => parseInt(n, 10));
 		this.setState(newState);
 		this.handleFilterChanged(e, newState);

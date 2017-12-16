@@ -24,9 +24,9 @@ class PostForm extends Component {
 		// Set default state
 		this.state = {
 			teamName: "",
-			level: "Medium",
+			level: 0,
 			maps: [],
-			server: 'any'
+			server: null
 		}
 	}
 
@@ -49,8 +49,20 @@ class PostForm extends Component {
 	}
 
 	handleServerChange(e) {
+		let newServer;
+		switch(e.target.value) {
+			case 'on':
+				newServer = true;
+				break;
+			case 'off':
+				newServer = false;
+				break;
+			default:
+				newServer = null;
+		}
+
 		this.setState({
-			server: e.target.value
+			server: newServer
 		});
 	}
 
@@ -73,15 +85,15 @@ class PostForm extends Component {
 
 	createLevelRadioButtons() {
 		const {levels} = this.props;
-		const items = levels.map(level => {
+		const items = levels.map((level, i) => {
 			return {
-				value: level,
+				value: i,
 				label: level
 			}
 		});
 		return <RadioGroup
 			items={items}
-			defaultItem={"Medium"}
+			defaultItem={"1"}
 			onChange={this.handleLevelChange}/>;
 	}
 
