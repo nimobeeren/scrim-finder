@@ -12,6 +12,9 @@ node_modules/
 # processed CSS
 /client/src/styles/**/*.css
 
+# authentication details
+/db/mongoCredentials.json
+
 # misc
 .DS_Store
 .env.local
