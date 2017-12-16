@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
@@ -19,20 +19,20 @@ class CheckboxGroup extends Component {
 
 	handleChange(e, state) {
 		const {value} = e.target;
-		const {checkedItems} = this.state;
+		const newChecked = this.state.checkedItems;
 
 		// Determine new state
-		if (state.isChecked && !checkedItems.includes(value)) {
+		if (state.isChecked && !newChecked.includes(value)) {
 			// Add checked item
-			checkedItems.push(value);
-		} else if (!state.isChecked && checkedItems.includes(value)) {
+			newChecked.push(value);
+		} else if (!state.isChecked && newChecked.includes(value)) {
 			// Remove checked item
-			checkedItems.splice(checkedItems.indexOf(value), 1);
+			newChecked.splice(newChecked.indexOf(value), 1);
 		}
 
 		// Set new state
 		const newState = {
-			checkedItems: checkedItems
+			checkedItems: newChecked
 		};
 		this.setState(newState);
 
@@ -46,7 +46,11 @@ class CheckboxGroup extends Component {
 	render() {
 		const {items} = this.props;
 		return items.map(item => (
-			<Checkbox key={item.value} label={item.label} checked={item.isChecked} onChange={this.handleChange}/>
+			<Checkbox key={item.value}
+					  value={item.value}
+					  label={item.label}
+					  checked={item.isChecked}
+					  onChange={this.handleChange}/>
 		));
 	}
 }

@@ -17,8 +17,12 @@ export function receivePosts(filters, posts) {
 export function fetchPosts(filters = null) {
 	return async function(dispatch) {
 		dispatch(requestPosts(filters));
-		const response = await fetch('/api/posts');
+
+		console.log(filters);
+		const query = encodeURIComponent(JSON.stringify(filters));
+		const response = await fetch('/api/posts?filters=' + query);
 		const json = await response.json();
+
 		dispatch(receivePosts(filters, json));
 	}
 }

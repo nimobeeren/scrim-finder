@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Card from '../components/Card';
 import PostMapPool from './PostMapPool';
@@ -10,17 +10,18 @@ import '../../styles/components/Post.css';
 
 class Post extends Component {
 	getLevelString() {
-		// Convert a number-based level to a textual level
+		// Convert a number-based level to a string
 		let number = this.props.level;
-		if (!number || Number.isNaN(number) || number >= this.props.levelNames.length) {
-			number = 2;
+		if (!number || Number.isNaN(number)
+			|| number >= this.props.levelNames.length || number < 0) {
+			number = 0;
 		}
 		return this.props.levelNames[number];
 	}
 
 	getServerPrefString() {
 		const {server} = this.props;
-		if (typeof server === 'undefined') {
+		if (typeof server !== 'boolean') {
 			return "On/Off";
 		} else if (server) {
 			return "On";

@@ -1,6 +1,16 @@
-export const changeFilter = (filters) => {
+import { fetchPosts } from './PostActions';
+
+
+function changeFilter(filters) {
 	return {
-		type: 'FILTER_CHANGED',
-		payload: filters
+		type: 'CHANGE_FILTER',
+		filters
 	};
-};
+}
+
+export function changeFilterAndFetch(filters) {
+	return function(dispatch) {
+		dispatch(changeFilter(filters));
+		dispatch(fetchPosts(filters));
+	}
+}

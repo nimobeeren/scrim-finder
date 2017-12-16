@@ -93,7 +93,7 @@ module.exports = {
 		}
 
 		// Level must be parsable as integer
-		let parsedLevel = parseInt(post.level);
+		let parsedLevel = parseInt(post.level, 10);
 		if (!Number.isNaN(parsedLevel)) {
 			doc.level = parsedLevel;
 		}

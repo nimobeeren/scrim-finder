@@ -32,13 +32,13 @@ export class Checkbox extends Component {
 	}
 
 	render() {
-		const {label} = this.props;
+		const {value, label} = this.props;
 		const {isChecked} = this.state;
 		return (
 			<label className="checkbox">
 				<input
 					type="checkbox"
-					value={label}
+					value={value}
 					checked={isChecked}
 					onChange={this.handleChange}/>
 				{label}

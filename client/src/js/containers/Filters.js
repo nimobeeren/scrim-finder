@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import {changeFilter} from '../actions/FilterActions';
+import { changeFilterAndFetch } from '../actions/FilterActions';
 import RadioGroup from '../components/RadioGroup';
 import CheckboxGroup from "../components/CheckboxGroup";
 import '../../styles/containers/Filters.css';
@@ -14,10 +14,10 @@ class Filters extends Component {
 
 		// Set default state
 		this.state = {
-			allowedLevels: [],
-			allowedMaps: [],
-			allowedServer: undefined,
-			maxAllowedAge: 'any'
+			level: [],
+			maps: [],
+			server: null,
+			maxAge: 'any'
 		};
 
 		// Bind event handlers
@@ -29,27 +29,44 @@ class Filters extends Component {
 
 	handleFilterChanged(e, state) {
 		// Call action creator
-		this.props.changeFilter(state);
+		this.props.handleChange(state);
 	}
 
 	handleLevelChanged(e, state) {
 		let newState = this.state;
-		newState.allowedLevels = state.checkedItems;
+		console.log(state.checkedItems);
+		newState.level = state.checkedItems.map(n => parseInt(n, 10));
 		this.setState(newState);
 		this.handleFilterChanged(e, newState);
 	}
 
 	handleMapChanged(e, state) {
 		let newState = this.state;
-		newState.allowedMaps = state.checkedItems;
+		newState.maps = state.checkedItems;
 		this.setState(newState);
 		this.handleFilterChanged(e, newState);
 	}
 
 	handleServerChanged(e, state) {
-		// Set new server filter state
-		let newState = this.state;
-		newState.allowedServer = state.selectedItem;
+		let newState;
+		switch(state.selectedItem) {
+			case 'on':
+				newState = Object.assign({}, this.state, {
+					server: true
+				});
+				break;
+			case 'off':
+				newState = Object.assign({}, this.state, {
+					server: false
+				});
+				break;
+			default:
+				newState = Object.assign({}, this.state, {
+					server: null
+				});
+				break;
+		}
+
 		this.setState(newState);
 
 		// Call action creator
@@ -57,29 +74,30 @@ class Filters extends Component {
 	}
 
 	handleAgeChanged(e, state) {
-		// Determine maximum post age in milliseconds
+		// Determine maximum post age in minutes
+		// Will match posts newer than the indicated age, rounded down
 		let maxAge;
 		switch (state.selectedItem) {
 			case '5mins':
-				maxAge = (5 * 60 + 59) * 1000;
+				maxAge = 6;
 				break;
 			case '15mins':
-				maxAge = (15 * 60 + 59) * 1000;
+				maxAge = 16;
 				break;
 			case '1hour':
-				maxAge = (60 + 59) * 60 * 1000;
+				maxAge = 60 + 59;
 				break;
 			case '3hours':
-				maxAge = (3 * 60 + 59) * 60 * 1000;
+				maxAge = 3 * 60 + 59;
 				break;
 			default:
-				maxAge = false;
+				maxAge = null;
 				break;
 		}
 
 		// Set new age filter state
 		let newState = this.state;
-		newState.maxAllowedAge = maxAge;
+		newState.maxAge = maxAge;
 		this.setState(newState);
 
 		// Call action creator
@@ -88,9 +106,9 @@ class Filters extends Component {
 
 	createLevelCheckboxes() {
 		const {levels} = this.props;
-		const items = levels.map(level => {
+		const items = levels.map((level, i) => {
 			return {
-				value: level.toLowerCase(),
+				value: i,
 				label: level,
 				isChecked: false
 			}
@@ -196,7 +214,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		changeFilter
+		handleChange: changeFilterAndFetch
 	}, dispatch);
 }
 

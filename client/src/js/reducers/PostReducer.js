@@ -3,28 +3,28 @@
 // 		return posts;
 // 	}
 //
-// 	const {allowedLevels, allowedMaps, allowedServer, maxAllowedAge} = filters;
+// 	const {level, maps, server, maxAge} = filters;
 // 	return posts.filter(post => {
 // 		// Check if post level matches filter
-// 		if (allowedLevels.length > 0 && !allowedLevels.includes(post.level)) {
+// 		if (level.length > 0 && !level.includes(post.level)) {
 // 			return false;
 // 		}
 //
 // 		// Check if post maps include filter
-// 		if (post.maps && allowedMaps.length > 0 && !post.maps.some(map => allowedMaps.includes(map))) {
+// 		if (post.maps && maps.length > 0 && !post.maps.some(map => maps.includes(map))) {
 // 			return false;
 // 		}
 //
 // 		// Check if server matches filter
-// 		if (!(typeof allowedServer === 'undefined' || typeof post.server === 'undefined'
-// 				|| allowedServer === 'any' || post.server === 'any'
-// 				|| post.server === allowedServer)) {
+// 		if (!(typeof server === 'undefined' || typeof post.server === 'undefined'
+// 				|| server === 'any' || post.server === 'any'
+// 				|| post.server === server)) {
 // 			return false;
 // 		}
 //
 // 		// Check if post age matches filter
 // 		const now = Date.now();
-// 		if (maxAllowedAge && now - post.created > maxAllowedAge) {
+// 		if (maxAge && now - post.created > maxAge) {
 // 			return false;
 // 		}
 //
