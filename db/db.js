@@ -1,4 +1,4 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient, ObjectId} = require('mongodb');
 const mongoCredentials = require('./mongoCredentials');
 
 let db;
@@ -73,8 +73,8 @@ module.exports = {
 			};
 		}
 
-		const collection = db.collection('posts');
-		return collection.find(query).toArray();
+		const posts = db.collection('posts');
+		return posts.find(query).toArray();
 	},
 
 	createPost: async function (post) {
@@ -122,8 +122,52 @@ module.exports = {
 		doc.created = Date.now();
 
 		// Insert document into the post collection
-		const collection = db.collection('posts');
-		return collection.insertOne(doc);
+		const posts = db.collection('posts');
+		return posts.insertOne(doc);
+	},
+
+	getPostMessages: async function (postId) {
+		// Make sure we have an active database connection
+		if (!db) {
+			db = await connect();
+		}
+
+		const messages = db.collection('messages');
+		return messages.find({
+			postId: ObjectId(postId)
+		}).toArray();
+	},
+
+	sendMessage: async function (message) {
+		// Make sure we have an active database connection
+		if (!db) {
+			db = await connect();
+		}
+
+		console.log(message);
+
+		// Create a new document to store message
+		let doc = {};
+
+		if (message && message.postId) {
+			doc.postId = ObjectId(message.postId);
+		}
+
+		if (message && message.author) {
+			doc.author = ObjectId(message.author);
+		}
+
+		if (message && message.type) {
+			doc.type = message.type;
+		}
+
+		if (message && message.body) {
+			doc.body = message.body;
+		}
+
+		doc.createdAt = Date.now();
+
+		const messages = db.collection('messages');
+		return messages.insertOne(doc);
 	}
-}
-;
+};
