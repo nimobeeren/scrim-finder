@@ -62,8 +62,12 @@ router.route('/posts/:postId')
 		res.status(200).send(messages);
 	})
 	.post(async (req, res) => {
+		console.log(req.body);
+		let message = req.body;
+		message.postId = req.params.postId;
+
 		try {
-			await db.sendMessage(req.params);
+			await db.sendMessage(message);
 		} catch (e) {
 			res.status(500).send("Server could not create message: " + e.message);
 		}

@@ -144,8 +144,30 @@ module.exports = {
 			db = await connect();
 		}
 
-		let doc;
+		console.log(message);
 
-		if (message)
+		// Create a new document to store message
+		let doc = {};
+
+		if (message && message.postId) {
+			doc.postId = ObjectId(message.postId);
+		}
+
+		if (message && message.author) {
+			doc.author = ObjectId(message.author);
+		}
+
+		if (message && message.type) {
+			doc.type = message.type;
+		}
+
+		if (message && message.body) {
+			doc.body = message.body;
+		}
+
+		doc.createdAt = Date.now();
+
+		const messages = db.collection('messages');
+		return messages.insertOne(doc);
 	}
 };
