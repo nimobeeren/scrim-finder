@@ -19,57 +19,67 @@ router.route('/posts')
 				if (e instanceof SyntaxError) {
 					res.status(400).send("Bad filters parameter");
 				} else {
-					res.status(500).send("Server could not retrieve posts: " + e.message);
+					res.status(500).send("Could not retrieve posts: " + e.message);
 				}
 			}
 		}
 
 		// Get posts that match filters from database
 		const posts = await db.getPosts(filters);
-
-		// Get messages associated with these posts
-		let messages = null;
-		for (let i = 0; i < posts.length; i++) {
-			try {
-				messages = await db.getPostMessages(posts[i]._id);
-			} catch (e) {
-				res.status(500).send("Server could not retrieve post messages: " + e.message);
-			}
-			if (messages && messages.length > 0) {
-				Object.assign(posts[i], {messages});
-			}
-		}
-
 		res.send(posts);
 	})
 	.post(async (req, res) => {
 		try {
 			await db.createPost(req.body);
 		} catch (e) {
-			res.status(500).send("Server could not create post: " + e.message);
+			res.status(500).send("Could not create post: " + e.message);
 		}
 		res.sendStatus(200);
 	});
 
 router.route('/posts/:postId')
 	.get(async (req, res) => {
-		let messages;
+		let post;
 		try {
-			messages = await db.getPostMessages(req.params.postId);
+			post = await db.getPost(req.params.postId);
 		} catch (e) {
-			res.status(500).send("Server cuold not retrieve messages: " + e.message);
+			res.status(500).send("Could not retrieve post: " + e.message);
 		}
-		res.status(200).send(messages);
+		if (!post) {
+			res.sendStatus(404);
+		} else {
+			res.status(200).send(post);
+		}
 	})
 	.post(async (req, res) => {
-		console.log(req.body);
-		let message = req.body;
-		message.postId = req.params.postId;
-
 		try {
-			await db.sendMessage(message);
+			await db.sendReply(req.body, req.params.postId);
 		} catch (e) {
-			res.status(500).send("Server could not create message: " + e.message);
+			if (e.name === 'ArgumentError') {
+				res.status(400).send(e.message);
+			} else {
+				res.status(500).send("Could not create reply: " + e.message);
+			}
+		}
+		res.sendStatus(200);
+	});
+
+router.route('/users')
+	.get(async (req, res) => {
+		let users;
+		try {
+			users = await db.getUsers();
+		} catch (e) {
+			res.status(500).send("Could not get users: " + e.message);
+		}
+		res.status(200).send(users);
+	})
+	.post(async (req, res) => {
+		let { name } = req.params;
+		try {
+			await db.createUser(name)
+		} catch (e) {
+			res.status(500).send("Could not create user: " + e.message);
 		}
 		res.sendStatus(200);
 	});
