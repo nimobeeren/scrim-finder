@@ -33,8 +33,15 @@ class PostReplyForm extends Component {
 
 	render() {
 		const { post } = this.props;
-		const teamName = post.author;
-		const maps = post.body.maps;
+
+		let teamName = post.author,
+			maps = post.body.maps;
+		
+		// If no maps are specified, assume all maps
+		if (!Array.isArray(maps) || maps.length === 0) {
+			maps = this.props.allMaps;
+		}
+
 		return (
 			<Card className="card" title={"Replying to " + teamName}>
 				<form className="post-reply-form" onSubmit={this.handleSubmit}>
@@ -58,6 +65,12 @@ class PostReplyForm extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return {
+		allMaps: state.mapNames
+	};
+}
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		sendPostReply,
@@ -69,4 +82,4 @@ PostReplyForm.propTypes = {
 	post: PropTypes.object.isRequired
 };
 
-export default connect(null, mapDispatchToProps)(PostReplyForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PostReplyForm);
