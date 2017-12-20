@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { sendPostReply, cancelPostReply } from "../actions/PostReplyActions";
+import { sendReply, cancelReply } from "../actions/PostReplyActions";
 import Card from "../components/Card";
 import SubmitButton from "../components/SubmitButton";
 import Button from '../components/Button';
@@ -18,8 +18,13 @@ class PostReplyForm extends Component {
 	}
 
 	handleSubmit(e) {
-		alert('Not yet implemented');
-		// this.props.sendPostReply(/* form data */);
+		const map = e.target.querySelector('.post-reply-form__map').value;
+		const message = e.target.querySelector('.post-reply-form__message').value;
+		this.props.sendReply(this.props.post._id, {
+			author: '5a39906811aff11638c9f7f2', // anonymous user
+			type: 'request',
+			body: `Let's play ${map}. ${message}`
+		});
 		e.preventDefault();
 	}
 
@@ -27,7 +32,7 @@ class PostReplyForm extends Component {
 		// Close the popup
 		document.querySelector('.popup__wrapper').classList.add('popup__wrapper--slideout');
 		document.querySelector('.popup__background').classList.add('popup__background--fadeout');
-		setTimeout(this.props.cancelPostReply, 300); // wait for animation to end
+		setTimeout(this.props.cancelReply, 300); // wait for animation to end
 		e.preventDefault();
 	}
 
@@ -46,13 +51,13 @@ class PostReplyForm extends Component {
 			<Card className="card" title={"Replying to " + teamName}>
 				<form className="post-reply-form" onSubmit={this.handleSubmit}>
 					<h4>What map do you want to play?</h4>
-					<select autoFocus>
+					<select className="post-reply-form__map" autoFocus required>
 						{maps.map(mapName => (
 							<option key={mapName} value={mapName}>{mapName}</option>
 						))}
 					</select>
 					<h4>Add a message (optional)</h4>
-					<textarea placeholder="Your message"/>
+					<textarea className="post-reply-form__message" placeholder="Your message"/>
 					<div className="post-reply-form__btn-wrapper">
 						<SubmitButton className="btn" label="Send"/>
 					</div>
@@ -73,8 +78,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		sendPostReply,
-		cancelPostReply
+		sendReply,
+		cancelReply
 	}, dispatch);
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { openPostReply } from "../actions/PostReplyActions";
+import { openReply } from "../actions/PostReplyActions";
 import Button from '../components/Button';
 import '../../styles/components/PostActionControls.css';
 
@@ -34,7 +34,7 @@ PostControls.propTypes = {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		openPostReply
+		openPostReply: openReply
 	}, dispatch);
 }
 

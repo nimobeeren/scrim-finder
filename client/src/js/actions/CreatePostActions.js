@@ -54,6 +54,7 @@ export function createPost(post, filters) {
 			dispatch(successCreatePost(post, response, filters));
 			dispatch(fetchPosts(filters)); // update post list after creating new post
 		} else {
+			// TODO: Handle failure
 			dispatch(failCreatePost(post, response));
 		}
 	}

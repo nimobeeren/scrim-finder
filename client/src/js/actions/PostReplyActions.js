@@ -1,5 +1,5 @@
 export const CREATE_REPLY_DRAFT = 'CREATE_REPLY_DRAFT';
-export function openPostReply(post) {
+export function openReply(post) {
 	return {
 		type: CREATE_REPLY_DRAFT,
 		post
@@ -7,16 +7,56 @@ export function openPostReply(post) {
 }
 
 export const CANCEL_REPLY_DRAFT = 'CANCEL_REPLY_DRAFT';
-export function cancelPostReply() {
+export function cancelReply() {
 	return {
 		type: CANCEL_REPLY_DRAFT
 	};
 }
 
-export const SEND_REPLY = 'SEND_REPLY';
-export function sendPostReply(reply) {
+export const REQUEST_SEND_REPLY = 'REQUEST_SEND_REPLY';
+function requestSendReply(postId, reply) {
 	return {
-		type: SEND_REPLY,
-		payload: reply
-	};
+		type: REQUEST_SEND_REPLY,
+		postId,
+		reply
+	}
+}
+
+export const SUCCES_SEND_REPLY = 'SUCCES_SEND_REPLY';
+function succesSendReply(postId, reply, response) {
+	return {
+		type: SUCCES_SEND_REPLY,
+		postId,
+		reply,
+		response
+	}
+}
+
+export const FAIL_SEND_REPLY = 'FAIL_SEND_REPLY';
+function failSendReply(postId, reply, response) {
+	return {
+		type: FAIL_SEND_REPLY,
+		postId,
+		reply,
+		response
+	}
+}
+
+export function sendReply(postId, reply) {
+	return async function(dispatch) {
+		dispatch(requestSendReply(postId, reply));
+
+		const response = await fetch('/api/posts/' + postId, {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(reply)
+		});
+
+		if (response.ok) {
+			dispatch(succesSendReply(postId, reply, response));
+		} else {
+			// TODO: Handle failure
+			dispatch(failSendReply(postId, reply, response));
+		}
+	}
 }

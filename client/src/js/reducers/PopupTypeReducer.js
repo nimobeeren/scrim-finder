@@ -1,7 +1,7 @@
 import {
 	CREATE_REPLY_DRAFT,
 	CANCEL_REPLY_DRAFT,
-	SEND_REPLY
+	SUCCES_SEND_REPLY
 } from "../actions/PostReplyActions";
 
 export const PopupTypes = {
@@ -18,7 +18,7 @@ function popupTypeReducer(state = null, action) {
 			// Close popup when cancelling reply
 			return null;
 
-		case SEND_REPLY:
+		case SUCCES_SEND_REPLY:
 			// Close popup after sending reply
 			return null;
 

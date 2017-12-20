@@ -24,6 +24,8 @@ export function fetchPosts(filters = null) {
 		const response = await fetch('/api/posts?filters=' + query);
 		const json = await response.json();
 
+		// TODO: Handle failure
+
 		dispatch(receivePosts(filters, json));
 	}
 }
