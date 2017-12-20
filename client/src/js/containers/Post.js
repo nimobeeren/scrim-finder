@@ -31,7 +31,7 @@ class Post extends Component {
 	}
 
 	getAgeString() {
-		let age = Date.now() - this.props.created;
+		const age = Date.now() - new Date(this.props.createdAt);
 
 		let seconds = age / 1000;
 		if (seconds < 30) {
@@ -105,13 +105,13 @@ Post.propTypes = {
 	level: PropTypes.number,
 	maps: PropTypes.array,
 	server: PropTypes.bool,
-	created: PropTypes.number
+	createdAt: PropTypes.string
 };
 Post.defaultProps = {
 	teamName: "Anonymous",
-	level: 2,
+	level: 0,
 	maps: [],
-	created: Date.now()
+	createdAt: new Date().toISOString()
 };
 
 export default connect(mapStateToProps)(Post);

@@ -10,11 +10,11 @@ function renderPosts(posts) {
 		return posts.map((post, i) =>
 			<Post
 				key={'post' + i}
-				teamName={post.teamName}
-				level={post.level}
-				maps={post.maps}
-				server={post.server}
-				created={post.created}/>
+				teamName={post.author}
+				level={post.body.level}
+				maps={post.body.maps}
+				server={post.body.server}
+				createdAt={post.createdAt}/>
 		);
 	} else {
 		return (

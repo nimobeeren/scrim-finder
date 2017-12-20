@@ -14,9 +14,7 @@ const Popup = (props) => {
 				<div className="popup__background">
 					<div className="popup__wrapper">
 						<div className="popup__content">
-							<PostReplyForm
-								teamName={activePost.teamName}
-								maps={activePost.maps}/>
+							<PostReplyForm post={activePost}/>
 						</div>
 					</div>
 				</div>

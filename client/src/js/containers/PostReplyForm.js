@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import {sendPostReply, cancelPostReply} from "../actions/PostReplyActions";
+import { sendPostReply, cancelPostReply } from "../actions/PostReplyActions";
 import Card from "../components/Card";
 import SubmitButton from "../components/SubmitButton";
 import Button from '../components/Button';
@@ -32,7 +32,9 @@ class PostReplyForm extends Component {
 	}
 
 	render() {
-		const {teamName, maps} = this.props;
+		const { post } = this.props;
+		const teamName = post.author;
+		const maps = post.body.maps;
 		return (
 			<Card className="card" title={"Replying to " + teamName}>
 				<form className="post-reply-form" onSubmit={this.handleSubmit}>
@@ -66,6 +68,9 @@ function mapDispatchToProps(dispatch) {
 PostReplyForm.propTypes = {
 	teamName: PropTypes.string,
 	maps: PropTypes.array.isRequired
+};
+PostReplyForm.defaultProps = {
+	teamName: "Anonymous"
 };
 
 export default connect(null, mapDispatchToProps)(PostReplyForm);

@@ -45,7 +45,9 @@ function postReducer(state = {
 			});
 
 		case 'RECEIVE_POSTS':
-			const sortedPosts = action.posts.sort((a, b) => b.created - a.created);
+			const sortedPosts = action.posts.sort((a, b) =>
+				new Date(b.createdAt) - new Date(a.createdAt)
+			);
 			return Object.assign({}, state, {
 				isFetching: false,
 				filters: action.filters,
