@@ -9,12 +9,11 @@ import '../../styles/containers/Popup.css';
 const Popup = (props) => {
 	switch (props.popupType) {
 		case PopupTypes.reply:
-			const {activePost} = props;
 			return (
 				<div className="popup__background">
 					<div className="popup__wrapper">
 						<div className="popup__content">
-							<PostReplyForm post={activePost}/>
+							<PostReplyForm post={props.activePost}/>
 						</div>
 					</div>
 				</div>

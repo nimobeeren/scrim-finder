@@ -9,29 +9,8 @@ import '../../styles/containers/Post.css';
 
 
 class Post extends Component {
-	getLevelString() {
-		// Convert a number-based level to a string
-		let number = this.props.level;
-		if (!number || Number.isNaN(number)
-			|| number >= this.props.levelNames.length || number < 0) {
-			number = 0;
-		}
-		return this.props.levelNames[number];
-	}
-
-	getServerPrefString() {
-		const {server} = this.props;
-		if (typeof server !== 'boolean') {
-			return "On/Off";
-		} else if (server) {
-			return "On";
-		} else {
-			return "Off";
-		}
-	}
-
-	getAgeString() {
-		const age = Date.now() - new Date(this.props.createdAt);
+	static getAgeString(createdAt) {
+		const age = Date.now() - new Date(createdAt);
 
 		let seconds = age / 1000;
 		if (seconds < 30) {
@@ -59,16 +38,33 @@ class Post extends Component {
 		return `${floored} day${floored === 1 ? "" : "s"} ago`;
 	}
 
-	render() {
-		let {teamName, maps} = this.props,
-			level = this.getLevelString(),
-			server = this.getServerPrefString(),
-			age = this.getAgeString();
-
-		// Make sure team name is not empty or only whitespace
-		if (!teamName || teamName.match(/^ *$/) !== null) {
-			teamName = "Anonymous";
+	static getLevelString(number, levelNames) {
+		// Convert a number-based level to a string
+		if (!number || Number.isNaN(number)
+			|| number >= levelNames.length || number < 0) {
+			number = 0;
 		}
+		return levelNames[number];
+	}
+
+	static getServerPrefString(server) {
+		if (typeof server !== 'boolean') {
+			return "On/Off";
+		} else if (server) {
+			return "On";
+		} else {
+			return "Off";
+		}
+	}
+
+	render() {
+		const { post } = this.props;
+
+		const teamName = post.author,
+			age = Post.getAgeString(post.createdAt),
+			level = Post.getLevelString(post.body.level, this.props.levelNames),
+			maps = post.body.maps,
+			server = Post.getServerPrefString(post.body.server);
 
 		return (
 			<Card className="card" title={teamName} subtitle={age}>
@@ -88,7 +84,7 @@ class Post extends Component {
 					</tr>
 					</tbody>
 				</table>
-				<PostActions post={this.props}/>
+				<PostActions post={post}/>
 			</Card>
 		);
 	}
@@ -101,17 +97,7 @@ function mapStateToProps(state) {
 }
 
 Post.propTypes = {
-	teamName: PropTypes.string,
-	level: PropTypes.number,
-	maps: PropTypes.array,
-	server: PropTypes.bool,
-	createdAt: PropTypes.string
-};
-Post.defaultProps = {
-	teamName: "Anonymous",
-	level: 0,
-	maps: [],
-	createdAt: new Date().toISOString()
+	post: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(Post);

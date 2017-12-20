@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Post from './Post';
 import '../../styles/containers/PostList.css';
@@ -7,14 +7,10 @@ import '../../styles/containers/PostList.css';
 
 function renderPosts(posts) {
 	if (posts.length > 0) {
-		return posts.map((post, i) =>
+		return posts.map(post =>
 			<Post
-				key={'post' + i}
-				teamName={post.author}
-				level={post.body.level}
-				maps={post.body.maps}
-				server={post.body.server}
-				createdAt={post.createdAt}/>
+				key={post._id}
+				post={post}/>
 		);
 	} else {
 		return (

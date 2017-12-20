@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import {openPostReply} from "../actions/PostReplyActions";
+import { openPostReply } from "../actions/PostReplyActions";
 import Button from '../components/Button';
 import '../../styles/components/PostActionControls.css';
 
@@ -15,14 +15,7 @@ class PostControls extends Component {
 	}
 
 	handleClick() {
-		let {teamName, maps} = this.props.post;
-		if (!maps || maps.length === 0 || maps === 'any') {
-			maps = ['cache', 'cbble', 'dust2', 'inferno', 'mirage', 'nuke', 'overpass', 'train']; // FIXME
-		}
-		this.props.openPostReply({
-			teamName,
-			maps
-		});
+		this.props.openPostReply(this.props.post);
 	}
 
 	render() {

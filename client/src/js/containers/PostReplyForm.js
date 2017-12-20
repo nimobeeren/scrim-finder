@@ -66,11 +66,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 PostReplyForm.propTypes = {
-	teamName: PropTypes.string,
-	maps: PropTypes.array.isRequired
-};
-PostReplyForm.defaultProps = {
-	teamName: "Anonymous"
+	post: PropTypes.object.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(PostReplyForm);
