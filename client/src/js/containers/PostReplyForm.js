@@ -18,12 +18,13 @@ class PostReplyForm extends Component {
 	}
 
 	handleSubmit(e) {
-		const map = e.target.querySelector('.post-reply-form__map').value;
-		const message = e.target.querySelector('.post-reply-form__message').value;
+		let map = e.target.querySelector('.post-reply-form__map').value,
+			message = e.target.querySelector('.post-reply-form__message').value;
+
 		this.props.sendReply(this.props.post._id, {
 			author: '5a39906811aff11638c9f7f2', // anonymous user
 			type: 'request',
-			body: `Let's play ${map}. ${message}`
+			body: { map, message }
 		});
 		e.preventDefault();
 	}
@@ -41,7 +42,7 @@ class PostReplyForm extends Component {
 
 		let teamName = post.author,
 			maps = post.body.maps;
-		
+
 		// If no maps are specified, assume all maps
 		if (!Array.isArray(maps) || maps.length === 0) {
 			maps = this.props.allMaps;

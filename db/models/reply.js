@@ -2,13 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 require('./user');
 
-const messageSchema = new Schema({
+const reply = new Schema({
 	author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	recipient: { type: Schema.Types.ObjectId, ref: 'User' },
 	type: { type: String, default: 'text' },
-	body: String
+	body: {
+		map: String,
+		message: String
+	}
 }, {
 	timestamps: true
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = mongoose.model('Reply', reply, 'replies');

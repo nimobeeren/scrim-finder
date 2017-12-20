@@ -2,7 +2,7 @@ const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const credentials = require('./mongoCredentials');
 const Post = require('./models/post');
-const Message = require('./models/message');
+const Reply = require('./models/reply');
 const User = require('./models/user');
 
 mongoose.connect(credentials.uri, { useMongoClient: true });
@@ -85,7 +85,7 @@ module.exports = {
 	},
 
 	sendReply: async function (reply, postId) {
-		let message = new Message(reply);
+		let message = new Reply(reply);
 		let post = await Post.findOne(ObjectId(postId));
 
 		if (post) {

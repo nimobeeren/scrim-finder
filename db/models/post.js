@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-require('./message');
+require('./reply');
 
 const postSchema = new Schema({
 	author: String,
@@ -9,7 +9,7 @@ const postSchema = new Schema({
 		maps: { type: [String], required: true },
 		server: { type: Boolean }
 	},
-	replies: [{ type: Schema.Types.ObjectId, ref: 'Message' }]
+	replies: [{ type: Schema.Types.ObjectId, ref: 'Reply' }]
 }, {
 	timestamps: true
 });
