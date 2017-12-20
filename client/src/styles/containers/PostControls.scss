@@ -1,0 +1,91 @@
+@import '../globals';
+@import '../components/PostMapPool.scss'; // for map styling
+
+.controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.controls__reply-count {
+	cursor: pointer;
+}
+
+.controls__label {
+	display: inline-block;
+}
+
+.controls__reply-count:hover .controls__label {
+	text-decoration: underline;
+}
+
+.controls__label:hover {
+	text-decoration: underline;
+}
+
+.controls__chevron {
+	display: inline-block;
+	box-sizing: border-box;
+	margin-left: 8px;
+	margin-right: 2px;
+	width: 12px;
+	height: 12px;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	transform: translateY(-2px) rotate(45deg);
+	transition: transform 500ms;
+}
+
+.chevron--expanded {
+	transform: translateY(4px) rotate(225deg);
+}
+
+.controls__replies {
+	display: none;
+	margin-top: 15px;
+}
+
+.replies--expanded {
+	display: block;
+}
+
+.controls__reply {
+	padding: 8px;
+	border-top: $light-border;
+}
+
+.reply--request {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.reply__text {
+	margin: 4px;
+}
+
+.reply__author {
+	color: $accent-color;
+	font-weight: bold;
+}
+
+.reply__controls {
+	display: flex;
+}
+
+.reply__button-wrapper {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+@media (min-width: $bp-large) {
+	.reply--request{
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.reply__text {
+		text-align: left;
+	}
+}

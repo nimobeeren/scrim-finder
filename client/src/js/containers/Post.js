@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Card from '../components/Card';
 import PostMapPool from './PostMapPool';
-import PostActions from './PostControls';
+import PostControls from './PostControls';
 import '../../styles/containers/Post.css';
 
 
@@ -84,7 +84,7 @@ class Post extends Component {
 					</tr>
 					</tbody>
 				</table>
-				<PostActions post={post}/>
+				<PostControls post={post}/>
 			</Card>
 		);
 	}
