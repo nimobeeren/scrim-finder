@@ -21,13 +21,13 @@ module.exports = {
 			if (Array.isArray(filters.level)) {
 				// level can be given as an array...
 				if (filters.level.length > 0) {
-					query.body.level = {
+					query['body.level'] = {
 						$in: filters.level
 					};
 				}
 			} else {
 				// ...or as a single value
-				query.body.level = filters.level;
+				query['body.level'] = filters.level;
 			}
 		}
 
@@ -36,7 +36,7 @@ module.exports = {
 			if (Array.isArray(filters.maps)) {
 				// maps can be given as an array...
 				if (filters.maps.length > 0) {
-					query.body.maps = {
+					query['body.maps'] = {
 						$not: {
 							$exists: true,
 							$nin: filters.maps
@@ -45,14 +45,14 @@ module.exports = {
 				}
 			} else {
 				// ...or as a single value
-				query.body.maps = filters.maps
+				query['body.maps'] = filters.maps;
 			}
 		}
 
 		// Include posts that match the server preference or do not have a
 		// server preference set
 		if (filters && typeof filters.server === 'boolean') {
-			query.body.server = {
+			query['body.server'] = {
 				$not: {
 					$exists: true,
 					$ne: filters.server
