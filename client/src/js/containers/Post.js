@@ -9,6 +9,13 @@ import '../../styles/containers/Post.css';
 
 
 class Post extends Component {
+	static getTeamNameString(teamName) {
+		if (!teamName) {
+			return "Anonymous";
+		}
+		return teamName;
+	}
+
 	static getAgeString(createdAt) {
 		const age = Date.now() - new Date(createdAt);
 
@@ -58,11 +65,11 @@ class Post extends Component {
 	}
 
 	render() {
-		const { post } = this.props;
+		const { post, levelNames } = this.props;
 
-		const teamName = post.author,
+		const teamName = Post.getTeamNameString(post.body.teamName),
 			age = Post.getAgeString(post.createdAt),
-			level = Post.getLevelString(post.body.level, this.props.levelNames),
+			level = Post.getLevelString(post.body.level, levelNames),
 			maps = post.body.maps,
 			server = Post.getServerPrefString(post.body.server);
 

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import {createPost, cancelPostDraft} from '../actions/CreatePostActions';
+import { createPost, cancelPostDraft } from '../actions/CreatePostActions';
 import CheckboxGroup from '../components/CheckboxGroup';
 import RadioGroup from '../components/RadioGroup';
 import Button from '../components/Button';
@@ -50,7 +50,7 @@ class PostForm extends Component {
 
 	handleServerChange(e) {
 		let newServer;
-		switch(e.target.value) {
+		switch (e.target.value) {
 			case 'on':
 				newServer = true;
 				break;
@@ -68,7 +68,8 @@ class PostForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const {maps} = this.state;
+		const { teamName, level, maps, server } = this.state;
+		const { currentUser } = this.props;
 
 		// Validate form
 		if (maps.length === 0) {
@@ -77,15 +78,22 @@ class PostForm extends Component {
 		}
 
 		// Create new post
-		this.props.createPost(
-			this.state,
+		this.props.createPost({
+				author: currentUser.id,
+				body: {
+					teamName,
+					level,
+					maps,
+					server
+				}
+			},
 			this.props.filters
 		);
 	}
 
 	createLevelRadioButtons() {
-		const {levels} = this.props;
-		const items = levels.map((level, i) => {
+		const { levelNames } = this.props;
+		const items = levelNames.map((level, i) => {
 			return {
 				value: i,
 				label: level
@@ -98,8 +106,8 @@ class PostForm extends Component {
 	}
 
 	createMapCheckboxes() {
-		const {maps} = this.props;
-		const items = maps.map(mapName => {
+		const { mapNames } = this.props;
+		const items = mapNames.map(mapName => {
 			return {
 				value: mapName.toLowerCase(),
 				label: mapName,
@@ -167,9 +175,10 @@ class PostForm extends Component {
 
 function mapStateToProps(state) {
 	return {
-		levels: state.levelNames,
-		maps: state.mapNames,
-		filters: state.filters
+		levelNames: state.levelNames,
+		mapNames: state.mapNames,
+		filters: state.filters,
+		currentUser: state.currentUser
 	};
 }
 

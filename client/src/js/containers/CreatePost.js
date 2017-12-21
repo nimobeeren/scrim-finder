@@ -21,7 +21,7 @@ const CreatePost = (props) => {
 	} else {
 		return (
 			<div className="create-post-btn__wrapper">
-				<Button className="btn btn--large" label="Create post" onClick={props.handleOpenReply}/>
+				<Button className="btn btn--large" label="Create post" onClick={props.createPostDraft}/>
 			</div>
 		);
 	}
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		handleClick: createPostDraft
+		createPostDraft
 	}, dispatch);
 }
 

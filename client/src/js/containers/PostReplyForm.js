@@ -40,8 +40,12 @@ class PostReplyForm extends Component {
 	render() {
 		const { post } = this.props;
 
-		let teamName = post.author,
-			maps = post.body.maps;
+		let { teamName, maps } = post.body;
+
+		// Fill in anonymous when team name is empty
+		if (!teamName) {
+			teamName = "Anonymous";
+		}
 
 		// If no maps are specified, assume all maps
 		if (!Array.isArray(maps) || maps.length === 0) {
