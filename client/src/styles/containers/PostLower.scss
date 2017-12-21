@@ -1,0 +1,8 @@
+@import '../globals';
+@import '../components/PostMapPool.scss'; // for map styling
+
+.lower__controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}

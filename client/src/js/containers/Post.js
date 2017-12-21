@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Card from '../components/Card';
 import PostMapPool from './PostMapPool';
-import PostControls from './PostControls';
+import PostControls from './PostLower';
 import '../../styles/containers/Post.css';
 
 

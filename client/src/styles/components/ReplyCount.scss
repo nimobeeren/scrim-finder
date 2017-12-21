@@ -1,0 +1,34 @@
+@import '../globals';
+
+.controls__reply-count {
+	cursor: pointer;
+}
+
+.reply-count__label {
+	display: inline-block;
+}
+
+.controls__reply-count:hover .reply-count__label {
+	text-decoration: underline;
+}
+
+.reply-count__label:hover {
+	text-decoration: underline;
+}
+
+.reply-count__chevron {
+	display: inline-block;
+	box-sizing: border-box;
+	margin-left: 8px;
+	margin-right: 2px;
+	width: 12px;
+	height: 12px;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	transform: translateY(-2px) rotate(45deg);
+	transition: transform 500ms;
+}
+
+.chevron--expanded {
+	transform: translateY(4px) rotate(225deg);
+}
