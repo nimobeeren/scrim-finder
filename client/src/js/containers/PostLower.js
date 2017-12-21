@@ -25,9 +25,9 @@ class PostControls extends Component {
 			<div>
 				<div className="lower__controls">
 					<Button className="btn" label="GO" onClick={this.handleClick}/>
-					<ReplyCount replies={this.props.post.replies}/>
+					<ReplyCount expanded={true} replies={this.props.post.replies}/>
 				</div>
-				<ReplyList replies={this.props.post.replies}/>
+				<ReplyList expanded={true} replies={this.props.post.replies}/>
 			</div>
 		);
 	}
