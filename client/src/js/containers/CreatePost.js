@@ -21,7 +21,7 @@ const CreatePost = (props) => {
 	} else {
 		return (
 			<div className="create-post-btn__wrapper">
-				<Button className="btn btn--large" label="Create post" onClick={props.handleClick}/>
+				<Button className="btn btn--large" label="Create post" onClick={props.handleOpenReply}/>
 			</div>
 		);
 	}

@@ -36,7 +36,7 @@ function renderReplies(replies) {
 			default:
 				// Regular text message
 				return (
-					<div className="replies__reply">
+					<div key={reply._id} className="replies__reply">
 						<div className="reply__text">
 							<span className="reply__author">{reply.author}:</span>&nbsp;
 							{reply.body.message}

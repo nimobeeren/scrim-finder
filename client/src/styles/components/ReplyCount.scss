@@ -1,6 +1,6 @@
 @import '../globals';
 
-.controls__reply-count {
+.reply-count {
 	cursor: pointer;
 }
 
@@ -8,7 +8,7 @@
 	display: inline-block;
 }
 
-.controls__reply-count:hover .reply-count__label {
+.reply-count:hover .reply-count__label {
 	text-decoration: underline;
 }
 

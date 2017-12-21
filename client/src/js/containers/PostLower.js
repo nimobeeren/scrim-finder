@@ -13,21 +13,38 @@ import '../../styles/containers/PostLower.css';
 class PostControls extends Component {
 	constructor(props) {
 		super(props);
-		this.handleClick = this.handleClick.bind(this);
+
+		this.handleOpenReply = this.handleOpenReply.bind(this);
+		this.toggleExpandReplies = this.toggleExpandReplies.bind(this);
+
+		this.state = {
+			expanded: false
+		};
 	}
 
-	handleClick() {
+	handleOpenReply() {
 		this.props.openReply(this.props.post);
 	}
 
+	toggleExpandReplies() {
+		this.setState({
+			expanded: !this.state.expanded
+		});
+	}
+
 	render() {
+		const expanded = this.state.expanded,
+			replies = this.props.post.replies;
 		return (
 			<div>
 				<div className="lower__controls">
-					<Button className="btn" label="GO" onClick={this.handleClick}/>
-					<ReplyCount expanded={true} replies={this.props.post.replies}/>
+					<Button className="btn" label="GO" onClick={this.handleOpenReply}/>
+					<ReplyCount
+						expanded={expanded}
+						replies={replies}
+						onClick={this.toggleExpandReplies}/>
 				</div>
-				<ReplyList expanded={true} replies={this.props.post.replies}/>
+				<ReplyList expanded={expanded} replies={replies}/>
 			</div>
 		);
 	}

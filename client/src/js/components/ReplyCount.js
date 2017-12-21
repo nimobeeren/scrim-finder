@@ -5,7 +5,7 @@ import '../../styles/components/ReplyCount.css';
 
 
 const ReplyCount = (props) => (
-	<div className="reply-count">
+	<div className="reply-count" onClick={props.onClick}>
 		<div className="reply-count__label">
 			{props.replies.length} repl{props.replies.length === 1 ? 'y' : 'ies'}
 		</div>
@@ -15,7 +15,8 @@ const ReplyCount = (props) => (
 
 ReplyCount.propTypes = {
 	expanded: PropTypes.bool,
-	replies: PropTypes.array
+	replies: PropTypes.array,
+	onClick: PropTypes.func
 };
 
 export default ReplyCount;
