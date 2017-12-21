@@ -18,14 +18,19 @@ class PostReplyForm extends Component {
 	}
 
 	handleSubmit(e) {
+		const { post, currentUser } = this.props;
+
+		// Get values from form
 		let map = e.target.querySelector('.post-reply-form__map').value,
 			message = e.target.querySelector('.post-reply-form__message').value;
 
-		this.props.sendReply(this.props.post._id, {
-			author: '5a39906811aff11638c9f7f2', // anonymous user
+		this.props.sendReply(post._id, {
+			author: currentUser.id,
 			type: 'request',
 			body: { map, message }
 		});
+
+		// Don't reload the page
 		e.preventDefault();
 	}
 
@@ -77,7 +82,8 @@ class PostReplyForm extends Component {
 
 function mapStateToProps(state) {
 	return {
-		allMaps: state.mapNames
+		allMaps: state.mapNames,
+		currentUser: state.currentUser
 	};
 }
 
