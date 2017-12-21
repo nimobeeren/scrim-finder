@@ -7,6 +7,7 @@ import PopupReducer from './PopupTypeReducer';
 import DraftingPostReducer from './DraftingPostReducer';
 import FiltersReducer from './FiltersReducer';
 import ActivePostReducer from './ActivePostReducer';
+import CurrentUserReducer from './CurrentUserReducer';
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
 	popupType: PopupReducer,
 	draftingPost: DraftingPostReducer,
 	filters: FiltersReducer,
-	activePost: ActivePostReducer
+	activePost: ActivePostReducer,
+	currentUser: CurrentUserReducer
 });
 
 export default rootReducer;
