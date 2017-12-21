@@ -79,17 +79,19 @@ router.get('/users', async (req, res) => {
 });
 
 router.post('/auth/register', async (req, res) => {
-	let user;
+	let user, token;
 	try {
 		user = await db.createUser();
+		token = jwt.sign({ id: user._id }, config.secret, {
+			expiresIn: '24h'
+		});
 	} catch (e) {
 		res.status(500).send("Could not create user");
 	}
+
 	res.status(200).send({
 		userId: user._id,
-		token: jwt.sign({ id: user._id }, config.secret, {
-			expiresIn: '24h'
-		})
+		token
 	});
 });
 
@@ -102,8 +104,11 @@ router.post('/auth/login', async (req, res) => {
 	try {
 		payload = jwt.verify(token, config.secret);
 	} catch (e) {
-		// TODO: catch other errors
-		res.sendStatus(401);
+		if (e instanceof jwt.JsonWebTokenError) {
+			res.sendStatus(401);
+		} else {
+			res.status(500).send("Could not verify authorization token");
+		}
 		return;
 	}
 
