@@ -1,11 +1,11 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const credentials = require('./mongoCredentials');
+const config = require('../config');
 const Post = require('./models/post');
 const Reply = require('./models/reply');
 const User = require('./models/user');
 
-mongoose.connect(credentials.uri, { useMongoClient: true });
+mongoose.connect(config.mongoServer, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 module.exports = {
@@ -110,5 +110,16 @@ module.exports = {
 			lastLogin: Date.now()
 		});
 		return user.save();
+	},
+
+	loginUser: function (id) {
+		return new Promise(async (resolve, reject) => {
+			const update = User.findByIdAndUpdate(ObjectId(id), { $set: { lastLogin: Date.now() } });
+			if (!await update) {
+				reject("User not found");
+			} else {
+				resolve(update);
+			}
+		})
 	}
 };

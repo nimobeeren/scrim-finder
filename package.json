@@ -6,6 +6,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7",
     "npm-run-all": "^4.1.2"

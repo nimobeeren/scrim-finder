@@ -13,7 +13,7 @@ node_modules/
 /client/src/styles/**/*.css
 
 # authentication details
-/db/mongoCredentials.json
+/config.json
 
 # misc
 .DS_Store
