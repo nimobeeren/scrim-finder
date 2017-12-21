@@ -2,6 +2,8 @@
 
 .reply-count {
 	cursor: pointer;
+	color: dimgray;
+	border-color: dimgray;
 }
 
 .reply-count__label {
@@ -23,8 +25,9 @@
 	margin-right: 2px;
 	width: 12px;
 	height: 12px;
-	border-right: 2px solid black;
-	border-bottom: 2px solid black;
+	border-right: 2px solid;
+	border-bottom: 2px solid;
+	border-color: inherit;
 	transform: translateY(-2px) rotate(45deg);
 	transition: transform 500ms;
 }
