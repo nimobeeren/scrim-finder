@@ -72,16 +72,7 @@ module.exports = {
 	},
 
 	createPost: function (post) {
-		const newPost = new Post({
-			author: post.teamName,
-			body: {
-				level: post.level,
-				maps: post.maps,
-				server: post.server
-			}
-		});
-
-		return newPost.save();
+		return new Post(post).save();
 	},
 
 	sendReply: async function (reply, postId) {

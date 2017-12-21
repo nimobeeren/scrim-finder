@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+require('./user');
 require('./reply');
 
 const postSchema = new Schema({
-	author: String,
+	author: { type: Schema.Types.ObjectId, ref: 'User' },
 	body: {
+		teamName: String,
 		level: { type: Number, required: true },
 		maps: { type: [String], required: true },
 		server: { type: Boolean }
