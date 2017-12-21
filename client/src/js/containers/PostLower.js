@@ -34,17 +34,23 @@ class PostControls extends Component {
 
 	render() {
 		const expanded = this.state.expanded,
-			replies = this.props.post.replies;
+			post = this.props.post,
+			currentUser = this.props.currentUser,
+			isAuthor = (post.author === currentUser.id);
+
 		return (
 			<div>
 				<div className="lower__controls">
 					<Button className="btn" label="GO" onClick={this.handleOpenReply}/>
 					<ReplyCount
 						expanded={expanded}
-						replies={replies}
+						replies={post.replies}
 						onClick={this.toggleExpandReplies}/>
 				</div>
-				<ReplyList expanded={expanded} replies={replies}/>
+				<ReplyList
+					expanded={expanded}
+					replies={post.replies}
+					isAuthor={isAuthor}/>
 			</div>
 		);
 	}
@@ -54,10 +60,16 @@ PostControls.propTypes = {
 	post: PropTypes.object.isRequired
 };
 
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser
+	};
+}
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		openReply
 	}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PostControls);
+export default connect(mapStateToProps, mapDispatchToProps)(PostControls);
