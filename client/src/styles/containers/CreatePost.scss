@@ -4,15 +4,7 @@
 	margin: 25px;
 }
 
-.create-post-btn__wrapper {
+.wrapper--btn {
 	display: flex;
 	justify-content: center;
-	margin: 25px;
-}
-
-@media (min-width: $bp-verylarge) {
-	.create-post-btn__wrapper, .create-post__wrapper {
-		margin-left: 325px;
-		margin-top: 95px;
-	}
 }

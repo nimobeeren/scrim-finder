@@ -5,7 +5,7 @@
 }
 
 .filters__content {
-	max-width: 500px;
+	max-width: $content-width;
 	padding: 10px 25px 25px;
 	margin: 0 auto;
 	color: $white;
@@ -16,14 +16,7 @@
 	font-size: 24px;
 }
 
-.filters__fields {
-	display: flex;
-	flex-direction: column;
-}
-
 .filters fieldset {
-	flex-basis: 0;
-	flex-grow: 1;
 	border-radius: 10px;
 	border: $medium-border;
 }
@@ -36,9 +29,8 @@
 @media (min-width: $bp-verylarge) {
 	.filters {
 		position: fixed;
-		top: 0;
-		padding-top: 70px;
+		top: $nav-height;
 		height: 100%;
-		width: 300px;
+		width: $aside-width;
 	}
 }

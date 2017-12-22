@@ -14,13 +14,11 @@ const App = () => (
 		<LoginHelper/>
 		<Popup/>
 		<NavBar/>
-		<main>
-			<Filters/>
-			<div>
-				<CreatePost/>
-				<PostList/>
-			</div>
-		</main>
+		<Filters/>
+		<section>
+			<CreatePost/>
+			<PostList/>
+		</section>
 	</div>
 );
 

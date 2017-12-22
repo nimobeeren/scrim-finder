@@ -1,17 +1,11 @@
 @import '../globals';
 
 .post-list {
-	margin: 0 25px;
+	margin: 25px;
 }
 
 .post-list__empty {
 	color: $white;
 	font-size: 24px;
 	text-align: center;
-}
-
-@media (min-width: $bp-verylarge) {
-	.post-list {
-		margin-left: 325px;
-	}
 }

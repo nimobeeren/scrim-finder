@@ -11,10 +11,9 @@ body {
 	min-width: 300px;
 }
 
-main {
-	position: relative;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
+@media (min-width: $bp-verylarge) {
+	section {
+		padding-top: $nav-height;
+		padding-left: $aside-width;
+	}
 }

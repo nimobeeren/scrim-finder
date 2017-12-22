@@ -20,7 +20,7 @@ const CreatePost = (props) => {
 		);
 	} else {
 		return (
-			<div className="create-post-btn__wrapper">
+			<div className="create-post__wrapper wrapper--btn">
 				<Button className="btn btn--large" label="Create post" onClick={props.createPostDraft}/>
 			</div>
 		);

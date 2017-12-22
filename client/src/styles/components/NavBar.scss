@@ -1,9 +1,8 @@
 @import '../globals';
 
 nav {
-	position: fixed;
-	width: calc(100% - 15px);
-	height: 70px;
+	width: 100%;
+	height: $nav-height;
 	background: darken($primary-color, 10%);
 	color: $white;
 	z-index: 1;
@@ -14,13 +13,16 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	height: 100%;
-	margin: 0 auto;
+	margin: 0 15px;
 }
 
 .nav__group {
 	display: flex;
-	justify-content: right;
 	align-items: center;
+}
+
+.nav__group > *:not(:last-child) {
+	margin-right: 15px;
 }
 
 nav h1 {
@@ -36,8 +38,9 @@ nav h1 {
 	}
 }
 
-@media (min-width: $bp-large) {
+@media (min-width: $bp-verylarge) {
 	nav {
-		padding: 0 15px;
+		position: fixed;
+		top: 0;
 	}
 }
