@@ -1,6 +1,6 @@
 {
   "name": "scrim-finder-client",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://2id60.win.tue.nl:8823/",
   "proxy": "http://localhost:8823/",
   "dependencies": {
