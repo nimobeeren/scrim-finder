@@ -67,6 +67,17 @@ const Reply = (props) => {
 				</div>
 			);
 
+		// Declining a request to play
+		case 'decline':
+			return (
+				<div key={reply._id} className="replies__reply reply--request">
+					<div className="reply__text">
+						<span className="reply__author">{reply.author}</span>&nbsp;
+						has declined your request.
+					</div>
+				</div>
+			);
+
 		// Regular text message
 		default:
 			return (
