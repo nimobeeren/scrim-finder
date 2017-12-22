@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import { acceptRequest, declineRequest } from "../actions/PostRequestActions";
 import { openReply } from "../actions/PostReplyActions";
 import Button from '../components/Button';
 import ReplyCount from '../components/ReplyCount';
@@ -33,10 +34,8 @@ class PostControls extends Component {
 	}
 
 	render() {
-		const expanded = this.state.expanded,
-			post = this.props.post,
-			currentUser = this.props.currentUser,
-			isAuthor = (post.author === currentUser.id);
+		const { post, currentUser, acceptRequest, declineRequest } = this.props,
+			{ expanded } = this.state;
 
 		return (
 			<div>
@@ -49,8 +48,10 @@ class PostControls extends Component {
 				</div>
 				<ReplyList
 					expanded={expanded}
-					replies={post.replies}
-					isAuthor={isAuthor}/>
+					post={post}
+					currentUser={currentUser}
+					onAccept={acceptRequest}
+					onDecline={declineRequest}/>
 			</div>
 		);
 	}
@@ -68,7 +69,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		openReply
+		openReply,
+		acceptRequest,
+		declineRequest
 	}, dispatch);
 }
 
