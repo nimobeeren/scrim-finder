@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import Post from './Post';
 import '../../styles/containers/PostList.css';
+import { bindActionCreators } from "redux";
+import { fetchPosts } from "../actions/PostActions";
 
 
 function renderPosts(posts) {
@@ -23,6 +25,14 @@ function renderPosts(posts) {
 }
 
 class PostList extends Component {
+	constructor(props) {
+		super(props);
+
+		// FIXME
+		// FIXME
+		setInterval(() => this.props.fetchPosts(this.props.filters), 5000);
+	}
+
 	render() {
 		return (
 			<div className="post-list">
@@ -34,8 +44,16 @@ class PostList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		posts: state.posts.items
+		posts: state.posts.items,
+		filters: state.filters // FIXME
 	};
 }
 
-export default connect(mapStateToProps)(PostList);
+// FIXME
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		fetchPosts
+	}, dispatch);
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(PostList);
