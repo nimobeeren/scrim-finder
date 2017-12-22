@@ -12,9 +12,9 @@ const NavBar = () => (
 				<Button className="btn btn--nav btn--about btn--secondary"
 						label=""
 						href="https://github.com/nimobeeren/scrim-finder/"/>
-				<Button className="btn btn--nav btn--shrink"
-						label="Log in"
-						onClick={() => alert("Not yet implemented")}/>
+				{/*<Button className="btn btn--nav btn--shrink"*/}
+						{/*label="Log in"*/}
+						{/*onClick={() => alert("Not yet implemented")}/>*/}
 			</div>
 		</div>
 	</nav>
