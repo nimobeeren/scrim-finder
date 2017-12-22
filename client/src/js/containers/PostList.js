@@ -27,9 +27,6 @@ function renderPosts(posts) {
 class PostList extends Component {
 	constructor(props) {
 		super(props);
-
-		// FIXME
-		// FIXME
 		setInterval(() => this.props.fetchPosts(this.props.filters), 5000);
 	}
 
