@@ -18,7 +18,7 @@ class PostReplyForm extends Component {
 	}
 
 	handleSubmit(e) {
-		const { post, currentUser } = this.props;
+		const { post, currentUser, filters } = this.props;
 
 		// Get values from form
 		let map = e.target.querySelector('.post-reply-form__map').value,
@@ -28,7 +28,7 @@ class PostReplyForm extends Component {
 			author: currentUser.id,
 			type: 'request',
 			body: { map, message }
-		});
+		}, filters);
 
 		// Don't reload the page
 		e.preventDefault();
@@ -83,7 +83,8 @@ class PostReplyForm extends Component {
 function mapStateToProps(state) {
 	return {
 		allMaps: state.mapNames,
-		currentUser: state.currentUser
+		currentUser: state.currentUser,
+		filters: state.filters //FIXME
 	};
 }
 

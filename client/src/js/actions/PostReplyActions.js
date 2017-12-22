@@ -1,3 +1,5 @@
+import { fetchPosts } from "./PostActions";
+
 export const CREATE_REPLY_DRAFT = 'CREATE_REPLY_DRAFT';
 export function openReply(post) {
 	return {
@@ -42,7 +44,7 @@ function failSendReply(postId, reply, response) {
 	}
 }
 
-export function sendReply(postId, reply) {
+export function sendReply(postId, reply, filters) {
 	return async function(dispatch) {
 		dispatch(requestSendReply(postId, reply));
 
@@ -54,6 +56,7 @@ export function sendReply(postId, reply) {
 
 		if (response.ok) {
 			dispatch(succesSendReply(postId, reply, response));
+			dispatch(fetchPosts(filters));
 		} else {
 			// TODO: Handle failure
 			dispatch(failSendReply(postId, reply, response));
