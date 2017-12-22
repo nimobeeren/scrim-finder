@@ -7,6 +7,12 @@ import Button from "./Button";
 const Reply = (props) => {
 	const { reply, post, currentUser, onAccept, onDecline } = props;
 
+	// Don't show reply if it is not meant for the current user
+	if (reply.recipient && reply.recipient !== currentUser.id) {
+		// TODO: Don't send this reply to the client at all
+		return null;
+	}
+
 	// Check if current user is the author of the post this reply belongs to
 	let isPostAuthor = false;
 	if (currentUser) {
@@ -14,8 +20,8 @@ const Reply = (props) => {
 	}
 
 	switch (reply.type) {
+		// Request to play a map
 		case 'request':
-			// Request to play a map
 			let children = [(
 				<div key="text" className="reply__text">
 					<span className="reply__author">{reply.author}</span>&nbsp;
@@ -50,6 +56,7 @@ const Reply = (props) => {
 				</div>
 			);
 
+		// Accepting a request to play
 		case 'accept':
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
@@ -60,8 +67,8 @@ const Reply = (props) => {
 				</div>
 			);
 
+		// Regular text message
 		default:
-			// Regular text message
 			return (
 				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">

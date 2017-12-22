@@ -44,6 +44,7 @@ class PostControls extends Component {
 					<ReplyCount
 						expanded={expanded}
 						replies={post.replies}
+						currentUser={currentUser}
 						onClick={this.toggleExpandReplies}/>
 				</div>
 				<ReplyList
