@@ -33,8 +33,12 @@
 	align-items: center;
 }
 
-@media (min-width: $bp-large) {
-	.filters__fields {
-		flex-direction: row;
+@media (min-width: $bp-verylarge) {
+	.filters {
+		position: fixed;
+		top: 0;
+		padding-top: 70px;
+		height: 100%;
+		width: 300px;
 	}
 }

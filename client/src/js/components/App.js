@@ -16,8 +16,10 @@ const App = () => (
 		<NavBar/>
 		<main>
 			<Filters/>
-			<CreatePost/>
-			<PostList/>
+			<div>
+				<CreatePost/>
+				<PostList/>
+			</div>
 		</main>
 	</div>
 );

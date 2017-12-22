@@ -1,17 +1,18 @@
 @import '../globals';
 
 nav {
+	position: fixed;
+	width: calc(100% - 15px);
+	height: 70px;
 	background: darken($primary-color, 10%);
 	color: $white;
-	height: 70px;
-	padding: 0 15px;
+	z-index: 1;
 }
 
 .nav__content {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	max-width: 1000px;
 	height: 100%;
 	margin: 0 auto;
 }
