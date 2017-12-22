@@ -5,7 +5,7 @@ import Button from "./Button";
 
 
 const Reply = (props) => {
-	const { reply, post, currentUser, onAccept, onDecline } = props;
+	const { reply, post, currentUser, pending, onAccept, onDecline } = props;
 
 	// Don't show reply if it is not meant for the current user
 	if (reply.recipient && reply.recipient !== currentUser.id) {
@@ -31,20 +31,42 @@ const Reply = (props) => {
 				</div>
 			)];
 
+			// Disable accept/decline buttons when a reply is pending
+			let acceptButton, declineButton;
+			if (pending) {
+				acceptButton = (
+					<Button
+						className="btn btn--small"
+						label="Accept"/>
+				);
+				declineButton = (
+					<Button
+						className="btn btn--small"
+						label="Decline"/>
+				)
+			} else {
+				acceptButton = (
+					<Button
+						className="btn btn--small"
+						label="Accept"
+						onClick={() => onAccept(reply, post)}/>
+				);
+				declineButton = (
+					<Button
+						className="btn btn--small"
+						label="Decline"
+						onClick={() => onDecline(reply, post)}/>
+				);
+			}
+
 			if (isPostAuthor) {
 				children.push(
 					<div key="controls" className="reply__controls">
 						<div className="reply__button-wrapper">
-							<Button
-								className="btn btn--small"
-								label="Accept"
-								onClick={() => onAccept(reply, post)}/>
+							{acceptButton}
 						</div>
 						<div className="reply__button-wrapper">
-							<Button
-								className="btn btn--small"
-								label="Decline"
-								onClick={() => onDecline(reply, post)}/>
+							{declineButton}
 						</div>
 					</div>
 				);

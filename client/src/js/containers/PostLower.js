@@ -34,8 +34,13 @@ class PostControls extends Component {
 	}
 
 	render() {
-		const { post, currentUser, acceptRequest, declineRequest } = this.props,
+		const { post, currentUser, pendingReplyPosts, acceptRequest, declineRequest } = this.props,
 			{ expanded } = this.state;
+
+		let pendingReply = false;
+		if (pendingReplyPosts.includes(post._id)) {
+			pendingReply = true;
+		}
 
 		return (
 			<div>
@@ -51,6 +56,7 @@ class PostControls extends Component {
 					expanded={expanded}
 					post={post}
 					currentUser={currentUser}
+					pendingReply={pendingReply}
 					onAccept={acceptRequest}
 					onDecline={declineRequest}/>
 			</div>
@@ -64,7 +70,8 @@ PostControls.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser
+		currentUser: state.currentUser,
+		pendingReplyPosts: state.pendingReplyPosts
 	};
 }
 

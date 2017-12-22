@@ -50,6 +50,25 @@
 	font-size: 20px;
 }
 
+.btn--disabled {
+	background: lighten($accent-color, 25%);
+	cursor: default;
+}
+
+.btn--disabled:hover {
+	background: lighten($accent-color, 25%);
+}
+
+.btn--secondary.btn--disabled {
+	border-color: lighten($accent-color, 25%);
+	color: lighten($accent-color, 25%);
+}
+
+.btn--secondary.btn--disabled:hover {
+	border-color: lighten($accent-color, 25%);
+	color: lighten($accent-color, 25%);
+}
+
 // Hidden about button
 .btn--about {
 	display: none;

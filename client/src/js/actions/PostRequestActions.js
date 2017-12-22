@@ -1,5 +1,16 @@
+export const REQUEST_ACCEPT_REQUEST = 'REQUEST_ACCEPT_REQUEST';
+function requestAcceptRequest(request, post) {
+	console.log("Requesting");
+	return {
+		type: REQUEST_ACCEPT_REQUEST,
+		request,
+		post
+	}
+}
+
 export const SUCCESS_ACCEPT_REQUEST = 'SUCCESS_ACCEPT_REQUEST';
 function successAcceptRequest(request, post) {
+	console.log("Success");
 	return {
 		type: SUCCESS_ACCEPT_REQUEST,
 		request,
@@ -18,6 +29,8 @@ function failAcceptRequest(request, post) {
 
 export function acceptRequest(request, post) {
 	return async function (dispatch) {
+		dispatch(requestAcceptRequest(request, post));
+
 		const reply = {
 			author: post.author,
 			recipient: request.author,
@@ -32,10 +45,17 @@ export function acceptRequest(request, post) {
 		});
 
 		if (response.ok) {
-			dispatch(successAcceptRequest(request));
+			dispatch(successAcceptRequest(request, post));
 		} else {
-			dispatch(failAcceptRequest(request));
+			dispatch(failAcceptRequest(request, post));
 		}
+	}
+}export const REQUEST_DECLINE_REQUEST = 'REQUEST_DECLINE_REQUEST';
+function requestDeclineRequest(request, post) {
+	return {
+		type: REQUEST_DECLINE_REQUEST,
+		request,
+		post
 	}
 }
 
@@ -59,6 +79,8 @@ function failDeclineRequest(request, post) {
 
 export function declineRequest(request, post) {
 	return async function (dispatch) {
+		dispatch(requestDeclineRequest(request, post));
+
 		const reply = {
 			author: post.author,
 			recipient: request.author,
@@ -73,9 +95,9 @@ export function declineRequest(request, post) {
 		});
 
 		if (response.ok) {
-			dispatch(successDeclineRequest(request));
+			dispatch(successDeclineRequest(request, post));
 		} else {
-			dispatch(failDeclineRequest(request));
+			dispatch(failDeclineRequest(request, post));
 		}
 	}
 }

@@ -8,6 +8,7 @@ import DraftingPostReducer from './DraftingPostReducer';
 import FiltersReducer from './FiltersReducer';
 import ActivePostReducer from './ActivePostReducer';
 import CurrentUserReducer from './CurrentUserReducer';
+import PendingReplyPostsReducer from './PendingReplyPostsReducer';
 
 
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
 	draftingPost: DraftingPostReducer,
 	filters: FiltersReducer,
 	activePost: ActivePostReducer,
-	currentUser: CurrentUserReducer
+	currentUser: CurrentUserReducer,
+	pendingReplyPosts: PendingReplyPostsReducer
 });
 
 export default rootReducer;

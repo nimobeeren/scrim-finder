@@ -7,7 +7,7 @@ import Reply from "./Reply";
 
 class ReplyList extends Component {
 	renderReplies() {
-		const { post, currentUser, onAccept, onDecline } = this.props,
+		const { post, currentUser, pendingReply, onAccept, onDecline } = this.props,
 			replies = post.replies;
 
 		// Give feedback when are no replies
@@ -21,6 +21,7 @@ class ReplyList extends Component {
 				reply={reply}
 				post={post}
 				currentUser={currentUser}
+				pending={pendingReply}
 				onAccept={onAccept}
 				onDecline={onDecline}/>
 		)
@@ -39,6 +40,7 @@ ReplyList.propTypes = {
 	expanded: PropTypes.bool,
 	post: PropTypes.object,
 	currentUser: PropTypes.object,
+	pendingReply: PropTypes.bool,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func
 };
