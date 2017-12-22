@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 
 import Button from "./Button";
 
 
 const Reply = (props) => {
-	const { reply, post, currentUser, pending, onAccept, onDecline } = props;
+	const { reply, post, currentUser, pending, onAccept, onDecline, filters } = props;
 
 	// Don't show reply if it is not meant for the current user
 	if (reply.recipient && reply.recipient !== currentUser.id) {
@@ -58,13 +59,13 @@ const Reply = (props) => {
 					<Button
 						className="btn btn--small"
 						label="Accept"
-						onClick={() => onAccept(reply, post)}/>
+						onClick={() => onAccept(reply, post, filters)}/>
 				);
 				declineButton = (
 					<Button
 						className="btn btn--small"
 						label="Decline"
-						onClick={() => onDecline(reply, post)}/>
+						onClick={() => onDecline(reply, post, filters)}/>
 				);
 			}
 
@@ -145,4 +146,11 @@ Reply.propTypes = {
 	onDecline: PropTypes.func
 };
 
-export default Reply;
+// FIXME
+function mapStateToProps(state) {
+	return {
+		filters: state.filters
+	};
+}
+
+export default connect(mapStateToProps)(Reply);

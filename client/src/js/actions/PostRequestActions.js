@@ -1,6 +1,7 @@
+import { fetchPosts } from "./PostActions";
+
 export const REQUEST_ACCEPT_REQUEST = 'REQUEST_ACCEPT_REQUEST';
 function requestAcceptRequest(request, post) {
-	console.log("Requesting");
 	return {
 		type: REQUEST_ACCEPT_REQUEST,
 		request,
@@ -10,7 +11,6 @@ function requestAcceptRequest(request, post) {
 
 export const SUCCESS_ACCEPT_REQUEST = 'SUCCESS_ACCEPT_REQUEST';
 function successAcceptRequest(request, post) {
-	console.log("Success");
 	return {
 		type: SUCCESS_ACCEPT_REQUEST,
 		request,
@@ -27,7 +27,7 @@ function failAcceptRequest(request, post) {
 	}
 }
 
-export function acceptRequest(request, post) {
+export function acceptRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestAcceptRequest(request, post));
 
@@ -46,11 +46,14 @@ export function acceptRequest(request, post) {
 
 		if (response.ok) {
 			dispatch(successAcceptRequest(request, post));
+			dispatch(fetchPosts(filters));
 		} else {
 			dispatch(failAcceptRequest(request, post));
 		}
 	}
-}export const REQUEST_DECLINE_REQUEST = 'REQUEST_DECLINE_REQUEST';
+}
+
+export const REQUEST_DECLINE_REQUEST = 'REQUEST_DECLINE_REQUEST';
 function requestDeclineRequest(request, post) {
 	return {
 		type: REQUEST_DECLINE_REQUEST,
@@ -77,7 +80,7 @@ function failDeclineRequest(request, post) {
 	}
 }
 
-export function declineRequest(request, post) {
+export function declineRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestDeclineRequest(request, post));
 
@@ -96,6 +99,7 @@ export function declineRequest(request, post) {
 
 		if (response.ok) {
 			dispatch(successDeclineRequest(request, post));
+			dispatch(fetchPosts(filters));
 		} else {
 			dispatch(failDeclineRequest(request, post));
 		}
