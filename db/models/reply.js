@@ -5,7 +5,11 @@ require('./user');
 const reply = new Schema({
 	author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	recipient: { type: Schema.Types.ObjectId, ref: 'User' },
-	type: { type: String, default: 'text' },
+	type: {
+		type: String,
+		enum: ['text', 'request', 'accept', 'decline'],
+		default: 'text'
+	},
 	body: {
 		map: String,
 		message: String
