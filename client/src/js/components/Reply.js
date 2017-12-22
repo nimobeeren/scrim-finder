@@ -50,6 +50,16 @@ const Reply = (props) => {
 				</div>
 			);
 
+		case 'accept':
+			return (
+				<div key={reply._id} className="replies__reply reply--request">
+					<div className="reply__text">
+						<span className="reply__author">{reply.author}</span>&nbsp;
+						has accepted your request.
+					</div>
+				</div>
+			);
+
 		default:
 			// Regular text message
 			return (
