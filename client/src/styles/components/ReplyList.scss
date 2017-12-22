@@ -21,6 +21,10 @@
 	text-align: center;
 }
 
+.reply--declined {
+	opacity: 0.3;
+}
+
 .reply__text {
 	margin: 4px;
 }
@@ -34,13 +38,19 @@
 	display: flex;
 }
 
+.reply__status {
+	margin: 0 25px;
+	font-weight: bold;
+	color: $accent-color;
+}
+
 .reply__button-wrapper {
 	display: inline-block;
 	margin-right: 10px;
 }
 
 @media (min-width: $bp-large) {
-	.reply--request{
+	.reply--request {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;

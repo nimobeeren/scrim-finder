@@ -22,8 +22,17 @@ const Reply = (props) => {
 	switch (reply.type) {
 		// Request to play a map
 		case 'request':
+			// Whether there exits an accept reply directed to this reply's author
+			const accepted = post.replies.some(r =>
+				r.type === 'accept' && r.recipient === reply.author);
+
+			// Whether there exits a decline reply directed to this reply's author
+			const declined = post.replies.some(r =>
+				r.type === 'decline' && r.recipient === reply.author);
+
+			// Create section containing reply text
 			let children = [(
-				<div key="text" className="reply__text">
+				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
 					<span className="reply__author">{reply.author}</span>&nbsp;
 					wants to play <span className="map">{reply.body.map}</span>
 					{reply.body.message ? ": " : ""}
@@ -59,7 +68,22 @@ const Reply = (props) => {
 				);
 			}
 
-			if (isPostAuthor) {
+			if (accepted) {
+				// Show accepted status
+				children.push(
+					<div key="status" className="reply__status">
+						Accepted
+					</div>
+				);
+			} else if (declined) {
+				// Show declined status
+				children.push(
+					<div key="status" className="reply__status">
+						Declined
+					</div>
+				);
+			} else if (isPostAuthor) {
+				// Show accept/decline buttons
 				children.push(
 					<div key="controls" className="reply__controls">
 						<div className="reply__button-wrapper">
