@@ -34,7 +34,7 @@ const Reply = (props) => {
 			// Create section containing reply text
 			let children = [(
 				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
-					<span className="reply__author">Anonymous</span>&nbsp; // TODO
+					<span className="reply__author">Anonymous</span>&nbsp;
 					wants to play <span className="map">{reply.body.map}</span>
 					{reply.body.message ? ": " : ""}
 					<i>{reply.body.message}</i>
@@ -108,7 +108,7 @@ const Reply = (props) => {
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
 					<div className="reply__text">
-						<span className="reply__author">Anonymous</span>&nbsp; // TODO
+						<span className="reply__author">Anonymous</span>&nbsp;
 						has accepted your request.
 					</div>
 				</div>
@@ -119,7 +119,7 @@ const Reply = (props) => {
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
 					<div className="reply__text">
-						<span className="reply__author">Anonymous</span>&nbsp; // TODO
+						<span className="reply__author">Anonymous</span>&nbsp;
 						has declined your request.
 					</div>
 				</div>
@@ -130,7 +130,7 @@ const Reply = (props) => {
 			return (
 				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">
-						<span className="reply__author">Anonymous:</span>&nbsp; // TODO
+						<span className="reply__author">Anonymous:</span>&nbsp;
 						{reply.body.message}
 					</div>
 				</div>
