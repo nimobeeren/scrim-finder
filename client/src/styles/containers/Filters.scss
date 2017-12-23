@@ -42,7 +42,7 @@
 		position: fixed;
 		top: $nav-height;
 		height: calc(100% - #{$nav-height});
-		overflow: scroll;
+		overflow-Y: scroll;
 		width: $aside-width;
 	}
 
