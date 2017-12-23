@@ -38,7 +38,7 @@
 }
 
 .btn--secondary:hover {
-	background: rgba(255, 255, 255, 0.05);
+	background: rgba(255, 255, 255, 0.1);
 }
 
 .btn--large {
@@ -53,7 +53,7 @@
 }
 
 .btn--disabled:hover {
-	background: lighten($accent-color, 25%);
+	@extend .btn--disabled;
 }
 
 .btn--secondary.btn--disabled {
@@ -62,8 +62,7 @@
 }
 
 .btn--secondary.btn--disabled:hover {
-	border-color: lighten($accent-color, 25%);
-	color: lighten($accent-color, 25%);
+	@extend .btn--secondary.btn--disabled;
 }
 
 // Circular about button
