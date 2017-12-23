@@ -41,7 +41,8 @@
 	.filters {
 		position: fixed;
 		top: $nav-height;
-		height: 100%;
+		height: calc(100% - #{$nav-height});
+		overflow: scroll;
 		width: $aside-width;
 	}
 
