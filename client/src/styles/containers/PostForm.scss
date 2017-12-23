@@ -8,12 +8,21 @@
 
 .post-form input[type="text"] {
 	display: block;
-	width: 99%;
+	box-sizing: border-box;
+	width: 100%;
 	font-size: 16px;
+}
+
+.post-form__controls {
+	margin: 0 auto;
+	text-align: center;
 }
 
 .post-form__btn-wrapper {
 	display: inline-block;
+}
+
+.post-form__btn-wrapper:not(:last-child) {
 	margin-right: 10px;
 }
 
@@ -28,4 +37,10 @@
 
 .post-form .invalid legend::after {
 	content: " (select at least one)";
+}
+
+@media (min-width: $bp-medium) {
+	.post-form__controls {
+		text-align: left;
+	}
 }

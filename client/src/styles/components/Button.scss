@@ -1,10 +1,6 @@
 @import '../globals';
 
 .btn {
-	display: inline-flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	width: 100px;
 	height: 40px;
 	background: $accent-color;
@@ -73,8 +69,6 @@
 }
 
 .btn--about::before {
-	position: absolute; // needed for text-decoration to work
-	text-decoration: none;
 	content: "i";
 	font-size: 20px;
 	font-weight: bold;

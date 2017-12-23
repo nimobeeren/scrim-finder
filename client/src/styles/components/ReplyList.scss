@@ -18,7 +18,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	text-align: center;
 }
 
 .reply--declined {
@@ -26,6 +25,7 @@
 }
 
 .reply__text {
+	display: inline-block;
 	margin: 4px;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .reply__controls {
-	display: flex;
+	flex-shrink: 0;
 }
 
 .reply__status {
@@ -46,6 +46,9 @@
 
 .reply__button-wrapper {
 	display: inline-block;
+}
+
+.reply__button-wrapper:not(:last-child) {
 	margin-right: 10px;
 }
 
@@ -54,10 +57,5 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		text-align: left;
-	}
-
-	.reply__text {
-		text-align: left;
 	}
 }

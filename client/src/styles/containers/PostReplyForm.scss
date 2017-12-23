@@ -22,5 +22,8 @@
 
 .post-reply-form__btn-wrapper {
 	display: inline-block;
+}
+
+.post-reply-form__btn-wrapper:not(:last-child) {
 	margin-right: 10px;
 }

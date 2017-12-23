@@ -162,11 +162,13 @@ class PostForm extends Component {
 					<legend>Server</legend>
 					{this.createServerRadioButtons()}
 				</fieldset>
-				<div className="post-form__btn-wrapper">
-					<SubmitButton className="btn" label="Create"/>
-				</div>
-				<div className="post-form__btn-wrapper">
-					<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
+				<div className="post-form__controls">
+					<div className="post-form__btn-wrapper">
+						<SubmitButton className="btn" label="Create"/>
+					</div>
+					<div className="post-form__btn-wrapper">
+						<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
+					</div>
 				</div>
 			</form>
 		);
