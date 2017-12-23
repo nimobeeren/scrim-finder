@@ -26,6 +26,7 @@
 	height: 35px;
 }
 
+// Small button only on small screens
 .btn--shrink {
 	@extend .btn--small;
 }
@@ -65,9 +66,8 @@
 	color: lighten($accent-color, 25%);
 }
 
-// Hidden about button
+// Circular about button
 .btn--about {
-	//display: none;
 	border-radius: 50%;
 	width: 35px;
 	height: 35px;
@@ -81,14 +81,8 @@
 	font-weight: bold;
 }
 
-@media (min-width: $bp-small) {
-	// Small about button
-	.btn--about {
-		display: inline-flex;
-	}
-}
-
 @media (min-width: $bp-medium) {
+	// Normal sized button on medium screens
 	.btn--shrink {
 		width: 100px;
 		height: 40px;
@@ -98,9 +92,7 @@
 		width: 40px;
 		height: 40px;
 	}
-}
 
-@media (min-width: $bp-large) {
 	// Normal about button
 	.btn--about {
 		width: 100px;

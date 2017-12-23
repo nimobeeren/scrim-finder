@@ -11,7 +11,7 @@ body {
 	min-width: 300px;
 }
 
-@media (min-width: $bp-verylarge) {
+@media (min-width: $bp-large) {
 	section {
 		padding-top: $nav-height;
 		padding-left: $aside-width;

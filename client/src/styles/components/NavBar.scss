@@ -32,13 +32,13 @@ nav h1 {
 	cursor: default;
 }
 
-@media (min-width: $bp-medium) {
+@media (min-width: $bp-small) {
 	nav h1 {
 		font-size: 28px;
 	}
 }
 
-@media (min-width: $bp-verylarge) {
+@media (min-width: $bp-large) {
 	nav {
 		position: fixed;
 		top: 0;

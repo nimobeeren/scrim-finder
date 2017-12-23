@@ -26,11 +26,26 @@
 	align-items: center;
 }
 
-@media (min-width: $bp-verylarge) {
+@media (min-width: $bp-medium) {
+	.filters__fields {
+		display: flex;
+	}
+
+	.filters fieldset {
+		flex-grow: 1;
+		flex-basis: 0; // needed for fields to be equal width
+	}
+}
+
+@media (min-width: $bp-large) {
 	.filters {
 		position: fixed;
 		top: $nav-height;
 		height: 100%;
 		width: $aside-width;
+	}
+
+	.filters__fields {
+		display: block;
 	}
 }
