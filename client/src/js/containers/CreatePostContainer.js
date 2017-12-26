@@ -1,0 +1,30 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+
+import { createPostDraft } from "../actions/CreatePostActions";
+import CreatePostCard from '../components/CreatePostCard';
+import CreatePostButton from "../components/CreatePostButton";
+
+
+const CreatePost = (props) => {
+	if (props.drafting) {
+		return <CreatePostCard/>;
+	} else {
+		return <CreatePostButton onClick={props.createPostDraft}/>;
+	}
+};
+
+function mapStateToProps(state) {
+	return {
+		drafting: state.draftingPost
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		createPostDraft
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

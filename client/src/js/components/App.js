@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import LoginHelper from "../containers/LoginHelper";
 import Popup from '../containers/Popup';
 import Filters from '../containers/Filters';
-import CreatePost from '../containers/CreatePost'
+import CreatePost from '../containers/CreatePostContainer'
 import PostList from '../containers/PostList';
 import '../../styles/components/App.css';
 
