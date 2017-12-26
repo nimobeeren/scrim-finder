@@ -1,43 +1,43 @@
 import { fetchPosts } from "./PostActions";
 
-export const CREATE_REPLY_DRAFT = 'CREATE_REPLY_DRAFT';
-export function openReply(post) {
+export const REPLY_DRAFT_CREATE = 'REPLY_DRAFT_CREATE';
+export function createReplyDraft(post) {
 	return {
-		type: CREATE_REPLY_DRAFT,
+		type: REPLY_DRAFT_CREATE,
 		post
 	};
 }
 
-export const CANCEL_REPLY_DRAFT = 'CANCEL_REPLY_DRAFT';
-export function cancelReply() {
+export const REPLY_DRAFT_CANCEL = 'REPLY_DRAFT_CANCEL';
+export function cancelReplyDraft() {
 	return {
-		type: CANCEL_REPLY_DRAFT
+		type: REPLY_DRAFT_CANCEL
 	};
 }
 
-export const REQUEST_SEND_REPLY = 'REQUEST_SEND_REPLY';
+export const REPLY_SEND_REQUEST = 'REPLY_SEND_REQUEST';
 function requestSendReply(postId, reply) {
 	return {
-		type: REQUEST_SEND_REPLY,
+		type: REPLY_SEND_REQUEST,
 		postId,
 		reply
 	}
 }
 
-export const SUCCES_SEND_REPLY = 'SUCCES_SEND_REPLY';
-function succesSendReply(postId, reply, response) {
+export const REPLY_SEND_SUCCESS = 'REPLY_SEND_SUCCESS';
+function successSendReply(postId, reply, response) {
 	return {
-		type: SUCCES_SEND_REPLY,
+		type: REPLY_SEND_SUCCESS,
 		postId,
 		reply,
 		response
 	}
 }
 
-export const FAIL_SEND_REPLY = 'FAIL_SEND_REPLY';
+export const REPLY_SEND_FAIL = 'REPLY_SEND_FAIL';
 function failSendReply(postId, reply, response) {
 	return {
-		type: FAIL_SEND_REPLY,
+		type: REPLY_SEND_FAIL,
 		postId,
 		reply,
 		response
@@ -45,17 +45,17 @@ function failSendReply(postId, reply, response) {
 }
 
 export function sendReply(postId, reply, filters) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		dispatch(requestSendReply(postId, reply));
 
 		const response = await fetch('/api/posts/' + postId, {
 			method: 'POST',
-			headers: {"Content-Type": "application/json"},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(reply)
 		});
 
 		if (response.ok) {
-			dispatch(succesSendReply(postId, reply, response));
+			dispatch(successSendReply(postId, reply, response));
 			dispatch(fetchPosts(filters));
 		} else {
 			// TODO: Handle failure

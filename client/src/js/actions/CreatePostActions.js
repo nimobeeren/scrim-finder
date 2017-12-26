@@ -1,41 +1,41 @@
 import { fetchPosts } from "./PostActions";
 
-export const CREATE_POST_DRAFT = 'CREATE_POST_DRAFT';
+export const POST_DRAFT_CREATE = 'POST_DRAFT_CREATE';
 export function createPostDraft() {
 	return {
-		type: CREATE_POST_DRAFT
+		type: POST_DRAFT_CREATE
 	};
 }
 
-export const CANCEL_POST_DRAFT = 'CANCEL_POST_DRAFT';
+export const POST_DRAFT_CANCEL = 'POST_DRAFT_CANCEL';
 export function cancelPostDraft() {
 	return {
-		type: CANCEL_POST_DRAFT
+		type: POST_DRAFT_CANCEL
 	};
 }
 
-export const REQUEST_CREATE_POST = 'REQUEST_CREATE_POST';
+export const POST_CREATE_REQUEST = 'POST_CREATE_REQUEST';
 function requestCreatePost(post) {
 	return {
-		type: REQUEST_CREATE_POST,
+		type: POST_CREATE_REQUEST,
 		post
 	};
 }
 
-export const SUCCESS_CREATE_POST = 'SUCCESS_CREATE_POST';
+export const POST_CREATE_SUCCESS = 'POST_CREATE_SUCCESS';
 function successCreatePost(post, filters, response) {
 	return {
-		type: SUCCESS_CREATE_POST,
+		type: POST_CREATE_SUCCESS,
 		post,
 		filters,
 		response
 	};
 }
 
-export const FAIL_CREATE_POST = 'FAIL_CREATE_POST';
+export const POST_CREATE_FAIL = 'POST_CREATE_FAIL';
 function failCreatePost(post, response) {
 	return {
-		type: FAIL_CREATE_POST,
+		type: POST_CREATE_FAIL,
 		post,
 		response
 	}
@@ -46,7 +46,7 @@ export function createPost(post, filters) {
 		dispatch(requestCreatePost(post));
 		const response = await fetch('/api/posts', {
 			method: 'POST',
-			headers: {"Content-Type": "application/json"},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(post)
 		});
 

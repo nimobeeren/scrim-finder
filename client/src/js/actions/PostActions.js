@@ -1,15 +1,15 @@
-export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const POSTS_REQUEST = 'POSTS_REQUEST';
 function requestPosts(filters) {
 	return {
-		type: REQUEST_POSTS,
+		type: POSTS_REQUEST,
 		filters
 	}
 }
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const POSTS_RECEIVE = 'POSTS_RECEIVE';
 function receivePosts(filters, posts) {
 	return {
-		type: RECEIVE_POSTS,
+		type: POSTS_RECEIVE,
 		filters,
 		posts,
 		receivedAt: Date.now()

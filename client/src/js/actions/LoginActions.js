@@ -1,25 +1,25 @@
 import { anonymousRegister } from "./RegisterActions";
 
-export const REQUEST_ANONYMOUS_LOGIN = 'REQUEST_ANONYMOUS_LOGIN';
+export const LOGIN_ANONYMOUS_REQUEST = 'LOGIN_ANONYMOUS_REQUEST';
 function requestAnonymousLogin(user) {
 	return {
-		type: REQUEST_ANONYMOUS_LOGIN,
+		type: LOGIN_ANONYMOUS_REQUEST,
 		user
 	};
 }
 
-export const SUCCESS_ANONYMOUS_LOGIN = 'SUCCESS_ANONYMOUS_LOGIN';
+export const LOGIN_ANONYMOUS_SUCCESS = 'LOGIN_ANONYMOUS_SUCCESS';
 function successAnonymousLogin(user) {
 	return {
-		type: SUCCESS_ANONYMOUS_LOGIN,
+		type: LOGIN_ANONYMOUS_SUCCESS,
 		user
 	};
 }
 
-export const FAIL_ANONYMOUS_LOGIN = 'FAIL_ANONYMOUS_LOGIN';
+export const LOGIN_ANONYMOUS_FAIL = 'LOGIN_ANONYMOUS_FAIL';
 function failAnonymousLogin(user) {
 	return {
-		type: FAIL_ANONYMOUS_LOGIN,
+		type: LOGIN_ANONYMOUS_FAIL,
 		user
 	};
 }

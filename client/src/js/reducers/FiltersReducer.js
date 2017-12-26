@@ -1,8 +1,8 @@
-import { CHANGE_FILTER } from "../actions/FilterActions";
+import { FILTER_CHANGE } from "../actions/FilterActions";
 
 function filtersReducer(state = null, action) {
 	switch (action.type) {
-		case CHANGE_FILTER:
+		case FILTER_CHANGE:
 			return action.filters;
 
 		default:

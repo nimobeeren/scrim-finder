@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { sendReply, cancelReply } from "../actions/PostReplyActions";
+import { sendReply, cancelReplyDraft } from "../actions/PostReplyActions";
 import Card from "../components/Card";
 import SubmitButton from "../components/SubmitButton";
 import Button from '../components/Button';
@@ -91,7 +91,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		sendReply,
-		cancelReply
+		cancelReply: cancelReplyDraft
 	}, dispatch);
 }
 

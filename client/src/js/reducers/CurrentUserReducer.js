@@ -1,11 +1,11 @@
-import { SUCCESS_ANONYMOUS_LOGIN } from "../actions/LoginActions";
-import { SUCCESS_ANONYMOUS_REGISTER } from "../actions/RegisterActions";
+import { LOGIN_ANONYMOUS_SUCCESS } from "../actions/LoginActions";
+import { ANONYMOUS_REGISTER_SUCCESS } from "../actions/RegisterActions";
 
 
 function currentUserReducer(state, action) {
 	switch (action.type) {
-		case SUCCESS_ANONYMOUS_LOGIN:
-		case SUCCESS_ANONYMOUS_REGISTER:
+		case LOGIN_ANONYMOUS_SUCCESS:
+		case ANONYMOUS_REGISTER_SUCCESS:
 			localStorage.setItem('userId', action.user.id);
 			localStorage.setItem('token', action.user.token);
 			return action.user;

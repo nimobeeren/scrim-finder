@@ -1,8 +1,8 @@
-import { CREATE_REPLY_DRAFT } from "../actions/PostReplyActions";
+import { REPLY_DRAFT_CREATE } from "../actions/PostReplyActions";
 
 function activePostReducer(state = null, action) {
 	switch (action.type) {
-		case CREATE_REPLY_DRAFT:
+		case REPLY_DRAFT_CREATE:
 			return action.post;
 
 		default:

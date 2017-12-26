@@ -9,19 +9,19 @@ function requestAcceptRequest(request, post) {
 	}
 }
 
-export const SUCCESS_ACCEPT_REQUEST = 'SUCCESS_ACCEPT_REQUEST';
+export const REQUEST_ACCEPT_SUCCESS = 'REQUEST_ACCEPT_SUCCESS';
 function successAcceptRequest(request, post) {
 	return {
-		type: SUCCESS_ACCEPT_REQUEST,
+		type: REQUEST_ACCEPT_SUCCESS,
 		request,
 		post
 	}
 }
 
-export const FAIL_ACCEPT_REQUEST = 'FAIL_ACCEPT_REQUEST';
+export const REQUEST_ACCEPT_FAIL = 'REQUEST_ACCEPT_FAIL';
 function failAcceptRequest(request, post) {
 	return {
-		type: FAIL_ACCEPT_REQUEST,
+		type: REQUEST_ACCEPT_FAIL,
 		request,
 		post
 	}
@@ -62,19 +62,19 @@ function requestDeclineRequest(request, post) {
 	}
 }
 
-export const SUCCESS_DECLINE_REQUEST = 'SUCCESS_DECLINE_REQUEST';
+export const REQUEST_DECLINE_SUCCESS = 'REQUEST_DECLINE_SUCCESS';
 function successDeclineRequest(request, post) {
 	return {
-		type: SUCCESS_DECLINE_REQUEST,
+		type: REQUEST_DECLINE_SUCCESS,
 		request,
 		post
 	}
 }
 
-export const FAIL_DECLINE_REQUEST = 'FAIL_DECLINE_REQUEST';
+export const REQUEST_DECLINE_FAIL = 'REQUEST_DECLINE_FAIL';
 function failDeclineRequest(request, post) {
 	return {
-		type: FAIL_DECLINE_REQUEST,
+		type: REQUEST_DECLINE_FAIL,
 		request,
 		post
 	}

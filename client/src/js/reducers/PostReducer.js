@@ -39,12 +39,12 @@ function postReducer(state = {
 					 },
 					 action) {
 	switch (action.type) {
-		case 'REQUEST_POSTS':
+		case 'POSTS_REQUEST':
 			return Object.assign({}, state, {
 				isFetching: true
 			});
 
-		case 'RECEIVE_POSTS':
+		case 'POSTS_RECEIVE':
 			// Validate posts, making sure every post has all required fields
 			const validPosts = action.posts.map(post => {
 				let result = post;
