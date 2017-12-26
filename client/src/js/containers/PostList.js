@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Post from './Post';
+import Post from '../components/Post';
 import '../../styles/containers/PostList.css';
 import { bindActionCreators } from "redux";
 import { fetchPosts } from "../actions/PostActions";
 
 
-function renderPosts(posts) {
+function renderPosts(posts, currentUser, levelNames) {
 	if (posts.length > 0) {
-		return posts.map(post =>
-			<Post
-				key={post._id}
-				post={post}/>
+		return posts.map(post => {
+				const isPostAuthor = (!!currentUser && post.author === currentUser.id);
+				return <Post
+					key={post._id}
+					post={post}
+					isPostAuthor={isPostAuthor}
+					levelNames={levelNames}/>
+			}
 		);
 	} else {
 		return (
@@ -33,9 +37,10 @@ class PostList extends Component {
 	}
 
 	render() {
+		const { posts, currentUser, levelNames } = this.props;
 		return (
 			<div className="post-list">
-				{renderPosts(this.props.posts)}
+				{renderPosts(posts, currentUser, levelNames)}
 			</div>
 		);
 	}
@@ -44,15 +49,16 @@ class PostList extends Component {
 function mapStateToProps(state) {
 	return {
 		posts: state.posts.items,
-		filters: state.filters // FIXME
+		currentUser: state.currentUser,
+		levelNames: state.levelNames,
+		filters: state.filters
 	};
 }
 
-// FIXME
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		fetchPosts
 	}, dispatch);
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

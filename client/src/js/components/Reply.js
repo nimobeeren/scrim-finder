@@ -1,35 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from "react-redux";
 
 import Button from "./Button";
 
 
 const Reply = (props) => {
-	const { reply, post, currentUser, pending, onAccept, onDecline, filters } = props;
-
-	// Don't show reply if it is not meant for the current user
-	if (reply.recipient && reply.recipient !== currentUser.id) {
-		// TODO: Don't send this reply to the client at all
-		return null;
-	}
-
-	// Check if current user is the author of the post this reply belongs to
-	let isPostAuthor = false;
-	if (currentUser) {
-		isPostAuthor = (currentUser.id === post.author);
-	}
+	const { reply, isPostAuthor, status, onAccept, onDecline } = props;
 
 	switch (reply.type) {
 		// Request to play a map
 		case 'request':
-			// Whether there exits an accept reply directed to this reply's author
-			const accepted = post.replies.some(r =>
-				r.type === 'accept' && r.recipient === reply.author);
-
-			// Whether there exits a decline reply directed to this reply's author
-			const declined = post.replies.some(r =>
-				r.type === 'decline' && r.recipient === reply.author);
+			const accepted = (status === 'ACCEPTED');
+			const declined = (status === 'DECLINED');
 
 			// Create section containing reply text
 			let children = [(
@@ -41,33 +23,18 @@ const Reply = (props) => {
 				</div>
 			)];
 
-			// Disable accept/decline buttons when a reply is pending
-			let acceptButton, declineButton;
-			if (pending) {
-				acceptButton = (
-					<Button
-						className="btn btn--small"
-						label="Accept"/>
-				);
-				declineButton = (
-					<Button
-						className="btn btn--small"
-						label="Decline"/>
-				)
-			} else {
-				acceptButton = (
-					<Button
-						className="btn btn--small"
-						label="Accept"
-						onClick={() => onAccept(reply, post, filters)}/>
-				);
-				declineButton = (
-					<Button
-						className="btn btn--small"
-						label="Decline"
-						onClick={() => onDecline(reply, post, filters)}/>
-				);
-			}
+			const acceptButton = (
+				<Button
+					className="btn btn--small"
+					label="Accept"
+					onClick={onAccept}/>
+			);
+			const declineButton = (
+				<Button
+					className="btn btn--small"
+					label="Decline"
+					onClick={onDecline}/>
+			);
 
 			if (accepted) {
 				// Show accepted status
@@ -140,17 +107,13 @@ const Reply = (props) => {
 
 Reply.propTypes = {
 	reply: PropTypes.object.isRequired,
-	post: PropTypes.object.isRequired,
-	currentUser: PropTypes.object,
+	isPostAuthor: PropTypes.bool,
+	status: PropTypes.string,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func
 };
+Reply.defaultProps = {
+	isPostAuthor: false
+};
 
-// FIXME
-function mapStateToProps(state) {
-	return {
-		filters: state.filters
-	};
-}
-
-export default connect(mapStateToProps)(Reply);
+export default Reply;
