@@ -54,7 +54,7 @@ class PostReplyForm extends Component {
 
 		// If no maps are specified, assume all maps
 		if (!Array.isArray(maps) || maps.length === 0) {
-			maps = this.props.allMaps;
+			maps = this.props.mapNames;
 		}
 
 		return (
