@@ -20,7 +20,6 @@ function pendingReplyPosts(state = [], action) {
 			const i = state.indexOf(action.post._id);
 			if (i > -1) {
 				state.splice(i, 1);
-				console.log(state);
 			}
 			return [].concat(state);
 

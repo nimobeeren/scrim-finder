@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import MapPool from '../containers/MapPool';
 import PostLower from './PostLower';
-import '../../styles/containers/Post.css';
+import '../../styles/components/Post.css';
 
 
 function getTeamNameString(teamName) {

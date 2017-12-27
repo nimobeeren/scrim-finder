@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavBar from './NavBar';
 import LoginHelper from "../containers/LoginHelper";
-import Popup from '../containers/Popup';
+import Popup from '../containers/PopupContainer';
 import Filters from '../containers/FiltersContainer';
 import CreatePost from '../containers/CreatePostContainer'
 import PostList from '../containers/PostList';
