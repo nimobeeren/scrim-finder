@@ -1,12 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { createPost, cancelPostDraft } from '../actions/CreatePostActions';
-import CheckboxGroup from '../components/CheckboxGroup';
-import RadioGroup from '../components/RadioGroup';
-import Button from '../components/Button';
-import SubmitButton from "../components/SubmitButton";
 import '../../styles/containers/PostForm.css';
 
 
@@ -64,31 +58,6 @@ class PostForm extends Component {
 		this.setState({
 			server: newServer
 		});
-	}
-
-	handleSubmit(e) {
-		e.preventDefault();
-		const { teamName, level, maps, server } = this.state;
-		const { currentUser } = this.props;
-
-		// Validate form
-		if (maps.length === 0) {
-			document.getElementById('new-post-maps').className = 'invalid';
-			return;
-		}
-
-		// Create new post
-		this.props.createPost({
-				author: currentUser.id,
-				body: {
-					teamName,
-					level,
-					maps,
-					server
-				}
-			},
-			this.props.filters
-		);
 	}
 
 	createLevelRadioButtons() {
@@ -175,20 +144,7 @@ class PostForm extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		levelNames: state.levelNames,
-		mapNames: state.mapNames,
-		filters: state.filters,
-		currentUser: state.currentUser
-	};
-}
+PostForm.propTypes = {};
+PostForm.defaultProps = {};
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		createPost,
-		handleCancel: cancelPostDraft
-	}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default PostForm;
