@@ -10,7 +10,7 @@ As the back-end is implemented, features such as messaging, adding friends and s
 ## Front-end
 The front-end was built using React, which helped create a well-structured HTML hierarchy, with modular components that can easily be reused. To manage the application’s state, Redux was used. This made it easier to pass data around, for example between the filters and the post list. Although it made the app more complex, Redux helps to avoid a big mess when the project grows.
 
-The app was styled from scratch, using Sass. This allowed variables to be used in CSS, which helped create a uniform style. To make the app responsive to different screen sizes, I used media queries in CSS. I am not completely satisfied with the method of styling components. In particular, sharing styles between components and avoiding conflicts proved to be more challenging than I originally thought.
+The app was styled from scratch, using SCSS. This allowed variables to be used in CSS, which helped create a uniform style. To make the app responsive to different screen sizes, I used media queries in CSS. I am not completely satisfied with the method of styling components. In particular, sharing styles between components and avoiding conflicts proved to be more challenging than I originally thought.
 
 ## Back-end
 The server runs NodeJS, MongoDB for data storage and Express for routing. Authentication is done using JWT. This token is issues when a user registers an anonymous account. It expires after 24 hours, but this can be extended by logging in.
