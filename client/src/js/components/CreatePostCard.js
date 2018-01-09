@@ -5,7 +5,7 @@ import PostFormContainer from "../containers/PostFormContainer";
 import '../../styles/components/CreatePostCard.css';
 
 
-const CreatePost = () => (
+const CreatePostCard = () => (
 	<div className="create-post__wrapper">
 		<Card className="card card--secondary" title="Create a post">
 			<PostFormContainer/>
@@ -13,4 +13,4 @@ const CreatePost = () => (
 	</div>
 );
 
-export default CreatePost;
+export default CreatePostCard;

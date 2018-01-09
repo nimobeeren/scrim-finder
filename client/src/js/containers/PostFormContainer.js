@@ -3,16 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { createPost, cancelPostDraft } from '../actions/CreatePostActions';
-import CheckboxGroup from '../components/CheckboxGroup';
-import RadioGroup from '../components/RadioGroup';
-import Button from '../components/Button';
-import SubmitButton from "../components/SubmitButton";
+import PostForm from "../components/PostForm";
 
 
 class PostFormContainer extends Component {
-	handleSubmit(e) {
-		const { teamName, level, maps, server } = this.state;
-		const { currentUser } = this.props;
+	constructor(props) {
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit(e, formData) {
+		const { filters, currentUser, createPost } = this.props;
+		const { teamName, level, maps, server } = formData;
 
 		// Validate form
 		if (maps.length === 0) {
@@ -21,7 +23,7 @@ class PostFormContainer extends Component {
 		}
 
 		// Create new post
-		this.props.createPost({
+		createPost({
 				author: currentUser.id,
 				body: {
 					teamName,
@@ -30,16 +32,19 @@ class PostFormContainer extends Component {
 					server
 				}
 			},
-			this.props.filters
+			filters
 		);
 
 		e.preventDefault();
 	}
 
 	render() {
-		return (
-
-		);
+		const { levelNames, mapNames, handleCancel } = this.props;
+		return <PostForm
+			levelNames={levelNames}
+			mapNames={mapNames}
+			onSubmit={this.handleSubmit}
+			onCancel={handleCancel}/>;
 	}
 }
 

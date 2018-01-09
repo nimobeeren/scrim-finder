@@ -7,7 +7,7 @@ import CreatePostCard from '../components/CreatePostCard';
 import CreatePostButton from "../components/CreatePostButton";
 
 
-const CreatePost = (props) => {
+const CreatePostContainer = (props) => {
 	if (props.drafting) {
 		return <CreatePostCard/>;
 	} else {
@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePostContainer);

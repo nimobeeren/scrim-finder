@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import LevelInputsSingle from "./LevelInputsSingle";
+import MapInputs from "./MapInputs";
+import ServerInputs from "./ServerInputs";
+import SubmitButton from "./SubmitButton";
+import Button from "./Button";
 import '../../styles/containers/PostForm.css';
 
 
@@ -60,55 +65,12 @@ class PostForm extends Component {
 		});
 	}
 
-	createLevelRadioButtons() {
-		const { levelNames } = this.props;
-		const items = levelNames.map((level, i) => {
-			return {
-				value: i,
-				label: level
-			}
-		});
-		return <RadioGroup
-			items={items}
-			defaultItem={"1"}
-			onChange={this.handleLevelChange}/>;
-	}
-
-	createMapCheckboxes() {
-		const { mapNames } = this.props;
-		const items = mapNames.map(mapName => {
-			return {
-				value: mapName.toLowerCase(),
-				label: mapName,
-				isChecked: false
-			}
-		});
-		return <CheckboxGroup
-			items={items}
-			onChange={this.handleMapsChange}/>;
-	}
-
-	createServerRadioButtons() {
-		return <RadioGroup
-			items={[
-				{
-					value: 'any',
-					label: "On/Off"
-				},
-				{
-					value: 'on',
-					label: "On"
-				},
-				{
-					value: 'off',
-					label: "Off"
-				}
-			]}
-			defaultItem={'any'}
-			onChange={this.handleServerChange}/>;
+	handleSubmit(e) {
+		this.props.onSubmit(e, this.state);
 	}
 
 	render() {
+		const { levelNames, mapNames, onCancel } = this.props;
 		return (
 			<form className="post-form" onSubmit={this.handleSubmit}>
 				<fieldset>
@@ -121,22 +83,26 @@ class PostForm extends Component {
 				</fieldset>
 				<fieldset>
 					<legend>Level</legend>
-					{this.createLevelRadioButtons()}
+					<LevelInputsSingle
+						levelNames={levelNames}
+						onChange={this.handleLevelChange}/>
 				</fieldset>
 				<fieldset id="new-post-maps">
 					<legend>Maps</legend>
-					{this.createMapCheckboxes()}
+					<MapInputs
+						mapNames={mapNames}
+						onChange={this.handleMapsChange}/>
 				</fieldset>
 				<fieldset>
 					<legend>Server</legend>
-					{this.createServerRadioButtons()}
+					<ServerInputs onChange={this.handleServerChange}/>
 				</fieldset>
 				<div className="post-form__controls">
 					<div className="post-form__btn-wrapper">
 						<SubmitButton className="btn" label="Create"/>
 					</div>
 					<div className="post-form__btn-wrapper">
-						<Button className="btn" label="Cancel" onClick={this.props.handleCancel}/>
+						<Button className="btn" label="Cancel" onClick={onCancel}/>
 					</div>
 				</div>
 			</form>
@@ -144,7 +110,11 @@ class PostForm extends Component {
 	}
 }
 
-PostForm.propTypes = {};
-PostForm.defaultProps = {};
+PostForm.propTypes = {
+	levelNames: PropTypes.array.isRequired,
+	mapNames: PropTypes.array.isRequired,
+	onSubmit: PropTypes.func,
+	onCancel: PropTypes.func
+};
 
 export default PostForm;

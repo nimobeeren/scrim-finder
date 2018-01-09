@@ -16,7 +16,7 @@ class RadioGroup extends Component {
 
 		// Determine the item to be selected by default
 		let selectedItem;
-		const {items, defaultItem} = this.props;
+		const { items, defaultItem } = this.props;
 		selectedItem = defaultItem || items[0].value;
 
 		// Set the selected item
@@ -27,15 +27,14 @@ class RadioGroup extends Component {
 
 	handleChange(e) {
 		// Set the selected item
-		const newState = {
+		this.setState({
 			selectedItem: e.target.value
-		};
-		this.setState(newState);
+		});
 
 		// Call the passed event handler
-		const {onChange} = this.props;
+		const { onChange } = this.props;
 		if (typeof onChange === 'function') {
-			onChange(e, newState);
+			onChange(e);
 		}
 	}
 
@@ -44,7 +43,7 @@ class RadioGroup extends Component {
 	}
 
 	render() {
-		const {items} = this.props;
+		const { items } = this.props;
 		return (
 			<div>
 				{items.map(item => (

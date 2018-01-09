@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import LoginHelper from "../containers/LoginHelper";
 import Popup from '../containers/PopupContainer';
 import Filters from '../containers/FiltersContainer';
-import CreatePost from '../containers/CreatePostContainer'
+import CreatePostContainer from '../containers/CreatePostContainer'
 import PostList from '../containers/PostList';
 import '../../styles/components/App.css';
 
@@ -16,7 +16,7 @@ const App = () => (
 		<NavBar/>
 		<Filters/>
 		<section>
-			<CreatePost/>
+			<CreatePostContainer/>
 			<PostList/>
 		</section>
 	</div>
