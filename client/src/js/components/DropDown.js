@@ -38,9 +38,9 @@ class DropDown extends Component {
 	}
 
 	render() {
-		const { items, onChange } = this.props;
+		const { items, onChange, autoFocus, required } = this.props;
 		return (
-			<select onChange={onChange}>
+			<select onChange={onChange} autoFocus={autoFocus} required={required}>
 				{items.map(item => (
 					<option key={item} value={item}>{item}</option>
 				))}
@@ -52,7 +52,9 @@ class DropDown extends Component {
 DropDown.propTypes = {
 	items: PropTypes.array.isRequired,
 	defaultItem: PropTypes.string,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	autoFocus: PropTypes.bool,
+	required: PropTypes.bool
 };
 
 export default DropDown;

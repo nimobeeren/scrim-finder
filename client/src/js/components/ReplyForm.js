@@ -8,12 +8,11 @@ import Button from './Button';
 import '../../styles/components/ReplyForm.css';
 
 
-// TODO: DropDown autoFocus, required
 const ReplyForm = ({ post, onMapChange, onMessageChange, onSubmit, onCancel }) => (
 	<Card className="card" title={"Replying to " + post.body.teamName}>
 		<form className="post-reply-form" onSubmit={onSubmit}>
 			<h4>What map do you want to play?</h4>
-			<DropDown items={post.body.maps} onChange={onMapChange}/>
+			<DropDown items={post.body.maps} onChange={onMapChange} autoFocus required/>
 			<h4>Add a message (optional)</h4>
 			<textarea className="post-reply-form__message" placeholder="Your message" onChange={onMessageChange}/>
 			<div className="post-reply-form__btn-wrapper">
