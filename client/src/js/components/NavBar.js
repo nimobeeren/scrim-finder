@@ -1,8 +1,6 @@
 import React from 'react';
-
 import Button from './Button';
 import './../../styles/components/NavBar.css';
-
 
 const NavBar = () => (
 	<nav>

@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Card from './Card';
 import MapPool from '../containers/MapPool';
 import PostLower from './PostLower';
 import '../../styles/components/Post.css';
-
 
 function getTeamNameString(teamName) {
 	if (!teamName) {

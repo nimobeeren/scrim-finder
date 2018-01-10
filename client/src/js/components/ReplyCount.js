@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
 import '../../styles/components/ReplyCount.css';
-
 
 const ReplyCount = (props) => {
 	return (

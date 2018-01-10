@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import './../../styles/components/Button.css';
-
 
 const Button = (props) => {
 	const {className, label, href, onClick} = props;

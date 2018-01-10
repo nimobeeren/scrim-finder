@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-
 import RadioGroup from "../components/RadioGroup";
-
 
 const LevelRadioButtons = ({ levelNames, onChange }) => {
 	const items = levelNames.map((level, i) => {

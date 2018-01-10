@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import LevelCheckboxes from "../containers/LevelCheckboxes";
 import MapCheckboxes from "../containers/MapCheckboxes";
 import ServerRadioButtons from "../containers/ServerRadioButtons";
 import AgeRadioButtons from "../containers/AgeRadioButtons";
 import '../../styles/components/Filters.css';
-
 
 const Filters = ({ onLevelChange, onMapChange, onServerChange, onAgeChange }) => (
     <div className="filters">

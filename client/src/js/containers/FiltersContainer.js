@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { changeFilterAndFetch } from '../actions/FilterActions';
 import Filters from '../components/Filters';
-
 
 class FiltersContainer extends Component {
     constructor(props) {

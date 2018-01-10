@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-
 import ReplyCount from '../components/ReplyCount';
-
 
 function getRealReplyCount(replies, currentUser) {
 	return replies.reduce((count, reply) => {

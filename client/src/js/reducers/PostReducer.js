@@ -73,7 +73,7 @@ function postReducer(state = {
 				return result;
 			});
 
-			// Sort posts by decending creation date
+			// Sort posts by descending creation date
 			const sortedPosts = validPosts.sort((a, b) =>
 				new Date(b.createdAt) - new Date(a.createdAt)
 			);

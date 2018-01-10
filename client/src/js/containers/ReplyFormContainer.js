@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { sendReply, cancelReplyDraft } from "../actions/PostReplyActions";
 import ReplyForm from "../components/ReplyForm";
-
 
 class ReplyFormContainer extends Component {
 	constructor(props) {

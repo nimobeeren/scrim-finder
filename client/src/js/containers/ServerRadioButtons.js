@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import RadioGroup from "../components/RadioGroup";
-
 
 const ServerRadioButtons = ({ onChange }) => (
 	<RadioGroup

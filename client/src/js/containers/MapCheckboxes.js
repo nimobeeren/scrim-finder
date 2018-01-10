@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-
 import CheckboxGroup from "../components/CheckboxGroup";
-
 
 const MapCheckboxes = ({ mapNames, onChange }) => {
 	const items = mapNames.map(mapName => {

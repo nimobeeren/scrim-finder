@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import ReplyList from '../containers/ReplyList';
 import ReplyButton from "../containers/ReplyButton";
 import ReplyCountContainer from '../containers/ReplyCountContainer';
 import '../../styles/components/PostLower.css';
-
 
 class PostLower extends Component {
 	constructor() {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-
 import Popup from '../components/Popup';
-
 
 const PopupContainer = ({ popupType }) => {
 	if (popupType) {

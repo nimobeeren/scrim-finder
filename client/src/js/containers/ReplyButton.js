@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-
 import { createReplyDraft } from "../actions/PostReplyActions";
 import Button from "../components/Button";
-
 
 const ReplyButton = (props) => {
 	const { post, createReplyDraft } = props;

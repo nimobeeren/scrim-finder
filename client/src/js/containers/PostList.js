@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import Post from '../components/Post';
-import '../../styles/containers/PostList.css';
 import { bindActionCreators } from "redux";
 import { fetchPosts } from "../actions/PostActions";
-
+import Post from '../components/Post';
+import '../../styles/containers/PostList.css';
 
 function renderPosts(posts, currentUser, levelNames) {
 	if (posts.length > 0) {

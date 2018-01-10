@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import LevelRadioButtons from "../containers/LevelRadioButtons";
 import MapCheckboxes from "../containers/MapCheckboxes";
 import ServerRadioButtons from "../containers/ServerRadioButtons";
 import SubmitButton from "./SubmitButton";
 import Button from "./Button";
-import '../../styles/containers/PostForm.css';
-
+import '../../styles/components/PostForm.css';
 
 const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onSubmit, onCancel }) => (
 	<form className="post-form" onSubmit={onSubmit}>

@@ -1,10 +1,8 @@
 import { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { anonymousLogin } from "../actions/LoginActions";
 import { anonymousRegister } from "../actions/RegisterActions";
-
 
 class LoginHelper extends Component {
 	componentWillMount() {

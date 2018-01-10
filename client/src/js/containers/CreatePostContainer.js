@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-
 import { createPostDraft } from "../actions/CreatePostActions";
 import CreatePostCard from '../components/CreatePostCard';
 import CreatePostButton from "../components/CreatePostButton";
-
 
 const CreatePostContainer = (props) => {
 	if (props.drafting) {

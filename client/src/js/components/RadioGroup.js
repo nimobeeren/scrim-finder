@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import '../../styles/components/RadioGroup.css';
-
 
 class RadioGroup extends Component {
 	constructor(props) {

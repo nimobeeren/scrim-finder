@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { PopupTypes } from "../reducers/PopupTypeReducer";
 import ReplyFormContainer from "../containers/ReplyFormContainer";
 import '../../styles/components/Popup.css';
-
 
 const Popup = ({ popupType }) => {
 	let content;
