@@ -9,7 +9,7 @@ import Button from "./Button";
 import '../../styles/containers/PostForm.css';
 
 
-const PostForm = ({ onSubmit, onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onCancel }) => (
+const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onSubmit, onCancel }) => (
 	<form className="post-form" onSubmit={onSubmit}>
 		<fieldset>
 			<legend>Team Name</legend>
@@ -45,11 +45,11 @@ const PostForm = ({ onSubmit, onTeamNameChange, onLevelChange, onMapsChange, onS
 );
 
 PostForm.propTypes = {
-	onSubmit: PropTypes.func,
 	onTeamNameChange: PropTypes.func,
 	onLevelChange: PropTypes.func,
 	onMapsChange: PropTypes.func,
 	onServerChange: PropTypes.func,
+	onSubmit: PropTypes.func,
 	onCancel: PropTypes.func
 };
 

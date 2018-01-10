@@ -20,7 +20,7 @@ class PostFormContainer extends Component {
 		// Set default state
 		this.state = {
 			teamName: "",
-			level: 0,
+			level: 1,
 			maps: [],
 			server: null
 		}
