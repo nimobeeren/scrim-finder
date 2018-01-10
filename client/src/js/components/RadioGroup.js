@@ -27,14 +27,15 @@ class RadioGroup extends Component {
 
 	handleChange(e) {
 		// Set the selected item
-		this.setState({
+		const newState = {
 			selectedItem: e.target.value
-		});
+		};
+		this.setState(newState);
 
 		// Call the passed event handler
 		const { onChange } = this.props;
 		if (typeof onChange === 'function') {
-			onChange(e);
+			onChange(e, newState);
 		}
 	}
 

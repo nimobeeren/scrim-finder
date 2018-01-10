@@ -72,7 +72,7 @@ class FiltersContainer extends Component {
 
     handleAgeChange(e, state) {
         // Determine maximum post age in minutes
-        // Will match posts newer than the indicated age, rounded down
+		// Will match posts with a rounded down age that is newer than the user-selected age
         let maxAge;
         switch (state.selectedItem) {
             case '5mins':
@@ -102,11 +102,8 @@ class FiltersContainer extends Component {
     }
 
     render() {
-        const { mapNames, levelNames } = this.props;
         return (
             <Filters
-                mapNames={mapNames}
-                levelNames={levelNames}
                 onLevelChange={this.handleLevelChange}
                 onMapChange={this.handleMapChange}
                 onServerChange={this.handleServerChange}
@@ -115,17 +112,10 @@ class FiltersContainer extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        levelNames: state.levelNames,
-        mapNames: state.mapNames
-    };
-}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         handleChange: changeFilterAndFetch
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FiltersContainer);
+export default connect(null, mapDispatchToProps)(FiltersContainer);
