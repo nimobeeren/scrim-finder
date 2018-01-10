@@ -13,6 +13,8 @@ class PostFormContainer extends Component {
 		this.handleLevelChange = this.handleLevelChange.bind(this);
 		this.handleMapsChange = this.handleMapsChange.bind(this);
 		this.handleServerChange = this.handleServerChange.bind(this);
+		this.handleIPChange = this.handleIPChange.bind(this);
+		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 
 		// Set default state
@@ -20,7 +22,9 @@ class PostFormContainer extends Component {
 			teamName: "",
 			level: 1, // FIXME: No guarantee that this matches UI state
 			maps: [],
-			server: null
+			server: null,
+			ip: null,
+			password: null
 		}
 	}
 
@@ -60,13 +64,51 @@ class PostFormContainer extends Component {
 		});
 	}
 
-	handleSubmit(e) {
-		const { currentUser, filters, createPost } = this.props;
-		const { teamName, level, maps, server } = this.state;
+	handleIPChange(e) {
+		this.setState({
+			ip: e.target.value
+		});
+	}
 
-		// Validate form
+	handlePasswordChange(e) {
+		this.setState({
+			password: e.target.value
+		});
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+
+		const { currentUser, filters, createPost } = this.props;
+		const { teamName, level, maps, server, ip, password } = this.state;
+		let fail = false;
+
+		// Validate map selection
 		if (maps.length === 0) {
 			document.getElementById('new-post-maps').className = 'invalid';
+			fail = true;
+		} else {
+			document.getElementById('new-post-maps').className = '';
+		}
+
+		// Validate server IP/PW
+		let validServer = true;
+		if (server || server === null) {
+			const ipExp = /^(\d{1,3}\.){3}\d{1,3}(:\d+)?$/;
+			const passwordExp = /.+/;
+			if (!ipExp.test(ip) || !passwordExp.test(password)) {
+				validServer = false;
+			}
+		}
+		if (!validServer) {
+			document.getElementById('new-post-server').className = 'invalid';
+			fail = true;
+		} else {
+			document.getElementById('new-post-server').className = '';
+		}
+
+		// Don't submit if form did not validate
+		if (fail) {
 			return;
 		}
 
@@ -77,13 +119,13 @@ class PostFormContainer extends Component {
 					teamName,
 					level,
 					maps,
-					server
+					server,
+					ip,
+					password
 				}
 			},
 			filters
 		);
-
-		e.preventDefault();
 	}
 
 	render() {
@@ -95,6 +137,8 @@ class PostFormContainer extends Component {
 			onLevelChange={this.handleLevelChange}
 			onMapsChange={this.handleMapsChange}
 			onServerChange={this.handleServerChange}
+			onIPChange={this.handleIPChange}
+			onPasswordChange={this.handlePasswordChange}
 			onCancel={this.props.handleCancel}/>;
 	}
 }

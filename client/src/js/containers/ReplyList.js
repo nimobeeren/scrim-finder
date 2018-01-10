@@ -18,18 +18,18 @@ const ReplyList = (props) => {
 		} else {
 			replyElements = replies.map(reply => {
 				// Whether there exits an accept reply directed to this reply's author
-				const accepted = post.replies.some(r =>
+				const accepted = replies.some(r =>
 					r.type === 'accept' && r.recipient === reply.author);
 
 				// Whether there exits a decline reply directed to this reply's author
-				const declined = post.replies.some(r =>
+				const declined = replies.some(r =>
 					r.type === 'decline' && r.recipient === reply.author);
 
 				let status;
 				if (accepted) {
 					status = 'ACCEPTED';
 				} else if (declined) {
-					status = 'DECLINED'
+					status = 'DECLINED';
 				}
 
 				return <Reply

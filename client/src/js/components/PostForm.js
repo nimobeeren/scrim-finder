@@ -13,6 +13,8 @@ const PostForm = ({
 					  onLevelChange,
 					  onMapsChange,
 					  onServerChange,
+					  onIPChange,
+					  onPasswordChange,
 					  onSubmit,
 					  onCancel
 				  }) => (
@@ -35,12 +37,12 @@ const PostForm = ({
 			<MapCheckboxes
 				onChange={onMapsChange}/>
 		</fieldset>
-		<fieldset>
+		<fieldset id="new-post-server">
 			<legend>Server</legend>
 			<ServerRadioButtons onChange={onServerChange}/>
 			<div className={"post-form__ippw" + (shouldHaveIPPW ? " ippw--expanded" : "")}>
-				<input type="text" placeholder="Server IP"/>
-				<input type="text" placeholder="Password"/>
+				<input type="text" placeholder="Server IP" onChange={onIPChange}/>
+				<input type="text" placeholder="Password" onChange={onPasswordChange}/>
 			</div>
 		</fieldset>
 		<div className="post-form__controls">

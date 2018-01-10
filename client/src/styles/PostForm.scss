@@ -52,8 +52,12 @@
 	background: $primary-color;
 }
 
-.post-form .invalid legend::after {
+#new-post-maps.invalid legend::after {
 	content: " (select at least one)";
+}
+
+#new-post-server.invalid legend::after {
+	content: " (enter a valid IP and password)";
 }
 
 @media (min-width: $bp-medium) {
