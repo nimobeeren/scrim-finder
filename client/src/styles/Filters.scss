@@ -6,7 +6,7 @@
 
 .filters__content {
 	max-width: $content-width;
-	padding: 10px 25px 25px;
+	padding: 10px 25px 0 25px;
 	margin: 0 auto;
 	color: $white;
 }
@@ -42,7 +42,7 @@
 		position: fixed;
 		top: $nav-height;
 		height: calc(100% - #{$nav-height});
-		overflow-Y: scroll;
+		overflow-Y: auto;
 		width: $aside-width;
 	}
 
