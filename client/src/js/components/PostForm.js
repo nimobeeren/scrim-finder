@@ -7,7 +7,15 @@ import SubmitButton from "./SubmitButton";
 import Button from "./Button";
 import '../../styles/PostForm.css';
 
-const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onSubmit, onCancel }) => (
+const PostForm = ({
+					  shouldHaveIPPW,
+					  onTeamNameChange,
+					  onLevelChange,
+					  onMapsChange,
+					  onServerChange,
+					  onSubmit,
+					  onCancel
+				  }) => (
 	<form className="post-form" onSubmit={onSubmit}>
 		<fieldset>
 			<legend>Team Name</legend>
@@ -30,6 +38,10 @@ const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChang
 		<fieldset>
 			<legend>Server</legend>
 			<ServerRadioButtons onChange={onServerChange}/>
+			<div className={"post-form__ippw" + (shouldHaveIPPW ? " ippw--expanded" : "")}>
+				<input type="text" placeholder="Server IP"/>
+				<input type="text" placeholder="Password"/>
+			</div>
 		</fieldset>
 		<div className="post-form__controls">
 			<div className="post-form__btn-wrapper">
@@ -43,12 +55,16 @@ const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChang
 );
 
 PostForm.propTypes = {
+	shouldHaveIPPW: PropTypes.bool,
 	onTeamNameChange: PropTypes.func,
 	onLevelChange: PropTypes.func,
 	onMapsChange: PropTypes.func,
 	onServerChange: PropTypes.func,
 	onSubmit: PropTypes.func,
 	onCancel: PropTypes.func
+};
+PostForm.defaultProps = {
+	shouldHaveIPPW: false
 };
 
 export default PostForm;

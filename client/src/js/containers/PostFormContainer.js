@@ -87,7 +87,9 @@ class PostFormContainer extends Component {
 	}
 
 	render() {
+		const { server } = this.state;
 		return <PostForm
+			shouldHaveIPPW={server || server === null}
 			onSubmit={this.handleSubmit}
 			onTeamNameChange={this.handleTeamNameChange}
 			onLevelChange={this.handleLevelChange}
