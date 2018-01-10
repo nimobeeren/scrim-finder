@@ -5,17 +5,21 @@ import '../../styles/PostList.css';
 
 const PostList = ({ posts, currentUser, levelNames }) => {
 	if (posts.length > 0) {
-		return posts.map(post => {
-			const isPostAuthor = (!!currentUser && post.author === currentUser.id);
-			return <Post
-				key={post._id}
-				post={post}
-				isPostAuthor={isPostAuthor}
-				levelNames={levelNames}/>
-		});
+		return (
+			<div className="post-list">
+				{posts.map(post => {
+					const isPostAuthor = (!!currentUser && post.author === currentUser.id);
+					return <Post
+						key={post._id}
+						post={post}
+						isPostAuthor={isPostAuthor}
+						levelNames={levelNames}/>
+				})}
+			</div>
+		);
 	} else {
 		return (
-			<div className="post-list__empty">
+			<div className="post-list post-list--empty">
 				No matching posts found <br/>
 				Please adjust your filters
 			</div>
