@@ -20,7 +20,7 @@ class PostFormContainer extends Component {
 		// Set default state
 		this.state = {
 			teamName: "",
-			level: 1,
+			level: 1, // FIXME: No guarantee that this matches UI state
 			maps: [],
 			server: null
 		}

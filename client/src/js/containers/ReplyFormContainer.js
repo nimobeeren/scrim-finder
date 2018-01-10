@@ -9,16 +9,38 @@ import ReplyForm from "../components/ReplyForm";
 class ReplyFormContainer extends Component {
 	constructor(props) {
 		super(props);
-		this.handleSend = this.handleSend.bind(this);
+
+		// Bind event handlers
+		this.handleMapChange = this.handleMapChange.bind(this);
+		this.handleMessageChange = this.handleMessageChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
+
+		// Set default state
+		const defaultMap = this.props.activePost.body.maps[0]; // FIXME: No guarantee that this matches UI state
+		console.log('setting default map', defaultMap);
+		this.state = {
+			map: defaultMap,
+			message: null
+		}
 	}
 
-	handleSend(e) {
-		const { activePost, currentUser, filters } = this.props;
+	handleMapChange(e) {
+		console.log('setting map', e.target.value);
+		this.setState({
+			map: e.target.value
+		});
+	}
 
-		// Get values from form
-		let map = e.target.querySelector('.post-reply-form__map').value,
-			message = e.target.querySelector('.post-reply-form__message').value;
+	handleMessageChange(e) {
+		this.setState({
+			message: e.target.value
+		});
+	}
+
+	handleSubmit(e) {
+		const { activePost, currentUser, filters } = this.props;
+		const { map, message } = this.state;
 
 		this.props.sendReply(activePost._id, {
 			author: currentUser.id,
@@ -31,12 +53,10 @@ class ReplyFormContainer extends Component {
 	}
 
 	handleCancel(e) {
-		const { cancelReply } = this.props;
-
 		// Close the popup
 		document.querySelector('.popup__wrapper').classList.add('popup__wrapper--slideout');
 		document.querySelector('.popup__background').classList.add('popup__background--fadeout');
-		setTimeout(cancelReply, 300); // wait for animation to end
+		setTimeout(this.props.cancelReply, 300); // wait for animation to end
 		e.preventDefault();
 	}
 
@@ -57,7 +77,9 @@ class ReplyFormContainer extends Component {
 		return (
 			<ReplyForm
 				post={activePost}
-				onSend={this.handleSend}
+				onMapChange={this.handleMapChange}
+				onMessageChange={this.handleMessageChange}
+				onSubmit={this.handleSubmit}
 				onCancel={this.handleCancel}/>
 		);
 	}
