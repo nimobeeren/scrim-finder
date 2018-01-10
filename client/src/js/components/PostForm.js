@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import LevelRadioButtons from "../containers/LevelRadioButtons";
@@ -9,107 +9,47 @@ import Button from "./Button";
 import '../../styles/containers/PostForm.css';
 
 
-class PostForm extends Component {
-	constructor(props) {
-		super(props);
-
-		// Bind event handlers
-		this.handleTeamNameChange = this.handleTeamNameChange.bind(this);
-		this.handleLevelChange = this.handleLevelChange.bind(this);
-		this.handleMapsChange = this.handleMapsChange.bind(this);
-		this.handleServerChange = this.handleServerChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-
-		// Set default state
-		this.state = {
-			teamName: "",
-			level: 0,
-			maps: [],
-			server: null
-		}
-	}
-
-	handleTeamNameChange(e) {
-		this.setState({
-			teamName: e.target.value
-		});
-	}
-
-	handleLevelChange(e) {
-		this.setState({
-			level: e.target.value
-		});
-	}
-
-	handleMapsChange(e, state) {
-		this.setState({
-			maps: state.checkedItems
-		});
-	}
-
-	handleServerChange(e) {
-		let newServer;
-		switch (e.target.value) {
-			case 'on':
-				newServer = true;
-				break;
-			case 'off':
-				newServer = false;
-				break;
-			default:
-				newServer = null;
-		}
-
-		this.setState({
-			server: newServer
-		});
-	}
-
-	handleSubmit(e) {
-		this.props.onSubmit(e, this.state);
-	}
-
-	render() {
-		const { onCancel } = this.props;
-		return (
-			<form className="post-form" onSubmit={this.handleSubmit}>
-				<fieldset>
-					<legend>Team Name</legend>
-					<input
-						type="text"
-						placeholder="Anonymous"
-						autoFocus
-						onChange={this.handleTeamNameChange}/>
-				</fieldset>
-				<fieldset>
-					<legend>Level</legend>
-					<LevelRadioButtons
-						onChange={this.handleLevelChange}/>
-				</fieldset>
-				<fieldset id="new-post-maps">
-					<legend>Maps</legend>
-					<MapCheckboxes
-						onChange={this.handleMapsChange}/>
-				</fieldset>
-				<fieldset>
-					<legend>Server</legend>
-					<ServerRadioButtons onChange={this.handleServerChange}/>
-				</fieldset>
-				<div className="post-form__controls">
-					<div className="post-form__btn-wrapper">
-						<SubmitButton className="btn" label="Create"/>
-					</div>
-					<div className="post-form__btn-wrapper">
-						<Button className="btn" label="Cancel" onClick={onCancel}/>
-					</div>
-				</div>
-			</form>
-		);
-	}
-}
+const PostForm = ({ onSubmit, onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onCancel }) => (
+	<form className="post-form" onSubmit={onSubmit}>
+		<fieldset>
+			<legend>Team Name</legend>
+			<input
+				type="text"
+				placeholder="Anonymous"
+				autoFocus
+				onChange={onTeamNameChange}/>
+		</fieldset>
+		<fieldset>
+			<legend>Level</legend>
+			<LevelRadioButtons
+				onChange={onLevelChange}/>
+		</fieldset>
+		<fieldset id="new-post-maps">
+			<legend>Maps</legend>
+			<MapCheckboxes
+				onChange={onMapsChange}/>
+		</fieldset>
+		<fieldset>
+			<legend>Server</legend>
+			<ServerRadioButtons onChange={onServerChange}/>
+		</fieldset>
+		<div className="post-form__controls">
+			<div className="post-form__btn-wrapper">
+				<SubmitButton className="btn" label="Create"/>
+			</div>
+			<div className="post-form__btn-wrapper">
+				<Button className="btn" label="Cancel" onClick={onCancel}/>
+			</div>
+		</div>
+	</form>
+);
 
 PostForm.propTypes = {
 	onSubmit: PropTypes.func,
+	onTeamNameChange: PropTypes.func,
+	onLevelChange: PropTypes.func,
+	onMapsChange: PropTypes.func,
+	onServerChange: PropTypes.func,
 	onCancel: PropTypes.func
 };
 
