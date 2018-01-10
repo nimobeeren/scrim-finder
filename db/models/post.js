@@ -9,7 +9,9 @@ const postSchema = new Schema({
 		teamName: String,
 		level: { type: Number, required: true },
 		maps: { type: [String], required: true },
-		server: { type: Boolean }
+		server: Boolean,
+		ip: String,
+		password: String
 	},
 	replies: [{ type: Schema.Types.ObjectId, ref: 'Reply' }]
 }, {
