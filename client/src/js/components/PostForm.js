@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import LevelInputsSingle from "./LevelInputsSingle";
-import MapInputs from "./MapInputs";
-import ServerInputs from "./ServerInputs";
+import LevelRadioButtons from "../containers/LevelRadioButtons";
+import MapCheckboxes from "../containers/MapCheckboxes";
+import ServerRadioButtons from "../containers/ServerRadioButtons";
 import SubmitButton from "./SubmitButton";
 import Button from "./Button";
 import '../../styles/containers/PostForm.css';
@@ -70,7 +70,7 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const { levelNames, mapNames, onCancel } = this.props;
+		const { onCancel } = this.props;
 		return (
 			<form className="post-form" onSubmit={this.handleSubmit}>
 				<fieldset>
@@ -83,19 +83,17 @@ class PostForm extends Component {
 				</fieldset>
 				<fieldset>
 					<legend>Level</legend>
-					<LevelInputsSingle
-						levelNames={levelNames}
+					<LevelRadioButtons
 						onChange={this.handleLevelChange}/>
 				</fieldset>
 				<fieldset id="new-post-maps">
 					<legend>Maps</legend>
-					<MapInputs
-						mapNames={mapNames}
+					<MapCheckboxes
 						onChange={this.handleMapsChange}/>
 				</fieldset>
 				<fieldset>
 					<legend>Server</legend>
-					<ServerInputs onChange={this.handleServerChange}/>
+					<ServerRadioButtons onChange={this.handleServerChange}/>
 				</fieldset>
 				<div className="post-form__controls">
 					<div className="post-form__btn-wrapper">
@@ -111,8 +109,6 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
-	levelNames: PropTypes.array.isRequired,
-	mapNames: PropTypes.array.isRequired,
 	onSubmit: PropTypes.func,
 	onCancel: PropTypes.func
 };

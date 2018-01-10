@@ -39,10 +39,8 @@ class PostFormContainer extends Component {
 	}
 
 	render() {
-		const { levelNames, mapNames, handleCancel } = this.props;
+		const { handleCancel } = this.props;
 		return <PostForm
-			levelNames={levelNames}
-			mapNames={mapNames}
 			onSubmit={this.handleSubmit}
 			onCancel={handleCancel}/>;
 	}
@@ -50,8 +48,6 @@ class PostFormContainer extends Component {
 
 function mapStateToProps(state) {
 	return {
-		levelNames: state.levelNames,
-		mapNames: state.mapNames,
 		filters: state.filters,
 		currentUser: state.currentUser
 	};

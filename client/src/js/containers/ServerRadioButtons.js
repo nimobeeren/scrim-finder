@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import RadioGroup from "./RadioGroup";
+import RadioGroup from "../components/RadioGroup";
 
 
-const ServerInputs = ({ onChange }) => (
+const ServerRadioButtons = ({ onChange }) => (
 	<RadioGroup
 		items={[
 			{
@@ -24,8 +24,8 @@ const ServerInputs = ({ onChange }) => (
 		onChange={onChange}/>
 );
 
-ServerInputs.propTypes = {
+ServerRadioButtons.propTypes = {
 	onChange: PropTypes.func
 };
 
-export default ServerInputs;
+export default ServerRadioButtons;
