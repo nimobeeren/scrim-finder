@@ -1,11 +1,11 @@
-@import '../globals';
+@import 'globals';
 
-.radio {
+.checkbox {
 	display: block;
 	font-size: 20px;
 }
 
-.radio input {
+.checkbox input {
 	width: calc(13px * 1.3);
 	height: calc(13px * 1.3);
 	transform: scale(1.3);
@@ -13,11 +13,11 @@
 }
 
 @media (min-width: $bp-medium) {
-	.radio {
+	.checkbox {
 		font-size: 16px;
 	}
 
-	.radio input {
+	.checkbox input {
 		width: 13px;
 		height: 13px;
 		transform: none;

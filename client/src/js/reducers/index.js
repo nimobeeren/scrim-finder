@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import PostReducer from './PostReducer';
 import LevelNameReducer from './LevelNameReducer';
 import MapNameReducer from './MapNameReducer';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import './../../styles/components/NavBar.css';
+import './../../styles/NavBar.css';
 
 const NavBar = () => (
 	<nav>
@@ -11,8 +11,8 @@ const NavBar = () => (
 						label=""
 						href="https://github.com/nimobeeren/scrim-finder/"/>
 				{/*<Button className="btn btn--nav btn--shrink"*/}
-						{/*label="Log in"*/}
-						{/*onClick={() => alert("Not yet implemented")}/>*/}
+				{/*label="Log in"*/}
+				{/*onClick={() => alert("Not yet implemented")}/>*/}
 			</div>
 		</div>
 	</nav>

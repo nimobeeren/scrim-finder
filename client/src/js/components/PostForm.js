@@ -5,7 +5,7 @@ import MapCheckboxes from "../containers/MapCheckboxes";
 import ServerRadioButtons from "../containers/ServerRadioButtons";
 import SubmitButton from "./SubmitButton";
 import Button from "./Button";
-import '../../styles/components/PostForm.css';
+import '../../styles/PostForm.css';
 
 const PostForm = ({ onTeamNameChange, onLevelChange, onMapsChange, onServerChange, onSubmit, onCancel }) => (
 	<form className="post-form" onSubmit={onSubmit}>

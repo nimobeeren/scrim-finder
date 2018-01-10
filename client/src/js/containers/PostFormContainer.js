@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { createPost, cancelPostDraft } from '../actions/CreatePostActions';
+import { cancelPostDraft, createPost } from '../actions/CreatePostActions';
 import PostForm from "../components/PostForm";
 
 class PostFormContainer extends Component {

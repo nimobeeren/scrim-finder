@@ -4,7 +4,7 @@ import Card from "./Card";
 import DropDown from "./DropDown";
 import SubmitButton from "./SubmitButton";
 import Button from './Button';
-import '../../styles/components/ReplyForm.css';
+import '../../styles/ReplyForm.css';
 
 const ReplyForm = ({ post, onMapChange, onMessageChange, onSubmit, onCancel }) => (
 	<Card className="card" title={"Replying to " + post.body.teamName}>

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { acceptRequest, declineRequest } from "../actions/PostRequestActions";
 import Reply from "../components/Reply";
-import '../../styles/components/ReplyList.css';
+import '../../styles/ReplyList.css';
 
 const ReplyList = (props) => {
 	const { post, isPostAuthor, expanded, filters, acceptRequest, declineRequest } = props,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import MapPool from '../containers/MapPool';
 import PostLower from './PostLower';
-import '../../styles/components/Post.css';
+import '../../styles/Post.css';
 
 function getTeamNameString(teamName) {
 	if (!teamName) {
@@ -60,9 +60,7 @@ function getServerPrefString(server) {
 	}
 }
 
-const Post = (props) => {
-	const { post, isPostAuthor, levelNames } = props;
-
+const Post = ({ post, isPostAuthor, levelNames }) => {
 	const teamName = getTeamNameString(post.body.teamName),
 		age = getAgeString(post.createdAt),
 		level = getLevelString(post.body.level, levelNames),

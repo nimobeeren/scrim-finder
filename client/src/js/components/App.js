@@ -4,8 +4,8 @@ import LoginHelper from "../containers/LoginHelper";
 import Popup from '../containers/PopupContainer';
 import Filters from '../containers/FiltersContainer';
 import CreatePostContainer from '../containers/CreatePostContainer'
-import PostList from '../containers/PostList';
-import '../../styles/components/App.css';
+import PostListContainer from '../containers/PostListContainer';
+import '../../styles/App.css';
 
 const App = () => (
 	<div>
@@ -15,7 +15,7 @@ const App = () => (
 		<Filters/>
 		<section>
 			<CreatePostContainer/>
-			<PostList/>
+			<PostListContainer/>
 		</section>
 	</div>
 );

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './../../styles/components/Checkbox.css';
+import './../../styles/Checkbox.css';
 
 export class Checkbox extends Component {
 	constructor(props) {
@@ -23,15 +23,15 @@ export class Checkbox extends Component {
 		this.setState(newState);
 
 		// Call original event handler
-		const {onChange} = this.props;
+		const { onChange } = this.props;
 		if (typeof onChange === 'function') {
 			onChange(e, newState);
 		}
 	}
 
 	render() {
-		const {value, label} = this.props;
-		const {isChecked} = this.state;
+		const { value, label } = this.props;
+		const { isChecked } = this.state;
 		return (
 			<label className="checkbox">
 				<input

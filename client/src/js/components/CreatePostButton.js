@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from "./Button";
-import '../../styles/components/CreatePostButton.css';
+import '../../styles/CreatePostButton.css';
 
 const CreatePostButton = (props) => (
 	<div className="create-post__wrapper wrapper--btn">

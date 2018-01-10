@@ -1,8 +1,4 @@
-import {
-	POST_DRAFT_CREATE,
-	POST_DRAFT_CANCEL,
-	POST_CREATE_REQUEST
-} from '../actions/CreatePostActions';
+import { POST_CREATE_REQUEST, POST_DRAFT_CANCEL, POST_DRAFT_CREATE } from '../actions/CreatePostActions';
 
 function draftingPostReducer(state = null, action) {
 	switch (action.type) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './../../styles/components/Button.css';
+import './../../styles/Button.css';
 
 const Button = (props) => {
-	const {className, label, href, onClick} = props;
+	const { className, label, href, onClick } = props;
 	if (href) {
 		return (
 			<a href={href}>
