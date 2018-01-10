@@ -12,7 +12,9 @@ const reply = new Schema({
 	},
 	body: {
 		map: String,
-		message: String
+		message: String,
+		ip: String,
+		password: String
 	}
 }, {
 	timestamps: true
