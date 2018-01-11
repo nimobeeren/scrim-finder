@@ -10,6 +10,10 @@ const reply = new Schema({
 		enum: ['text', 'request', 'accept', 'decline'],
 		default: 'text'
 	},
+	status: {
+		type: String,
+		enum: ['accepted', 'declined']
+	},
 	body: {
 		map: String,
 		message: String,
