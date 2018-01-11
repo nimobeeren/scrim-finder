@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from "./Button";
+import '../../styles/Reply.css';
 
 const Reply = (props) => {
-	const { reply, isPostAuthor, status, onAccept, onDecline } = props;
+	const { reply, status, isPostAuthor, onAccept, onDecline } = props;
 
 	switch (reply.type) {
 		// Request to play a map
@@ -70,11 +71,18 @@ const Reply = (props) => {
 
 		// Accepting a request to play
 		case 'accept':
+			const { ip, password } = reply.body || {};
+			const connectCommand = `connect ${ip}${password ? `;password ${password}` : ""}`;
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
 					<div className="reply__text">
 						<span className="reply__author">Anonymous</span>&nbsp;
 						has accepted your request.
+						{ip &&
+						<div className="reply__server-details">
+							Join at: <pre>{connectCommand}</pre>
+						</div>
+						}
 					</div>
 				</div>
 			);
@@ -105,13 +113,10 @@ const Reply = (props) => {
 
 Reply.propTypes = {
 	reply: PropTypes.object.isRequired,
-	isPostAuthor: PropTypes.bool,
 	status: PropTypes.string,
+	isPostAuthor: PropTypes.bool,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func
-};
-Reply.defaultProps = {
-	isPostAuthor: false
 };
 
 export default Reply;

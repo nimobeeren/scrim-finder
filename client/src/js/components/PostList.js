@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import Post from "./Post";
 import '../../styles/PostList.css';
 
-const PostList = ({ posts, currentUser, levelNames }) => {
+const PostList = ({ posts, levelNames }) => {
 	if (posts.length > 0) {
 		return (
 			<div className="post-list">
 				{posts.map(post => {
-					const isPostAuthor = (!!currentUser && post.author === currentUser.id);
 					return <Post
 						key={post._id}
 						post={post}
-						isPostAuthor={isPostAuthor}
 						levelNames={levelNames}/>
 				})}
 			</div>
@@ -29,7 +27,6 @@ const PostList = ({ posts, currentUser, levelNames }) => {
 
 PostList.propTypes = {
 	posts: PropTypes.array.isRequired,
-	currentUser: PropTypes.object,
 	levelNames: PropTypes.array
 };
 

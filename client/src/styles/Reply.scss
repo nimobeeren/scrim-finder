@@ -1,0 +1,57 @@
+@import 'globals';
+
+.reply--request {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.reply--declined {
+	opacity: 0.3;
+}
+
+.reply__text {
+	display: inline-block;
+	margin: 4px;
+
+	pre {
+		display: inline-block;
+		margin: 0 4px;
+		padding: 4px 6px;
+		background: rgba(0, 0, 0, 0.1);
+	}
+}
+
+.reply__server-details {
+	margin-top: 4px;
+}
+
+.reply__author {
+	color: $accent-color;
+	font-weight: bold;
+}
+
+.reply__controls {
+	flex-shrink: 0;
+}
+
+.reply__status {
+	margin: 0 25px;
+	font-weight: bold;
+	color: $accent-color;
+}
+
+.reply__button-wrapper {
+	display: inline-block;
+	:not(:last-child) {
+		margin-right: 10px;
+	}
+}
+
+@media (min-width: $bp-medium) {
+	.reply--request {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

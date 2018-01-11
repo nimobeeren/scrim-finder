@@ -5,10 +5,16 @@ import { connect } from "react-redux";
 import { acceptRequest, declineRequest } from "../actions/PostRequestActions";
 import ReplyList from '../components/ReplyList';
 
-const ReplyListContainer = ({ post, isPostAuthor, expanded, filters, acceptRequest, declineRequest }) => {
+const ReplyListContainer = ({ post, expanded, currentUser, filters, acceptRequest, declineRequest }) => {
+	// Find replies with the current user as recipient, or no recipient at all
+	// TODO: Don't send these replies to the client at all
+	const myReplies = post.replies.filter(reply => {
+		return !reply.recipient || reply.recipient === currentUser.id;
+	});
+
 	return <ReplyList
-		post={post}
-		isPostAuthor={isPostAuthor}
+		replies={myReplies}
+		isPostAuthor={!!currentUser && post.author === currentUser.id}
 		expanded={expanded}
 		onAccept={reply => acceptRequest(reply, post, filters)}
 		onDecline={reply => declineRequest(reply, post, filters)}/>;
@@ -16,12 +22,12 @@ const ReplyListContainer = ({ post, isPostAuthor, expanded, filters, acceptReque
 
 ReplyListContainer.propTypes = {
 	post: PropTypes.object.isRequired,
-	isPostAuthor: PropTypes.bool,
 	expanded: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
 	return {
+		currentUser: state.currentUser,
 		filters: state.filters
 	};
 }

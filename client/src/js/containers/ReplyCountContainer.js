@@ -13,8 +13,7 @@ function getRealReplyCount(replies, currentUser) {
 	}, 0);
 }
 
-const ReplyCountContainer = (props) => {
-	const { replies, expanded, onClick, currentUser } = props;
+const ReplyCountContainer = ({ replies, expanded, onClick, currentUser }) => {
 	const count = getRealReplyCount(replies, currentUser);
 	return (
 		<ReplyCount

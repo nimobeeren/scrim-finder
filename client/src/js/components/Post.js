@@ -60,7 +60,7 @@ function getServerPrefString(server) {
 	}
 }
 
-const Post = ({ post, isPostAuthor, levelNames }) => {
+const Post = ({ post, levelNames }) => {
 	const teamName = getTeamNameString(post.body.teamName),
 		age = getAgeString(post.createdAt),
 		level = getLevelString(post.body.level, levelNames),
@@ -85,20 +85,16 @@ const Post = ({ post, isPostAuthor, levelNames }) => {
 				</tr>
 				</tbody>
 			</table>
-			<PostLower
-				post={post}
-				isPostAuthor={isPostAuthor}/>
+			<PostLower post={post}/>
 		</Card>
 	);
 };
 
 Post.propTypes = {
 	post: PropTypes.object.isRequired,
-	isPostAuthor: PropTypes.bool,
 	levelNames: PropTypes.array
 };
 Post.defaultProps = {
-	isPostAuthor: false,
 	levelNames: ["Unknown"]
 };
 

@@ -23,7 +23,7 @@ class PostLower extends Component {
 	}
 
 	render() {
-		const { post, isPostAuthor } = this.props,
+		const { post } = this.props,
 			{ expanded } = this.state;
 
 		return (
@@ -37,7 +37,6 @@ class PostLower extends Component {
 				</div>
 				<ReplyListContainer
 					post={post}
-					isPostAuthor={isPostAuthor}
 					expanded={expanded}/>
 			</div>
 		);

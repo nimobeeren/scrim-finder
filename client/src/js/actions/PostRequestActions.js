@@ -31,12 +31,20 @@ export function acceptRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestAcceptRequest(request, post));
 
+		// Create reply
 		const reply = {
 			author: post.author,
 			recipient: request.author,
 			type: 'accept',
 			body: {}
 		};
+
+		// Attach IP/PW to reply if the post has a server
+		const { ip, password } = post.body;
+		if (ip) {
+			reply.body.ip = ip;
+			reply.body.password = password;
+		}
 
 		const response = await fetch('/api/posts/' + post._id, {
 			method: 'POST',

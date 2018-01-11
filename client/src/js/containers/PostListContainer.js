@@ -13,10 +13,9 @@ class PostListContainer extends Component {
 	}
 
 	render() {
-		const { posts, currentUser, levelNames } = this.props;
+		const { posts, levelNames } = this.props;
 		return <PostList
 			posts={posts}
-			currentUser={currentUser}
 			levelNames={levelNames}/>;
 	}
 }
@@ -24,7 +23,6 @@ class PostListContainer extends Component {
 function mapStateToProps(state) {
 	return {
 		posts: state.posts.items,
-		currentUser: state.currentUser,
 		levelNames: state.levelNames,
 		filters: state.filters
 	};
