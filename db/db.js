@@ -1,9 +1,9 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const config = require('../config');
 const Post = require('./models/post');
 const Reply = require('./models/reply');
 const User = require('./models/user');
+const config = require('../config');
 
 mongoose.connect(config.mongoServer, { useMongoClient: true });
 mongoose.Promise = global.Promise;
@@ -89,6 +89,10 @@ module.exports = {
 
 		await message.save();
 		return post.save();
+	},
+
+	editReply: function (replyId, newReply) {
+		return Reply.findByIdAndUpdate(ObjectId(replyId), { $set: newReply });
 	},
 
 	getUsers: function () {

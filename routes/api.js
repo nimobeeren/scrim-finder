@@ -7,7 +7,7 @@ const config = require('../config');
 const router = express.Router();
 
 // Use Express middleware to parse JSON requests
-router.use('/posts', express.json());
+router.use('/', express.json());
 
 router.route('/posts')
 	.get(async (req, res) => {
@@ -64,6 +64,17 @@ router.route('/posts/:postId')
 			} else {
 				res.status(500).send("Could not create reply: " + e.message);
 			}
+		}
+		res.sendStatus(200);
+	});
+
+router.route('/replies/:replyId')
+	.put(async (req, res) => {
+		try {
+			await db.editReply(req.params.replyId, req.body);
+		} catch (e) {
+			res.status(500).send("Could not edit reply: " + e.message);
+			return;
 		}
 		res.sendStatus(200);
 	});
