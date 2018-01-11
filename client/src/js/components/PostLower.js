@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReplyList from '../containers/ReplyList';
+import ReplyListContainer from '../containers/ReplyListContainer';
 import ReplyButton from "../containers/ReplyButton";
 import ReplyCountContainer from '../containers/ReplyCountContainer';
 import '../../styles/PostLower.css';
@@ -35,7 +35,7 @@ class PostLower extends Component {
 						expanded={expanded}
 						onClick={this.toggleExpandReplies}/>
 				</div>
-				<ReplyList
+				<ReplyListContainer
 					post={post}
 					isPostAuthor={isPostAuthor}
 					expanded={expanded}/>
@@ -47,9 +47,6 @@ class PostLower extends Component {
 PostLower.propTypes = {
 	post: PropTypes.object.isRequired,
 	isPostAuthor: PropTypes.bool
-};
-PostLower.defaultProps = {
-	isPostAuthor: false
 };
 
 export default PostLower;
