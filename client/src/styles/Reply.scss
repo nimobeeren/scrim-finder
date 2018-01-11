@@ -43,7 +43,7 @@
 
 .reply__button-wrapper {
 	display: inline-block;
-	:not(:last-child) {
+	&:not(:last-child) {
 		margin-right: 10px;
 	}
 }
