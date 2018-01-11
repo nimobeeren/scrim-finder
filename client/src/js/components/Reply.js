@@ -4,13 +4,13 @@ import Button from "./Button";
 import '../../styles/Reply.css';
 
 const Reply = (props) => {
-	const { reply, status, isPostAuthor, onAccept, onDecline } = props;
+	const { reply, isPostAuthor, onAccept, onDecline } = props;
 
 	switch (reply.type) {
 		// Request to play a map
 		case 'request':
-			const accepted = (status === 'ACCEPTED');
-			const declined = (status === 'DECLINED');
+			const accepted = (reply.status === 'accepted');
+			const declined = (reply.status === 'declined');
 
 			// Create section containing reply text
 			let children = [(
@@ -113,7 +113,6 @@ const Reply = (props) => {
 
 Reply.propTypes = {
 	reply: PropTypes.object.isRequired,
-	status: PropTypes.string,
 	isPostAuthor: PropTypes.bool,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func

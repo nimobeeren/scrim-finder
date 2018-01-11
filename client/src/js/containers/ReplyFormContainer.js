@@ -16,7 +16,6 @@ class ReplyFormContainer extends Component {
 
 		// Set default state
 		const defaultMap = this.props.activePost.body.maps[0]; // FIXME: No guarantee that this matches UI state
-		console.log('setting default map', defaultMap);
 		this.state = {
 			map: defaultMap,
 			message: null
@@ -24,7 +23,6 @@ class ReplyFormContainer extends Component {
 	}
 
 	handleMapChange(e) {
-		console.log('setting map', e.target.value);
 		this.setState({
 			map: e.target.value
 		});

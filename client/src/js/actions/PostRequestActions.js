@@ -31,28 +31,33 @@ export function acceptRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestAcceptRequest(request, post));
 
-		// Create reply
-		const reply = {
+		// Create accept reply
+		const acceptReply = {
 			author: post.author,
 			recipient: request.author,
 			type: 'accept',
-			body: {}
+			body: {
+				ip: post.body.ip,
+				password: post.body.password
+			}
 		};
-
-		// Attach IP/PW to reply if the post has a server
-		const { ip, password } = post.body;
-		if (ip) {
-			reply.body.ip = ip;
-			reply.body.password = password;
-		}
-
-		const response = await fetch('/api/posts/' + post._id, {
+		const createResponse = await fetch('/api/posts/' + post._id, {
 			method: 'POST',
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(reply)
+			body: JSON.stringify(acceptReply)
 		});
 
-		if (response.ok) {
+		// Set status of request to accepted
+		const acceptedReply = Object.assign({}, request, {
+			status: 'accepted'
+		});
+		const editReponse = await fetch('/api/replies/' + request._id, {
+			method: 'PUT',
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(acceptedReply)
+		});
+
+		if (createResponse.ok && editReponse.ok) {
 			dispatch(successAcceptRequest(request, post));
 			dispatch(fetchPosts(filters));
 		} else {
@@ -92,20 +97,29 @@ export function declineRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestDeclineRequest(request, post));
 
-		const reply = {
+		const declineReply = {
 			author: post.author,
 			recipient: request.author,
 			type: 'decline',
 			body: {}
 		};
-
-		const response = await fetch('/api/posts/' + post._id, {
+		const createResponse = await fetch('/api/posts/' + post._id, {
 			method: 'POST',
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(reply)
+			body: JSON.stringify(declineReply)
 		});
 
-		if (response.ok) {
+		// Set status of request to accepted
+		const declined = Object.assign({}, request, {
+			status: 'declined'
+		});
+		const editReponse = await fetch('/api/replies/' + request._id, {
+			method: 'PUT',
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(declined)
+		});
+
+		if (createResponse.ok && editReponse.ok) {
 			dispatch(successDeclineRequest(request, post));
 			dispatch(fetchPosts(filters));
 		} else {

@@ -10,30 +10,14 @@ const ReplyList = ({ replies, isPostAuthor, expanded, onAccept, onDecline }) => 
 		// Give feedback when are no replies
 		replyElements = <div className="replies__reply"><i>No replies found</i></div>;
 	} else {
-		replyElements = replies.map(reply => {
-			// Whether there exits an accept reply directed to this reply's author
-			const accepted = replies.some(r =>
-				r.type === 'accept' && r.recipient === reply.author);
-
-			// Whether there exits a decline reply directed to this reply's author
-			const declined = replies.some(r =>
-				r.type === 'decline' && r.recipient === reply.author);
-
-			let status;
-			if (accepted) {
-				status = 'ACCEPTED';
-			} else if (declined) {
-				status = 'DECLINED';
-			}
-
-			return <Reply
+		replyElements = replies.map(reply =>
+			<Reply
 				key={reply._id}
 				reply={reply}
-				status={status}
 				isPostAuthor={isPostAuthor}
 				onAccept={() => onAccept(reply)}
 				onDecline={() => onDecline(reply)}/>
-		});
+		);
 	}
 
 	return (
