@@ -2,28 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RadioGroup from "../components/RadioGroup";
 
-const ServerRadioButtons = ({ onChange }) => (
-	<RadioGroup
-		items={[
-			{
-				value: 'any',
-				label: "On/Off"
-			},
-			{
-				value: 'on',
-				label: "On"
-			},
-			{
-				value: 'off',
-				label: "Off"
-			}
-		]}
-		defaultItem={'any'}
+const ServerRadioButtons = ({ allowUndecided, onChange }) => {
+	let items = [];
+	allowUndecided && items.push({
+		value: 'any',
+		label: "On/Off"
+	});
+	items.push({
+		value: 'on',
+		label: "On"
+	}, {
+		value: 'off',
+		label: "Off"
+	});
+
+	return <RadioGroup
+		items={items}
+		defaultItem={allowUndecided && 'any'}
 		onChange={onChange}/>
-);
+};
 
 ServerRadioButtons.propTypes = {
+	allowUndecided: PropTypes.bool,
 	onChange: PropTypes.func
+};
+ServerRadioButtons.defaultProps = {
+	allowUndecided: true
 };
 
 export default ServerRadioButtons;

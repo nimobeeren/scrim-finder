@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LevelRadioButtons from "../containers/LevelRadioButtons";
 import MapCheckboxes from "../containers/MapCheckboxes";
-import ServerRadioButtons from "../containers/ServerRadioButtons";
-import SubmitButton from "./SubmitButton";
+import ServerDetailsInput from "./ServerDetailsInput";
 import Button from "./Button";
+import SubmitButton from "./SubmitButton";
 import '../../styles/PostForm.css';
+import ServerRadioButtons from "../containers/ServerRadioButtons";
 
 const PostForm = ({
 					  shouldHaveIPPW,
@@ -39,11 +40,14 @@ const PostForm = ({
 		</fieldset>
 		<fieldset id="new-post-server">
 			<legend>Server</legend>
-			<ServerRadioButtons onChange={onServerChange}/>
-			<div className={"post-form__ippw" + (shouldHaveIPPW ? " ippw--expanded" : "")}>
-				<input type="text" placeholder="Server IP" onChange={onIPChange}/>
-				<input type="text" placeholder="Password" onChange={onPasswordChange}/>
-			</div>
+			<ServerRadioButtons
+				onChange={onServerChange}/>
+			{
+				shouldHaveIPPW &&
+				<ServerDetailsInput
+					onIPChange={onIPChange}
+					onPasswordChange={onPasswordChange}/>
+			}
 		</fieldset>
 		<div className="post-form__controls">
 			<div className="post-form__btn-wrapper">
@@ -62,11 +66,10 @@ PostForm.propTypes = {
 	onLevelChange: PropTypes.func,
 	onMapsChange: PropTypes.func,
 	onServerChange: PropTypes.func,
+	onIPChange: PropTypes.func,
+	onPasswordChange: PropTypes.func,
 	onSubmit: PropTypes.func,
 	onCancel: PropTypes.func
-};
-PostForm.defaultProps = {
-	shouldHaveIPPW: false
 };
 
 export default PostForm;
