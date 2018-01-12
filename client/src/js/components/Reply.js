@@ -19,6 +19,7 @@ const Reply = (props) => {
 				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
 					<span className="reply__author">Anonymous</span>&nbsp;
 					wants to play <span className="map">{map}</span>
+					{ip ? "on their server" : "on your server"}
 					{message ? ": " : ""}
 					<i>{message}</i>
 					{
