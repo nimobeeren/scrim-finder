@@ -46,19 +46,7 @@ class PostFormContainer extends Component {
 		});
 	}
 
-	handleServerChange(e) {
-		let newServer;
-		switch (e.target.value) {
-			case 'on':
-				newServer = true;
-				break;
-			case 'off':
-				newServer = false;
-				break;
-			default:
-				newServer = null;
-		}
-
+	handleServerChange(e, newServer) {
 		this.setState({
 			server: newServer
 		});

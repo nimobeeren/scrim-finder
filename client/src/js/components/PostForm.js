@@ -40,8 +40,7 @@ const PostForm = ({
 		</fieldset>
 		<fieldset id="new-post-server">
 			<legend>Server</legend>
-			<ServerRadioButtons
-				onChange={onServerChange}/>
+			<ServerRadioButtons onChange={onServerChange}/>
 			{
 				shouldHaveIPPW &&
 				<ServerDetailsInput
