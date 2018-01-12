@@ -18,7 +18,7 @@ const ServerRadioButtons = ({ allowUndecided, onChange }) => {
 
 	return <RadioGroup
 		items={items}
-		defaultItem={allowUndecided && 'any'}
+		defaultItem={allowUndecided ? 'any' : 'off'}
 		onChange={onChange && (e => {
 			switch (e.target.value) {
 				case 'on':
