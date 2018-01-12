@@ -79,21 +79,16 @@ class PostFormContainer extends Component {
 			document.getElementById('new-post-maps').className = '';
 		}
 
-		// Validate server IP/PW
-		let validServer = true;
+		// Validate server IP
 		if (server || server === null) {
-			const ipExp = /^(\d{1,3}\.){3}\d{1,3}(:\d+)?$/;
-			const passwordExp = /.+/;
-			if (!ipExp.test(ip) || !passwordExp.test(password)) {
-				validServer = false;
+			if (!ip || ip === "") {
+				document.getElementById('new-post-server').className = 'invalid';
+				fail = true;
+			} else {
+				document.getElementById('new-post-server').className = '';
 			}
 		}
-		if (!validServer) {
-			document.getElementById('new-post-server').className = 'invalid';
-			fail = true;
-		} else {
-			document.getElementById('new-post-server').className = '';
-		}
+
 
 		// Don't submit if form did not validate
 		if (fail) {
