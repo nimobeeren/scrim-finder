@@ -1,14 +1,12 @@
-@import 'globals';
-
-.server-details {
+.server-details-input {
 	display: flex;
 	flex-direction: row;
 }
 
-.server-details input {
+.server-details-input input {
 	margin-top: 8px;
 }
 
-.server-details input:not(:last-child) {
+.server-details-input input:not(:last-child) {
 	margin-right: 16px;
 }

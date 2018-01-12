@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import '../../styles/ServerDetailsInput.css';
 
 const ServerDetailsInput = ({ onIPChange, onPasswordChange }) => (
-	<div className="server-details">
+	<div className="server-details-input">
 		<input type="text" required placeholder="Server IP" onChange={onIPChange}/>
 		<input type="text" placeholder="Password" onChange={onPasswordChange}/>
 	</div>

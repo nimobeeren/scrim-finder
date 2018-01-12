@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from "./Button";
 import '../../styles/Reply.css';
+import ServerDetails from "./ServerDetails";
 
 const Reply = (props) => {
 	const { reply, isPostAuthor, onAccept, onDecline } = props;
@@ -72,17 +73,13 @@ const Reply = (props) => {
 		// Accepting a request to play
 		case 'accept':
 			const { ip, password } = reply.body || {};
-			const connectCommand = `connect ${ip}${password ? `;password ${password}` : ""}`;
+
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
 					<div className="reply__text">
 						<span className="reply__author">Anonymous</span>&nbsp;
 						has accepted your request.
-						{ip &&
-						<div className="reply__server-details">
-							Join at: <pre>{connectCommand}</pre>
-						</div>
-						}
+						{ip && <ServerDetails ip={ip} password={password}/>}
 					</div>
 				</div>
 			);
