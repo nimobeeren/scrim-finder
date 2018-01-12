@@ -6,6 +6,7 @@ import ServerDetails from "./ServerDetails";
 
 const Reply = (props) => {
 	const { reply, isPostAuthor, onAccept, onDecline } = props;
+	const { map, message, ip, password } = reply.body || {};
 
 	switch (reply.type) {
 		// Request to play a map
@@ -14,14 +15,19 @@ const Reply = (props) => {
 			const declined = (reply.status === 'declined');
 
 			// Create section containing reply text
-			let children = [(
+			let children = [
 				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
 					<span className="reply__author">Anonymous</span>&nbsp;
-					wants to play <span className="map">{reply.body.map}</span>
-					{reply.body.message ? ": " : ""}
-					<i>{reply.body.message}</i>
+					wants to play <span className="map">{map}</span>
+					{message ? ": " : ""}
+					<i>{message}</i>
+					{
+						// Show server details when applicable
+						accepted && isPostAuthor && ip &&
+						<ServerDetails key="server" ip={ip} password={password}/>
+					}
 				</div>
-			)];
+			];
 
 			const acceptButton = (
 				<Button
@@ -72,8 +78,6 @@ const Reply = (props) => {
 
 		// Accepting a request to play
 		case 'accept':
-			const { ip, password } = reply.body || {};
-
 			return (
 				<div key={reply._id} className="replies__reply reply--request">
 					<div className="reply__text">
@@ -101,7 +105,7 @@ const Reply = (props) => {
 				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">
 						<span className="reply__author">Anonymous:</span>&nbsp;
-						{reply.body.message}
+						{message}
 					</div>
 				</div>
 			);
