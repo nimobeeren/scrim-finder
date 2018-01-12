@@ -60,12 +60,12 @@ class ReplyFormContainer extends Component {
 
 	handleSubmit(e) {
 		const { activePost, currentUser, filters, sendReply } = this.props;
-		const { map, message } = this.state;
+		const { ip, password, map, message } = this.state;
 
 		sendReply(activePost._id, {
 			author: currentUser.id,
 			type: 'request',
-			body: { map, message }
+			body: { map, message, ip, password }
 		}, filters);
 
 		// Don't reload the page
