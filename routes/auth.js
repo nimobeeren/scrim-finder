@@ -47,8 +47,9 @@ router.post('/refresh', async (req, res) => {
 	}
 
 	// Set last logged in date in database
+	let user;
 	try {
-		await db.loginUser(payload.id);
+		user = await db.loginUser(payload.id);
 	} catch (e) {
 		res.status(410).send("Anonymous user has expired. Please register a new user.");
 		return;
@@ -56,8 +57,9 @@ router.post('/refresh', async (req, res) => {
 
 	// Send refreshed authorization token
 	res.status(200).send({
-		userId: payload.id,
-		token: jwt.sign({ id: payload.id }, config.secret, { expiresIn: '24h' })
+		userId: user._id,
+		steamId: user.steamId,
+		token: jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' })
 	});
 });
 
@@ -81,7 +83,7 @@ router.get('/verify', (req, res) => {
 		} else {
 			const steamId = result.claimedIdentifier.replace('http://steamcommunity.com/openid/id/', '');
 			if (!steamId) {
-				res.status(500).send("Could not get steam ID");
+				res.status(500).send("Could not get Steam ID");
 			} else {
 				let user = await db.findUserBySteamId(steamId);
 				if (user && user._id) {
