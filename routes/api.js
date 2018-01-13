@@ -1,7 +1,5 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const db = require('../db/db');
-const config = require('../config');
 
 // Express router
 const router = express.Router();
@@ -87,57 +85,6 @@ router.get('/users', async (req, res) => {
 		res.status(500).send("Could not get users: " + e.message);
 	}
 	res.status(200).send(users);
-});
-
-router.post('/auth/register', async (req, res) => {
-	let user, token;
-	try {
-		user = await db.createUser();
-		token = jwt.sign({ id: user._id }, config.secret, {
-			expiresIn: '24h'
-		});
-	} catch (e) {
-		res.status(500).send("Could not create user");
-	}
-
-	res.status(200).send({
-		userId: user._id,
-		token
-	});
-});
-
-router.post('/auth/login', async (req, res) => {
-	const authHeader = req.header("Authorization");
-	const token = authHeader.split("Bearer: ")[1];
-
-	// Verify authorization token
-	let payload;
-	try {
-		payload = jwt.verify(token, config.secret);
-	} catch (e) {
-		if (e instanceof jwt.JsonWebTokenError) {
-			res.sendStatus(401);
-		} else {
-			res.status(500).send("Could not verify authorization token");
-		}
-		return;
-	}
-
-	// Set last logged in date in database
-	try {
-		await db.loginUser(payload.id);
-	} catch (e) {
-		res.status(410).send("Anonymous user has expired. Please register a new user.");
-		return;
-	}
-
-	// Send refreshed authorization token
-	res.status(200).send({
-		userId: payload.id,
-		token: jwt.sign({ id: payload.id }, config.secret, {
-			expiresIn: '24h'
-		})
-	});
 });
 
 module.exports = router;

@@ -99,22 +99,19 @@ module.exports = {
 		return User.find();
 	},
 
-	createUser: function (name = null) {
+	createUser: function (steamId = null) {
 		const user = new User({
-			name,
+			steamId,
 			lastLogin: Date.now()
 		});
 		return user.save();
 	},
 
 	loginUser: function (id) {
-		return new Promise(async (resolve, reject) => {
-			const update = User.findByIdAndUpdate(ObjectId(id), { $set: { lastLogin: Date.now() } });
-			if (!await update) {
-				reject("User not found");
-			} else {
-				resolve(update);
-			}
-		})
+		return User.findByIdAndUpdate(ObjectId(id), { $set: { lastLogin: Date.now() } });
+	},
+
+	findUserBySteamId: function (steamId) {
+		return User.findOne({ steamId });
 	}
 };
