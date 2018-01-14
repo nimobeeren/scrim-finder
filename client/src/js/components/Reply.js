@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from "./Button";
-import '../../styles/Reply.css';
 import ServerDetails from "./ServerDetails";
+import '../../styles/Reply.css';
 
 const Reply = (props) => {
 	const { reply, isPostAuthor, onAccept, onDecline } = props;

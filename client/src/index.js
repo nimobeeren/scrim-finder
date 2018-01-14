@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
-import {fetchPosts} from "./js/actions/PostActions";
+import { fetchPosts } from "./js/actions/PostActions";
 import App from './js/components/App';
 import rootReducer from './js/reducers';
 
