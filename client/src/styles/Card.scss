@@ -1,12 +1,18 @@
 @import 'globals';
 
 .card {
-	max-width: $content-width;
+	width: 400px;
+	height: 100%;
 	margin: 25px auto;
 	padding: 15px;
 	background: $white;
 	border-radius: 3px;
 	color: black;
+}
+
+.maps {
+	vertical-align: text-top;
+	height: 60px;
 }
 
 .card--secondary {

@@ -75,7 +75,7 @@ const Post = ({ post, levelNames }) => {
 					<td>Level:</td>
 					<td>{level}</td>
 				</tr>
-				<tr>
+				<tr className="maps">
 					<td>Maps:</td>
 					<td><MapPool maps={maps}/></td>
 				</tr>
