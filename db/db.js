@@ -104,6 +104,19 @@ module.exports = {
 			steamId,
 			lastLogin: Date.now()
 		});
+
+		let name;
+		if (steamId) {
+			// TODO: Get steam name
+			name = "Steam user";
+		} else {
+			// Get random emoji to identify anonymous user
+			const emojiRange = [0x1F300, 0x1F52E];
+			const randomEmoji = Math.round(Math.random() * (emojiRange[1] - emojiRange[0]) + emojiRange[0]);
+			name = "Anonymous " + String.fromCodePoint(randomEmoji);
+		}
+		user.name = name;
+
 		return user.save();
 	},
 
