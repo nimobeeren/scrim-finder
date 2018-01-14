@@ -31,7 +31,7 @@ export function acceptRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestAcceptRequest(request, post));
 
-		// Create accept reply
+		// Create accept REPLY
 		const acceptReply = {
 			author: post.author,
 			recipient: request.author,

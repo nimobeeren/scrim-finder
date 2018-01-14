@@ -88,7 +88,7 @@ module.exports = {
 		if (post) {
 			post.replies.push(message._id);
 		} else {
-			let e = Error("Could not find post to reply to");
+			let e = Error("Could not find post to REPLY to");
 			e.name = 'ArgumentError';
 			throw e;
 		}

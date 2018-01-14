@@ -7,7 +7,7 @@ import '../../styles/Popup.css';
 const Popup = ({ popupType }) => {
 	let content;
 	switch (popupType) {
-		case PopupTypes.reply:
+		case PopupTypes.REPLY:
 			content = <ReplyFormContainer/>;
 			break;
 

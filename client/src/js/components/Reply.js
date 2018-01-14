@@ -14,9 +14,9 @@ const Reply = (props) => {
 			const accepted = (reply.status === 'accepted');
 			const declined = (reply.status === 'declined');
 
-			// Create section containing reply text
+			// Create section containing REPLY text
 			let children = [
-				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
+				<div key="text" className={"reply__text" + (declined ? " REPLY--declined" : "")}>
 					<span className="reply__author">{reply.author.name}</span>&nbsp;
 					wants to play <span className="map">{map}</span>
 					{ip ? "on their server" : "on your server"}

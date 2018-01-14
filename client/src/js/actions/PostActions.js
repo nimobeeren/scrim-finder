@@ -3,7 +3,7 @@ function requestPosts(filters) {
 	return {
 		type: POSTS_REQUEST,
 		filters
-	}
+	};
 }
 
 export const POSTS_RECEIVE = 'POSTS_RECEIVE';
@@ -13,7 +13,15 @@ function receivePosts(filters, posts) {
 		filters,
 		posts,
 		receivedAt: Date.now()
-	}
+	};
+}
+
+export const POSTS_FAIL = 'POSTS_FAIL';
+function failPosts(filters) {
+	return {
+		type: POSTS_FAIL,
+		filters
+	};
 }
 
 export function fetchPosts(filters = null) {
@@ -22,10 +30,13 @@ export function fetchPosts(filters = null) {
 
 		const query = encodeURIComponent(JSON.stringify(filters));
 		const response = await fetch('/api/posts?filters=' + query);
-		const json = await response.json();
 
-		// TODO: Handle failure
-
-		dispatch(receivePosts(filters, json));
+		if (response.ok) {
+			const json = await response.json();
+			dispatch(receivePosts(filters, json));
+		} else {
+			// TODO: Handle failure
+			dispatch(failPosts(filters));
+		}
 	}
 }

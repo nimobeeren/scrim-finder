@@ -57,7 +57,13 @@ function currentUserReducer(state, action) {
 				}
 
 				if (id && token) {
-					return { id, steamId, token, authenticated: false };
+					return {
+						id,
+						name: null,
+						steamId,
+						token,
+						authenticated: false
+					};
 				}
 				return null;
 			}

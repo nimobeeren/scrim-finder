@@ -1,6 +1,6 @@
 import { POST_CREATE_REQUEST, POST_DRAFT_CANCEL, POST_DRAFT_CREATE } from '../actions/CreatePostActions';
 
-function draftingPostReducer(state = null, action) {
+function draftingPostReducer(state = false, action) {
 	switch (action.type) {
 		case POST_DRAFT_CREATE:
 			return true;
@@ -12,7 +12,7 @@ function draftingPostReducer(state = null, action) {
 			return false;
 
 		default:
-			return state || false;
+			return state;
 	}
 }
 
