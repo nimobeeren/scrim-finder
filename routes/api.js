@@ -7,6 +7,10 @@ const router = express.Router();
 // Use Express middleware to parse JSON requests
 router.use('/', express.json());
 
+/**
+ * GET: Returns all posts and their replies
+ * POST: Creates new post
+ */
 router.route('/posts')
 	.get(async (req, res) => {
 		// Get encoded query string from URL
@@ -40,6 +44,10 @@ router.route('/posts')
 		res.sendStatus(200);
 	});
 
+/**
+ * GET: Gets details for a specific post
+ * POST: Creates a reply to this post
+ */
 router.route('/posts/:postId')
 	.get(async (req, res) => {
 		let post;
@@ -60,6 +68,7 @@ router.route('/posts/:postId')
 			await db.sendReply(req.body, req.params.postId);
 		} catch (e) {
 			if (e.name === 'ArgumentError') {
+				// Reply format was invalid
 				res.status(400).send(e.message);
 				return;
 			} else {
@@ -70,6 +79,9 @@ router.route('/posts/:postId')
 		res.sendStatus(200);
 	});
 
+/**
+ * PUT: Edits a reply by replacing it with the request body
+ */
 router.route('/replies/:replyId')
 	.put(async (req, res) => {
 		try {
@@ -81,6 +93,9 @@ router.route('/replies/:replyId')
 		res.sendStatus(200);
 	});
 
+/**
+ * GET: Gets a list of all users
+ */
 router.get('/users', async (req, res) => {
 	let users;
 	try {

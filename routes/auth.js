@@ -14,16 +14,28 @@ relyingParty = new openid.RelyingParty(
 	true
 );
 
+/**
+ * POST: Creates a new anonymous user, and returns a user identifier, including an authorization token
+ */
 router.post('/anonRegister', async (req, res) => {
-	let user, token;
+	// Creates new anonymous user in database
+	let user;
 	try {
 		user = await db.createUser();
-		token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
 		res.status(500).send("Could not create user");
 		return;
 	}
 
+	// Generates authorization token for this user
+	let token;
+	try {
+		token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
+	} catch (e) {
+		res.status(500).send("Could not generate authorization token");
+	}
+
+	// Return user identifier, including authorization token
 	res.status(200).send({
 		id: user._id,
 		name: user.name,
@@ -31,7 +43,11 @@ router.post('/anonRegister', async (req, res) => {
 	});
 });
 
+/**
+ * POST: Takes an authorization token, and returns a newly signed one
+ */
 router.post('/refresh', async (req, res) => {
+	// Get authorization token from headers
 	const authHeader = req.header("Authorization");
 	const token = authHeader.replace("Bearer: ", "");
 
@@ -75,30 +91,42 @@ router.post('/refresh', async (req, res) => {
 	});
 });
 
+/**
+ * GET: Redirects to Steam's OpenID authentication page
+ */
 router.get('/login', (req, res) => {
+	// Get OpenID authorization URL
 	relyingParty.authenticate('http://steamcommunity.com/openid', false, (err, authUrl) => {
 		if (err || !authUrl) {
 			console.error(err);
 			res.status(500).send("Authentication failed. " + err || "");
 		} else {
+			// Redirect to external authorization URL
 			res.redirect(authUrl);
 		}
 	});
 });
 
+/**
+ * GET: Callback endpoint for OpenID authorization. Redirects to home page, while returning a user identifier,
+ * including an authorization token in URL params.
+ */
 router.get('/verify', (req, res) => {
+	// Verify valid OpenID authentication
 	relyingParty.verifyAssertion(req, async function (err, result) {
 		if (err || !result || !result.authenticated) {
 			res.status(500).write("Could not verify authentication");
 			err && res.write(": " + err.message);
 			res.end();
 		} else {
+			// Get Steam ID from OpenID response (this ID can be trusted)
 			const steamId = result.claimedIdentifier.replace('http://steamcommunity.com/openid/id/', '');
 			if (!steamId) {
 				res.status(500).send("Could not get Steam ID");
 				return;
 			}
 
+			// Find existing user or create a new one using this Steam ID
 			let user = await db.findUserBySteamId(steamId);
 			if (user && user._id) {
 				// User found, log them in
@@ -108,6 +136,7 @@ router.get('/verify', (req, res) => {
 				user = await db.createUser(steamId);
 			}
 
+			// Generate authorization token for this user
 			let token;
 			try {
 				token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
@@ -116,14 +145,16 @@ router.get('/verify', (req, res) => {
 				return;
 			}
 
-			// Return authorization token and IDs to client
+			// Create identifier, including authorization token
 			const userIdentifier = JSON.stringify({
 				id: user._id,
 				name: user.name,
 				steamId,
 				token
 			});
-			res.redirect('/?user=' + encodeURIComponent(userIdentifier)); // redirects to home page
+
+			// Redirect to the home page, passing user identifier as a JSON-encoded URL parameter
+			res.redirect('/?user=' + encodeURIComponent(userIdentifier));
 		}
 	});
 });
