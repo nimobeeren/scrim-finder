@@ -27,7 +27,7 @@ class PostLower extends Component {
 			{ expanded } = this.state;
 
 		return (
-			<div>
+			<div className="controls-container">
 				<div className="lower__controls">
 					<ReplyButton post={post}/>
 					<ReplyCountContainer

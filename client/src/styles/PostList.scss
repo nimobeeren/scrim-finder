@@ -1,7 +1,9 @@
 @import 'globals';
 
 .post-list {
-	margin: 25px;
+	margin: 24px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .post-list--empty {
