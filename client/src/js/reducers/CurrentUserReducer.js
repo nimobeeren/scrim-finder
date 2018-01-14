@@ -6,15 +6,16 @@ function currentUserReducer(state, action) {
 	switch (action.type) {
 		case AUTHENTICATE_SUCCESS:
 		case ANONYMOUS_REGISTER_SUCCESS:
-			const { id, steamId, token } = action.user;
+			const { id, name, steamId, token } = action.user;
 
 			// Store user details in local storage to allow resuming session
-			id && localStorage.setItem('userId', id);
+			id && localStorage.setItem('id', id);
 			steamId && localStorage.setItem('steamId', steamId);
 			token && localStorage.setItem('token', token);
 
 			return {
 				id,
+				name,
 				steamId,
 				token,
 				authenticated: true
@@ -32,11 +33,11 @@ function currentUserReducer(state, action) {
 				const identifier = JSON.parse(getUrlParameter('user'));
 
 				// Get user ID
-				if (identifier && identifier.userId) {
-					id = identifier.userId;
-					localStorage.setItem('userId', id);
+				if (identifier && identifier.id) {
+					id = identifier.id;
+					localStorage.setItem('id', id);
 				} else {
-					id = localStorage.getItem('userId');
+					id = localStorage.getItem('id');
 				}
 
 				// Get Steam ID
@@ -47,7 +48,7 @@ function currentUserReducer(state, action) {
 					steamId = localStorage.getItem('steamId');
 				}
 
-				// Get access token
+				// Get authorization token
 				if (identifier && identifier.token) {
 					token = identifier.token;
 					localStorage.setItem('token', token);

@@ -30,10 +30,7 @@ export function anonymousRegister() {
 
 		if (response.ok) {
 			const json = await response.json();
-			dispatch(successAnonymousRegister({
-				id: json.userId,
-				token: json.token
-			}));
+			dispatch(successAnonymousRegister(json));
 		} else {
 			dispatch(failAnonymousRegister());
 		}

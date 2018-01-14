@@ -37,11 +37,7 @@ export function authenticate(user) {
 
 		if (response.ok) {
 			const json = await response.json();
-			dispatch(successAuthenticate({
-				id: json.userId,
-				steamId: json.steamId,
-				token: json.token
-			}));
+			dispatch(successAuthenticate(json));
 		} else {
 			// Authenticate failed, register new anonymous user instead
 			dispatch(failAuthenticate(user));
