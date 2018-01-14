@@ -1,7 +1,7 @@
-export const REGISTER_ANONYMOUS_REQUEST = 'REGISTER_ANONYMOUS_REQUEST';
+export const ANONYMOUS_REGISTER_REQUEST = 'ANONYMOUS_REGISTER_REQUEST';
 function requestAnonymousRegister() {
 	return {
-		type: REGISTER_ANONYMOUS_REQUEST
+		type: ANONYMOUS_REGISTER_REQUEST
 	};
 }
 
@@ -24,7 +24,7 @@ export function anonymousRegister() {
 	return async function (dispatch) {
 		dispatch(requestAnonymousRegister());
 
-		const response = await fetch('/api/auth/register', {
+		const response = await fetch('/auth/anonRegister', {
 			method: 'POST'
 		});
 
