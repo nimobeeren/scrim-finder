@@ -68,7 +68,13 @@ module.exports = {
 			};
 		}
 
-		return Post.find(query).populate('replies');
+		return Post.find(query).populate('replies').populate({
+			path: 'replies',
+			populate: {
+				path: 'author',
+				model: 'User'
+			}
+		});
 	},
 
 	createPost: function (post) {
