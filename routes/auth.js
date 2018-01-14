@@ -24,7 +24,8 @@ router.post('/anonRegister', async (req, res) => {
 	}
 
 	res.status(200).send({
-		userId: user._id,
+		id: user._id,
+		name: user.name,
 		token
 	});
 });
@@ -55,11 +56,20 @@ router.post('/refresh', async (req, res) => {
 		return;
 	}
 
+	let refreshedToken;
+	try {
+		refreshedToken = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
+	} catch (e) {
+		res.status(500).send("Could not generate authorization token");
+		return;
+	}
+
 	// Send refreshed authorization token
 	res.status(200).send({
-		userId: user._id,
+		id: user._id,
+		name: user.name,
 		steamId: user.steamId,
-		token: jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' })
+		refreshedToken
 	});
 });
 
@@ -84,24 +94,33 @@ router.get('/verify', (req, res) => {
 			const steamId = result.claimedIdentifier.replace('http://steamcommunity.com/openid/id/', '');
 			if (!steamId) {
 				res.status(500).send("Could not get Steam ID");
-			} else {
-				let user = await db.findUserBySteamId(steamId);
-				if (user && user._id) {
-					// User found, log them in
-					await db.loginUser(user._id);
-				} else {
-					// No user with this steam ID found
-					user = await db.createUser(steamId);
-				}
-
-				// Return authorization token and IDs to client
-				const userIdentifier = JSON.stringify({
-					userId: user._id,
-					steamId,
-					token: jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' })
-				});
-				res.redirect('/?user=' + encodeURIComponent(userIdentifier)); // redirects to home page
+				return;
 			}
+
+			let user = await db.findUserBySteamId(steamId);
+			if (user && user._id) {
+				// User found, log them in
+				await db.loginUser(user._id);
+			} else {
+				// No user with this steam ID found
+				user = await db.createUser(steamId);
+			}
+
+			let token;
+			try {
+				token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
+			} catch (e) {
+				res.status(500).send("Could not generate authorization token");
+				return;
+			}
+
+			// Return authorization token and IDs to client
+			const userIdentifier = JSON.stringify({
+				id: user._id,
+				steamId,
+				token
+			});
+			res.redirect('/?user=' + encodeURIComponent(userIdentifier)); // redirects to home page
 		}
 	});
 });
