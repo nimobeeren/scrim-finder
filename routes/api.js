@@ -35,6 +35,7 @@ router.route('/posts')
 			await db.createPost(req.body);
 		} catch (e) {
 			res.status(500).send("Could not create post: " + e.message);
+			return;
 		}
 		res.sendStatus(200);
 	});
@@ -46,6 +47,7 @@ router.route('/posts/:postId')
 			post = await db.getPost(req.params.postId);
 		} catch (e) {
 			res.status(500).send("Could not retrieve post: " + e.message);
+			return;
 		}
 		if (!post) {
 			res.sendStatus(404);
@@ -59,8 +61,10 @@ router.route('/posts/:postId')
 		} catch (e) {
 			if (e.name === 'ArgumentError') {
 				res.status(400).send(e.message);
+				return;
 			} else {
 				res.status(500).send("Could not create reply: " + e.message);
+				return;
 			}
 		}
 		res.sendStatus(200);
@@ -83,6 +87,7 @@ router.get('/users', async (req, res) => {
 		users = await db.getUsers();
 	} catch (e) {
 		res.status(500).send("Could not get users: " + e.message);
+		return;
 	}
 	res.status(200).send(users);
 });

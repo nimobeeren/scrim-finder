@@ -21,6 +21,7 @@ router.post('/anonRegister', async (req, res) => {
 		token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
 		res.status(500).send("Could not create user");
+		return;
 	}
 
 	res.status(200).send({
@@ -56,6 +57,7 @@ router.post('/refresh', async (req, res) => {
 		return;
 	}
 
+	// Create refreshed token for this user
 	let refreshedToken;
 	try {
 		refreshedToken = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
@@ -102,7 +104,7 @@ router.get('/verify', (req, res) => {
 				// User found, log them in
 				await db.loginUser(user._id);
 			} else {
-				// No user with this steam ID found
+				// No user with this steam ID found, create new user
 				user = await db.createUser(steamId);
 			}
 
@@ -117,6 +119,7 @@ router.get('/verify', (req, res) => {
 			// Return authorization token and IDs to client
 			const userIdentifier = JSON.stringify({
 				id: user._id,
+				name: user.name,
 				steamId,
 				token
 			});
