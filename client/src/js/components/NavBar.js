@@ -1,4 +1,5 @@
 import React from 'react';
+import WelcomeMessageContainer from "../containers/WelcomeMessageContainer";
 import Button from './Button';
 import LoginButton from "../containers/LoginButton";
 import './../../styles/NavBar.css';
@@ -8,6 +9,7 @@ const NavBar = () => (
 		<div className="nav__content">
 			<h1 className="nav__group">CSGO Scrim Finder</h1>
 			<div className="nav__group">
+				<WelcomeMessageContainer/>
 				<Button className="btn btn--nav btn--about btn--secondary"
 						label=""
 						href="https://github.com/nimobeeren/scrim-finder/"/>

@@ -1,0 +1,13 @@
+@import 'globals';
+
+.welcome-message {
+	transition: opacity 500ms;
+	span {
+		color: $accent-color;
+		font-weight: bold;
+	}
+}
+
+.welcome-message__hidden {
+	opacity: 0;
+}

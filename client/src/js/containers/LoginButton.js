@@ -5,7 +5,6 @@ import { logOut } from '../actions/AuthenticateActions';
 import Button from "../components/Button";
 
 const LogInOutButton = ({ currentUser, logOut }) => {
-	console.log(currentUser);
 	if (currentUser && currentUser.steamId) {
 		// User is already logged in
 		return <Button className="btn btn--nav"
