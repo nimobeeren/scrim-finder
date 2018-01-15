@@ -113,6 +113,7 @@ router.get('/login', (req, res) => {
  */
 router.get('/verify', (req, res) => {
 	// Verify valid OpenID authentication
+	console.log('verify request', req.query, req.headers, req.body);
 	relyingParty.verifyAssertion(req, async function (err, result) {
 		if (err || !result || !result.authenticated) {
 			res.status(500).write("Could not verify authentication");
@@ -133,7 +134,12 @@ router.get('/verify', (req, res) => {
 				await db.loginUser(user._id);
 			} else {
 				// No user with this steam ID found, create new user
-				user = await db.createUser(steamId);
+				try {
+					user = await db.createUser(steamId);
+				} catch (e) {
+					res.status(500).send("Could not create new Steam user");
+					return;
+				}
 			}
 
 			// Generate authorization token for this user

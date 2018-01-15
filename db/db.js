@@ -117,7 +117,6 @@ module.exports = {
 			// Get user's Steam name
 			const summary = await steam.getPlayerSummary(steamId);
 			name = summary['personaname'];
-			console.log('steam name', name);
 		} else {
 			// Get random emoji to identify anonymous user
 			const emojiRange = [0x1F300, 0x1F52E];
