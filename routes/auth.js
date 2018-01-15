@@ -23,7 +23,7 @@ router.post('/anonRegister', async (req, res) => {
 	try {
 		user = await db.createUser();
 	} catch (e) {
-		res.status(500).send("Could not create user");
+		res.status(500).send("Could not create user: " + e.message);
 		return;
 	}
 
@@ -32,7 +32,7 @@ router.post('/anonRegister', async (req, res) => {
 	try {
 		token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
-		res.status(500).send("Could not generate authorization token");
+		res.status(500).send("Could not generate authorization token: " + e.message);
 	}
 
 	// Return user identifier, including authorization token
@@ -59,7 +59,7 @@ router.post('/refresh', async (req, res) => {
 		if (e instanceof jwt.JsonWebTokenError) {
 			res.sendStatus(401);
 		} else {
-			res.status(500).send("Could not verify authorization token");
+			res.status(500).send("Could not verify authorization token: " + e.message);
 		}
 		return;
 	}
@@ -69,7 +69,7 @@ router.post('/refresh', async (req, res) => {
 	try {
 		user = await db.loginUser(payload.id);
 	} catch (e) {
-		res.status(410).send("Anonymous user has expired. Please register a new user.");
+		res.status(410).send("Anonymous user has expired. Please register a new user. " + e.message);
 		return;
 	}
 
@@ -78,7 +78,7 @@ router.post('/refresh', async (req, res) => {
 	try {
 		refreshedToken = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
-		res.status(500).send("Could not generate authorization token");
+		res.status(500).send("Could not generate authorization token: " + e.message);
 		return;
 	}
 
@@ -98,8 +98,9 @@ router.get('/login', (req, res) => {
 	// Get OpenID authorization URL
 	relyingParty.authenticate('http://steamcommunity.com/openid', false, (err, authUrl) => {
 		if (err || !authUrl) {
-			console.error(err);
-			res.status(500).send("Authentication failed. " + err || "");
+			res.status(500).write("Authentication failed");
+			err && res.write(": " + err.message);
+			res.end();
 		} else {
 			// Redirect to external authorization URL
 			res.redirect(authUrl);
@@ -137,7 +138,7 @@ router.get('/verify', (req, res) => {
 				try {
 					user = await db.createUser(steamId);
 				} catch (e) {
-					res.status(500).send("Could not create new Steam user");
+					res.status(500).send("Could not create new Steam user: " + e.message);
 					return;
 				}
 			}
@@ -147,7 +148,7 @@ router.get('/verify', (req, res) => {
 			try {
 				token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 			} catch (e) {
-				res.status(500).send("Could not generate authorization token");
+				res.status(500).send("Could not generate authorization token: " + e.message);
 				return;
 			}
 
