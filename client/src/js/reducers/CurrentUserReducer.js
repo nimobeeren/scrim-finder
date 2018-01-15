@@ -22,8 +22,9 @@ function currentUserReducer(state, action) {
 			};
 
 		case LOGOUT:
+			// Reload the page and remove any user information
 			localStorage.clear();
-			window.location.reload(); // reload the page
+			window.location = '/'; // also clears URL params
 			return null;
 
 		default:
