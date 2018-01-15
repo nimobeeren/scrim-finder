@@ -23,7 +23,7 @@ router.post('/anonRegister', async (req, res) => {
 	try {
 		user = await db.createUser();
 	} catch (e) {
-		res.status(500).send("Could not create user: " + e.message);
+		res.status(500).send("Could not create user: " + e);
 		return;
 	}
 
@@ -59,7 +59,7 @@ router.post('/refresh', async (req, res) => {
 		if (e instanceof jwt.JsonWebTokenError) {
 			res.sendStatus(401);
 		} else {
-			res.status(500).send("Could not verify authorization token: " + e.message);
+			res.status(500).send("Could not verify authorization token: " + e.message || e);
 		}
 		return;
 	}
@@ -69,7 +69,7 @@ router.post('/refresh', async (req, res) => {
 	try {
 		user = await db.loginUser(payload.id);
 	} catch (e) {
-		res.status(410).send("Anonymous user has expired. Please register a new user. " + e.message);
+		res.status(410).send("Anonymous user has expired. Please register a new user. " + e.message || e);
 		return;
 	}
 
@@ -114,9 +114,6 @@ router.get('/login', (req, res) => {
  */
 router.get('/verify', (req, res) => {
 	// Verify valid OpenID authentication
-	console.log('verify request');
-	console.log(req.headers);
-	console.log(req.query);
 	relyingParty.verifyAssertion(req, async function (err, result) {
 		if (err || !result || !result.authenticated) {
 			res.status(500).write("Could not verify authentication");
@@ -140,7 +137,7 @@ router.get('/verify', (req, res) => {
 				try {
 					user = await db.createUser(steamId);
 				} catch (e) {
-					res.status(500).send("Could not create new Steam user: " + e.message);
+					res.status(500).send("Could not create new Steam user: " + e);
 					return;
 				}
 			}

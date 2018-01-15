@@ -15,10 +15,16 @@ module.exports = {
 	 */
 	getPlayerSummary: function (steamId) {
 		return new Promise((resolve, reject) => {
+			// Get API key
+			const key = config.steamApiKey;
+			if (!key || key.length < 1) {
+				reject("Steam API key missing");
+			}
+
 			// Get Steam API URL
 			const endpoint = getApiEndpoint('ISteamUser', 'GetPlayerSummaries', 'v0002');
 			const URL = endpoint + '/?' + querystring.encode({
-				key: config.steamApiKey,
+				key,
 				steamids: steamId
 			});
 
@@ -27,7 +33,7 @@ module.exports = {
 				if (err) {
 					reject(err);
 				} else if (res.statusCode !== 200) {
-					reject("Steam API request failed: " + res.statusCode);
+					reject("Steam API request failed (" + res.statusCode + "): " + body);
 				} else {
 					const json = JSON.parse(body);
 					resolve(json.response.players[0]);
