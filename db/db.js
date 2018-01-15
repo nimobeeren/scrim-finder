@@ -56,7 +56,7 @@ module.exports = {
 			query['body.server'] = {
 				$not: {
 					$exists: true,
-					$ne: filters.server
+					$nin: [filters.server, null]
 				}
 			};
 		}
