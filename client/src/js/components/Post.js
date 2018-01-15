@@ -68,7 +68,7 @@ const Post = ({ post, levelNames }) => {
 		server = getServerPrefString(post.body.server);
 
 	return (
-		<Card className="card" title={teamName} subtitle={age}>
+		<Card className="card post" title={teamName} subtitle={age}>
 			<table className="post__fields">
 				<tbody>
 				<tr>

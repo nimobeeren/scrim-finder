@@ -1,7 +1,7 @@
 @import 'globals';
 
 .card {
-	width: 400px;
+	width: $content-width;
 	margin: 15px;
 	padding: 15px;
 	background: $white;
