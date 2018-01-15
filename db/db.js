@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Post = require('./models/post');
 const Reply = require('./models/reply');
 const User = require('./models/user');
+const steam = require('../steam');
 const config = require('../config');
 
 mongoose.connect(config.mongoServer, { useMongoClient: true });
@@ -105,7 +106,7 @@ module.exports = {
 		return User.find();
 	},
 
-	createUser: function (steamId = null) {
+	createUser: async function (steamId = null) {
 		const user = new User({
 			steamId,
 			lastLogin: Date.now()
@@ -113,8 +114,10 @@ module.exports = {
 
 		let name;
 		if (steamId) {
-			// TODO: Get steam name
-			name = "Steam user";
+			// Get user's Steam name
+			const summary = await steam.getPlayerSummary(steamId);
+			name = summary['personaname'];
+			console.log('steam name', name);
 		} else {
 			// Get random emoji to identify anonymous user
 			const emojiRange = [0x1F300, 0x1F52E];
