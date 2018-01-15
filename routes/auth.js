@@ -9,8 +9,8 @@ const router = express.Router();
 
 // OpenID relying party
 relyingParty = new openid.RelyingParty(
-	'http://localhost:8823/auth/verify', //FIXME
-	'http://localhost:8823', //FIXME
+	'http://2id60.win.tue.nl:8823/auth/verify',
+	'http://2id60.win.tue.nl:8823/',
 	true
 );
 
