@@ -8,8 +8,8 @@ class PostListContainer extends Component {
 	constructor(props) {
 		super(props);
 
-		// FIXME PLEASE
-		setInterval(() => this.props.fetchPosts(this.props.filters), 5000);
+		// Refresh post list on fixed interval
+		setInterval(() => this.props.fetchPosts(this.props.filters), 5000); // FIXME PLEASE
 	}
 
 	render() {

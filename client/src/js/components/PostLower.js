@@ -44,8 +44,7 @@ class PostLower extends Component {
 }
 
 PostLower.propTypes = {
-	post: PropTypes.object.isRequired,
-	isPostAuthor: PropTypes.bool
+	post: PropTypes.object.isRequired
 };
 
 export default PostLower;

@@ -5,11 +5,11 @@ import { createPostDraft } from "../actions/CreatePostActions";
 import CreatePostCard from '../components/CreatePostCard';
 import CreatePostButton from "../components/CreatePostButton";
 
-const CreatePostContainer = (props) => {
-	if (props.drafting) {
+const CreatePostContainer = ({ drafting, createPostDraft }) => {
+	if (drafting) {
 		return <CreatePostCard/>;
 	} else {
-		return <CreatePostButton onClick={props.createPostDraft}/>;
+		return <CreatePostButton onClick={createPostDraft}/>;
 	}
 };
 

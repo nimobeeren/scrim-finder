@@ -4,7 +4,7 @@ import Post from "./Post";
 import '../../styles/PostList.css';
 
 const PostList = ({ posts, levelNames }) => {
-	if (posts.length > 0) {
+	if (Array.isArray(posts) && posts.length > 0) {
 		return (
 			<div className="post-list">
 				{posts.map(post => {

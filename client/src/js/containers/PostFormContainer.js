@@ -71,6 +71,11 @@ class PostFormContainer extends Component {
 		const { teamName, level, maps, server, ip, password } = this.state;
 		let fail = false;
 
+		// Make sure the user is authenticated
+		if (!currentUser || !currentUser.authenticated) {
+			fail = true;
+		}
+
 		// Validate map selection
 		if (maps.length === 0) {
 			document.getElementById('new-post-maps').className = 'invalid';
@@ -112,7 +117,9 @@ class PostFormContainer extends Component {
 	}
 
 	render() {
+		const { handleCancel } = this.props;
 		const { server } = this.state;
+
 		return <PostForm
 			shouldHaveIPPW={server || server === null}
 			onSubmit={this.handleSubmit}
@@ -122,7 +129,7 @@ class PostFormContainer extends Component {
 			onServerChange={this.handleServerChange}
 			onIPChange={this.handleIPChange}
 			onPasswordChange={this.handlePasswordChange}
-			onCancel={this.props.handleCancel}/>;
+			onCancel={handleCancel}/>;
 	}
 }
 

@@ -7,6 +7,7 @@ import '../../styles/Reply.css';
 const Reply = (props) => {
 	const { reply, isPostAuthor, onAccept, onDecline } = props;
 	const { map, message, ip, password } = reply.body || {};
+	const authorName = (reply.author && reply.author.name) || "Anonymous";
 
 	switch (reply.type) {
 		// Request to play a map
@@ -14,10 +15,10 @@ const Reply = (props) => {
 			const accepted = (reply.status === 'accepted');
 			const declined = (reply.status === 'declined');
 
-			// Create section containing REPLY text
+			// Create section containing reply text
 			let children = [
-				<div key="text" className={"reply__text" + (declined ? " REPLY--declined" : "")}>
-					<span className="reply__author">{reply.author.name}</span>&nbsp;
+				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
+					<span className="reply__author">{authorName}</span>&nbsp;
 					wants to play <span className="map">{map}</span>
 					{ip ? "on their server" : "on your server"}
 					{message ? ": " : ""}
@@ -80,9 +81,9 @@ const Reply = (props) => {
 		// Accepting a request to play
 		case 'accept':
 			return (
-				<div key={reply._id} className="replies__reply reply--request">
+				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">
-						<span className="reply__author">{reply.author.name}</span>&nbsp;
+						<span className="reply__author">{authorName}</span>&nbsp;
 						has accepted your request.
 						{ip && <ServerDetails ip={ip} password={password}/>}
 					</div>
@@ -92,9 +93,9 @@ const Reply = (props) => {
 		// Declining a request to play
 		case 'decline':
 			return (
-				<div key={reply._id} className="replies__reply reply--request">
+				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">
-						<span className="reply__author">{reply.author.name}</span>&nbsp;
+						<span className="reply__author">{authorName}</span>&nbsp;
 						has declined your request.
 					</div>
 				</div>
@@ -105,7 +106,7 @@ const Reply = (props) => {
 			return (
 				<div key={reply._id} className="replies__reply">
 					<div className="reply__text">
-						<span className="reply__author">{reply.author.name}:</span>&nbsp;
+						<span className="reply__author">{authorName}:</span>&nbsp;
 						{message}
 					</div>
 				</div>

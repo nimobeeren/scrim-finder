@@ -7,12 +7,15 @@ const MapPool = (props) => {
 	const { maps, allMaps } = props;
 
 	let sortedMaps;
-	if (!Array.isArray(maps) || !maps.length) {
+	if (!Array.isArray(maps) || maps.length < 1) {
 		// No maps are given
 		sortedMaps = ["any"];
 	} else if (allMaps.every(map => maps.includes(map))) {
 		// All known maps are given
 		sortedMaps = ["any"];
+	} else if (typeof maps === 'string') {
+		// One map is given
+		sortedMaps = [maps]; // single element array
 	} else {
 		// Some maps are given
 		sortedMaps = maps.sort();

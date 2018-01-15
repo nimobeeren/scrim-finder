@@ -9,7 +9,7 @@ const ReplyListContainer = ({ post, expanded, currentUser, filters, acceptReques
 	// Find replies with the current user as recipient, or no recipient at all
 	// TODO: Don't send these replies to the client at all
 	const myReplies = post.replies.filter(reply => {
-		return !reply.recipient || reply.recipient === currentUser.id;
+		return !reply.recipient || (currentUser && reply.recipient === currentUser.id);
 	});
 
 	return <ReplyList

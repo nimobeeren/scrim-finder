@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './../../styles/Card.css';
 
-const Card = (props) => (
-	<div className={props.className}>
-		<h3>{props.title}</h3>
-		<div className="card__subtitle">{props.subtitle}</div>
-		{props.children}
+const Card = ({ className, title, subtitle, children }) => (
+	<div className={className}>
+		{title && <h3>{title}</h3>}
+		{subtitle && <div className="card__subtitle">{subtitle}</div>}
+		{children}
 	</div>
 );
 

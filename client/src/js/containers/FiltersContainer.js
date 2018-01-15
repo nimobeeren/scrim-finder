@@ -42,25 +42,10 @@ class FiltersContainer extends Component {
 		this.handleFilterChange(e, newState);
 	}
 
-	handleServerChange(e, state) {
-		let newState;
-		switch (state.selectedItem) {
-			case 'on':
-				newState = Object.assign({}, this.state, {
-					server: true
-				});
-				break;
-			case 'off':
-				newState = Object.assign({}, this.state, {
-					server: false
-				});
-				break;
-			default:
-				newState = Object.assign({}, this.state, {
-					server: null
-				});
-				break;
-		}
+	handleServerChange(e, newValue) {
+		let newState = Object.assign({}, this.state, {
+			server: newValue
+		});
 
 		this.setState(newState);
 
