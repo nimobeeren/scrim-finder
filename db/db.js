@@ -11,7 +11,15 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
 	getPost: function (postId) {
-		return Post.findOne(ObjectId(postId)).populate('replies');
+		return Post.findOne(ObjectId(postId))
+			.populate('author replies')
+			.populate({
+				path: 'replies',
+				populate: {
+					path: 'author',
+					model: 'User'
+				}
+			});
 	},
 
 	getPosts: function (filters) {
@@ -69,13 +77,15 @@ module.exports = {
 			};
 		}
 
-		return Post.find(query).populate('replies').populate({
-			path: 'replies',
-			populate: {
-				path: 'author',
-				model: 'User'
-			}
-		});
+		return Post.find(query)
+			.populate('author replies')
+			.populate({
+				path: 'replies',
+				populate: {
+					path: 'author',
+					model: 'User'
+				}
+			});
 	},
 
 	createPost: function (post) {
