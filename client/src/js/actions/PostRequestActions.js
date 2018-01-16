@@ -31,10 +31,10 @@ export function acceptRequest(request, post, filters) {
 	return async function (dispatch) {
 		dispatch(requestAcceptRequest(request, post));
 
-		// Create accept REPLY
+		// Create accept reply
 		const acceptReply = {
-			author: post.author,
-			recipient: request.author,
+			author: post.author._id,
+			recipient: request.author._id,
 			type: 'accept',
 			body: {
 				ip: post.body.ip,
@@ -98,8 +98,8 @@ export function declineRequest(request, post, filters) {
 		dispatch(requestDeclineRequest(request, post));
 
 		const declineReply = {
-			author: post.author,
-			recipient: request.author,
+			author: post.author._id,
+			recipient: request.author._id,
 			type: 'decline',
 			body: {}
 		};

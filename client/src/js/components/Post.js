@@ -10,6 +10,7 @@ class Post extends Component {
 	constructor(props) {
 		super(props);
 		this.getTeamNameString = this.getTeamNameString.bind(this);
+		this.getAuthor = this.getAuthor.bind(this);
 		this.getAgeString = this.getAgeString.bind(this);
 		this.getLevelString = this.getLevelString.bind(this);
 		this.getMapList = this.getMapList.bind(this);
@@ -23,6 +24,16 @@ class Post extends Component {
 			return post.body.teamName;
 		} else {
 			return "Anonymous";
+		}
+	}
+
+	getAuthor() {
+		const { post } = this.props;
+
+		if (post.author && post.author.name && post.author.name.length > 0) {
+			return "By " + post.author.name;
+		} else {
+			return "By Anonymous";
 		}
 	}
 
@@ -105,20 +116,22 @@ class Post extends Component {
 			}
 		}
 		return "Off"
-
-
 	}
 
 	render() {
 		const { post } = this.props,
 			teamName = this.getTeamNameString(),
+			author = this.getAuthor(),
 			age = this.getAgeString(),
 			level = this.getLevelString(),
 			maps = this.getMapList(),
 			server = this.getServerPrefString();
 
 		return (
-			<Card className="card post" title={teamName} subtitle={age}>
+			<Card className="card post"
+				  title={teamName}
+				  note={author}
+				  subtitle={age}>
 				<table className="post__fields">
 					<tbody>
 					<tr>
