@@ -1,6 +1,7 @@
 @import 'globals';
 
 .card {
+	box-sizing: border-box;
 	width: $content-width;
 	margin: 15px auto;
 	padding: 15px;

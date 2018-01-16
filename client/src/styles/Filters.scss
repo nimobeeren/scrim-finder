@@ -1,12 +1,13 @@
 @import 'globals';
 
 .filters {
+	box-sizing: border-box;
+	padding: 10px 25px 25px 25px;
 	background: darken($primary-color, 5%);
 }
 
 .filters__content {
 	max-width: $content-width;
-	padding: 10px 25px 25px 25px;
 	margin: 0 auto;
 	color: $white;
 }
@@ -26,6 +27,7 @@
 	align-items: center;
 }
 
+// Filters are displayed horizontally and above post list
 @media (min-width: $bp-medium) {
 	.filters__fields {
 		display: flex;
@@ -37,6 +39,7 @@
 	}
 }
 
+// Filters are vertical again, on the side of the page
 @media (min-width: $bp-large) {
 	.filters {
 		position: fixed;
