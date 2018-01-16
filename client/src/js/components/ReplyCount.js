@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import ChevronToggle from "./ChevronToggle";
 import '../../styles/ReplyCount.css';
 
-const ReplyCount = (props) => {
+const ReplyCount = ({ count, expanded, onClick }) => {
 	return (
-		<div className="reply-count" onClick={props.onClick}>
+		<div className="reply-count" onClick={onClick}>
 			<div className="reply-count__label">
-				{props.count} repl{props.count === 1 ? 'y' : 'ies'}
+				{count} repl{count === 1 ? 'y' : 'ies'}
 			</div>
-			<div className={"reply-count__chevron" + (props.expanded ? " chevron--expanded" : "")}/>
+			<ChevronToggle pointUp={expanded}/>
 		</div>
 	);
 };

@@ -2,7 +2,7 @@
 
 .filters {
 	box-sizing: border-box;
-	padding: 10px 25px 25px 25px;
+	padding: 10px 25px;
 	background: darken($primary-color, 5%);
 }
 
@@ -13,8 +13,18 @@
 }
 
 .filters h3 {
+	display: inline-block;
 	margin: 0;
 	font-size: 24px;
+}
+
+.filters__fields {
+	display: none;
+	margin-bottom: 15px;
+}
+
+.fields--expanded {
+	display: block;
 }
 
 .filters fieldset {
@@ -29,7 +39,7 @@
 
 // Filters are displayed horizontally and above post list
 @media (min-width: $bp-medium) {
-	.filters__fields {
+	.fields--expanded {
 		display: flex;
 	}
 

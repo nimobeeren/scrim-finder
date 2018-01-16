@@ -10,41 +10,53 @@ class FiltersContainer extends Component {
 
 		// Set default state
 		this.state = {
-			level: [],
-			maps: [],
-			server: null,
-			maxAge: 'any'
+			expanded: true,
+			filters: {
+				level: [],
+				maps: [],
+				server: null,
+				maxAge: 'any'
+			}
 		};
 
 		// Bind event handlers
+		this.handleExpandedToggle = this.handleExpandedToggle.bind(this);
 		this.handleLevelChange = this.handleLevelChange.bind(this);
 		this.handleMapChange = this.handleMapChange.bind(this);
 		this.handleServerChange = this.handleServerChange.bind(this);
 		this.handleAgeChange = this.handleAgeChange.bind(this);
 	}
 
+	handleExpandedToggle() {
+		this.setState({
+			expanded: !this.state.expanded
+		});
+	}
+
 	handleFilterChange(e, state) {
 		// Call action creator
-		this.props.handleChange(state);
+		this.props.handleChange(state.filters);
 	}
 
 	handleLevelChange(e, state) {
 		let newState = this.state;
-		newState.level = state.checkedItems.map(n => parseInt(n, 10));
+		newState.filters.level = state.checkedItems.map(n => parseInt(n, 10));
 		this.setState(newState);
 		this.handleFilterChange(e, newState);
 	}
 
 	handleMapChange(e, state) {
 		let newState = this.state;
-		newState.maps = state.checkedItems;
+		newState.filters.maps = state.checkedItems;
 		this.setState(newState);
 		this.handleFilterChange(e, newState);
 	}
 
 	handleServerChange(e, newValue) {
 		let newState = Object.assign({}, this.state, {
-			server: newValue
+			filters: {
+				server: newValue
+			}
 		});
 
 		this.setState(newState);
@@ -77,7 +89,7 @@ class FiltersContainer extends Component {
 
 		// Set new age filter state
 		let newState = this.state;
-		newState.maxAge = maxAge;
+		newState.filters.maxAge = maxAge;
 		this.setState(newState);
 
 		// Call action creator
@@ -87,6 +99,8 @@ class FiltersContainer extends Component {
 	render() {
 		return (
 			<Filters
+				expanded={this.state.expanded}
+				onExpandedToggle={this.handleExpandedToggle}
 				onLevelChange={this.handleLevelChange}
 				onMapChange={this.handleMapChange}
 				onServerChange={this.handleServerChange}

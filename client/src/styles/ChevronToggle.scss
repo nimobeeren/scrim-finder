@@ -1,0 +1,35 @@
+@import 'globals';
+
+.chevron__wrapper {
+	display: inline-block;
+	cursor: pointer;
+	padding: 4px;
+}
+
+.chevron {
+	display: inline-block;
+	box-sizing: border-box;
+	margin-left: 8px;
+	margin-right: 2px;
+	width: 12px;
+	height: 12px;
+	border-right: 2px solid;
+	border-bottom: 2px solid;
+	border-color: inherit;
+	transform: translateY(-2px) translateX(-3px) rotate(45deg);
+	transition: transform 500ms;
+}
+
+.chevron--expanded {
+	transform: translateY(4px) translateX(-3px) rotate(225deg);
+}
+
+.chevron--right {
+	float: right;
+}
+
+@media (min-width: $bp-large) {
+	.chevron--mobile {
+		display: none;
+	}
+}
