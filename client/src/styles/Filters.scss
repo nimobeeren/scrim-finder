@@ -6,7 +6,7 @@
 
 .filters__content {
 	max-width: $content-width;
-	padding: 10px 25px 0 25px;
+	padding: 10px 25px 25px 25px;
 	margin: 0 auto;
 	color: $white;
 }
@@ -44,6 +44,10 @@
 		height: calc(100% - #{$nav-height});
 		overflow-Y: auto;
 		width: $aside-width;
+	}
+
+	.filters__content {
+		padding-bottom: 10px;
 	}
 
 	.filters__fields {
