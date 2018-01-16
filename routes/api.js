@@ -46,7 +46,7 @@ router.route('/posts')
 
 /**
  * GET: Gets details for a specific post
- * POST: Creates a REPLY to this post
+ * POST: Creates a reply to this post
  */
 router.route('/posts/:postId')
 	.get(async (req, res) => {
@@ -72,7 +72,7 @@ router.route('/posts/:postId')
 				res.status(400).send(e.message);
 				return;
 			} else {
-				res.status(500).send("Could not create REPLY: " + e.message);
+				res.status(500).send("Could not create reply: " + e.message);
 				return;
 			}
 		}
@@ -80,14 +80,14 @@ router.route('/posts/:postId')
 	});
 
 /**
- * PUT: Edits a REPLY by replacing it with the request body
+ * PUT: Edits a reply by replacing it with the request body
  */
 router.route('/replies/:replyId')
 	.put(async (req, res) => {
 		try {
 			await db.editReply(req.params.replyId, req.body);
 		} catch (e) {
-			res.status(500).send("Could not edit REPLY: " + e.message);
+			res.status(500).send("Could not edit reply: " + e.message);
 			return;
 		}
 		res.sendStatus(200);
