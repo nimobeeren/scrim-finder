@@ -1,7 +1,7 @@
 import { REPLY_DRAFT_CANCEL, REPLY_DRAFT_CREATE, REPLY_SEND_SUCCESS } from "../actions/PostReplyActions";
 
 export const PopupTypes = {
-	reply: 'POPUP_REPLY'
+	REPLY: 'POPUP_REPLY'
 };
 
 function popupTypeReducer(state = null, action) {
