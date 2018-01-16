@@ -4,23 +4,19 @@ import Button from "./Button";
 import ServerDetails from "./ServerDetails";
 import '../../styles/Reply.css';
 
-function getPersonalizedRequest(server, author, isPostAuthor) {
-	if (!isPostAuthor) {
-		if (server) {
-			return "on their server";
-		} else {
-			return "on " + author + "'s server";
-		}
+function getPersonalizedRequest(server, isPostAuthor) {
+	if (server) {
+		return "on their server";
 	} else {
-		if (server) {
-			return "on their server";
-		} else {
+		if (isPostAuthor) {
 			return "on your server";
+		} else {
+			return "on poster's server";
 		}
 	}
 }
 
-const Reply = ({ reply, postAuthor, isPostAuthor, onAccept, onDecline }) => {
+const Reply = ({ reply, isPostAuthor, onAccept, onDecline }) => {
 	const { map, message, ip, password } = reply.body || {};
 	const authorName = (reply.author && reply.author.name) || "Anonymous";
 
@@ -35,7 +31,7 @@ const Reply = ({ reply, postAuthor, isPostAuthor, onAccept, onDecline }) => {
 				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
 					<span className="reply__author">{authorName}</span>&nbsp;
 					wants to play <span className="map">{map}</span>
-					{getPersonalizedRequest(ip, postAuthor.name, isPostAuthor)}
+					{getPersonalizedRequest(ip, isPostAuthor)}
 					{message ? ": " : ""}
 					<i>{message}</i>
 					{
@@ -131,7 +127,6 @@ const Reply = ({ reply, postAuthor, isPostAuthor, onAccept, onDecline }) => {
 
 Reply.propTypes = {
 	reply: PropTypes.object.isRequired,
-	postAuthor: PropTypes.object,
 	isPostAuthor: PropTypes.bool,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func
