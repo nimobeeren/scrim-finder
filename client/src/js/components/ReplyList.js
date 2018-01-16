@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Reply from "./Reply";
 import '../../styles/ReplyList.css';
 
-const ReplyList = ({ replies, isPostAuthor, expanded, onAccept, onDecline }) => {
+const ReplyList = ({ replies, postAuthor, isPostAuthor, expanded, onAccept, onDecline }) => {
 	let replyElements;
 
 	if (!replies || replies.length === 0) {
@@ -14,6 +14,7 @@ const ReplyList = ({ replies, isPostAuthor, expanded, onAccept, onDecline }) => 
 			<Reply
 				key={reply._id}
 				reply={reply}
+				postAuthor={postAuthor}
 				isPostAuthor={isPostAuthor}
 				onAccept={() => onAccept(reply)}
 				onDecline={() => onDecline(reply)}/>
@@ -29,6 +30,7 @@ const ReplyList = ({ replies, isPostAuthor, expanded, onAccept, onDecline }) => 
 
 ReplyList.propTypes = {
 	replies: PropTypes.array.isRequired,
+	postAuthor: PropTypes.object,
 	isPostAuthor: PropTypes.bool,
 	expanded: PropTypes.bool,
 	onAccept: PropTypes.func,

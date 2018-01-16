@@ -4,8 +4,23 @@ import Button from "./Button";
 import ServerDetails from "./ServerDetails";
 import '../../styles/Reply.css';
 
-const Reply = (props) => {
-	const { reply, isPostAuthor, onAccept, onDecline } = props;
+function getPersonalizedRequest(server, author, isPostAuthor) {
+	if (!isPostAuthor) {
+		if (server) {
+			return "on their server";
+		} else {
+			return "on " + author + "'s server";
+		}
+	} else {
+		if (server) {
+			return "on their server";
+		} else {
+			return "on your server";
+		}
+	}
+}
+
+const Reply = ({ reply, postAuthor, isPostAuthor, onAccept, onDecline }) => {
 	const { map, message, ip, password } = reply.body || {};
 	const authorName = (reply.author && reply.author.name) || "Anonymous";
 
@@ -20,7 +35,7 @@ const Reply = (props) => {
 				<div key="text" className={"reply__text" + (declined ? " reply--declined" : "")}>
 					<span className="reply__author">{authorName}</span>&nbsp;
 					wants to play <span className="map">{map}</span>
-					{ip ? "on their server" : "on your server"}
+					{getPersonalizedRequest(ip, postAuthor.name, isPostAuthor)}
 					{message ? ": " : ""}
 					<i>{message}</i>
 					{
@@ -116,6 +131,7 @@ const Reply = (props) => {
 
 Reply.propTypes = {
 	reply: PropTypes.object.isRequired,
+	postAuthor: PropTypes.object,
 	isPostAuthor: PropTypes.bool,
 	onAccept: PropTypes.func,
 	onDecline: PropTypes.func

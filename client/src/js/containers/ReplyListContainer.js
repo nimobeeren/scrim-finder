@@ -14,6 +14,7 @@ const ReplyListContainer = ({ post, expanded, currentUser, filters, acceptReques
 
 	return <ReplyList
 		replies={myReplies}
+		postAuthor={post.author}
 		isPostAuthor={!!currentUser && post.author._id === currentUser.id}
 		expanded={expanded}
 		onAccept={reply => acceptRequest(reply, post, filters)}
