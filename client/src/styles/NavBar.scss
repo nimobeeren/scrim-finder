@@ -44,3 +44,18 @@ nav h1 {
 		top: 0;
 	}
 }
+
+@media (max-width: $bp-large) {
+	nav {
+		height: 100px;
+	}
+
+	.nav__content {
+		display: block;
+	}
+
+	.nav__group > :nth-child(2) {
+		margin-left: auto;
+	}
+
+}
