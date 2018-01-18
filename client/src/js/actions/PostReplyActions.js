@@ -16,50 +16,56 @@ export function cancelReplyDraft() {
 }
 
 export const REPLY_SEND_REQUEST = 'REPLY_SEND_REQUEST';
-function requestSendReply(postId, reply) {
+function requestSendReply(postId, reply, user) {
 	return {
 		type: REPLY_SEND_REQUEST,
 		postId,
-		reply
+		reply,
+		user
 	}
 }
 
 export const REPLY_SEND_SUCCESS = 'REPLY_SEND_SUCCESS';
-function successSendReply(postId, reply, response) {
+function successSendReply(postId, reply, user, response) {
 	return {
 		type: REPLY_SEND_SUCCESS,
 		postId,
 		reply,
+		user,
 		response
 	}
 }
 
 export const REPLY_SEND_FAIL = 'REPLY_SEND_FAIL';
-function failSendReply(postId, reply, response) {
+function failSendReply(postId, reply, user, response) {
 	return {
 		type: REPLY_SEND_FAIL,
 		postId,
 		reply,
+		user,
 		response
 	}
 }
 
-export function sendReply(postId, reply, filters) {
+export function sendReply(postId, reply, user, filters) {
 	return async function (dispatch) {
-		dispatch(requestSendReply(postId, reply));
+		dispatch(requestSendReply(postId, reply, user));
 
 		const response = await fetch('/api/posts/' + postId, {
 			method: 'POST',
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Authorization": user.token,
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify(reply)
 		});
 
 		if (response.ok) {
-			dispatch(successSendReply(postId, reply, response));
+			dispatch(successSendReply(postId, reply, user, response));
 			dispatch(fetchPosts(filters));
 		} else {
 			// TODO: Handle failure
-			dispatch(failSendReply(postId, reply, response));
+			dispatch(failSendReply(postId, reply, user, response));
 		}
 	}
 }

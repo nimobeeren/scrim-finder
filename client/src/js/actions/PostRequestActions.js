@@ -1,35 +1,38 @@
 import { fetchPosts } from "./PostActions";
 
 export const REQUEST_ACCEPT_REQUEST = 'REQUEST_ACCEPT_REQUEST';
-function requestAcceptRequest(request, post) {
+function requestAcceptRequest(request, post, user) {
 	return {
 		type: REQUEST_ACCEPT_REQUEST,
 		request,
-		post
+		post,
+		user
 	}
 }
 
 export const REQUEST_ACCEPT_SUCCESS = 'REQUEST_ACCEPT_SUCCESS';
-function successAcceptRequest(request, post) {
+function successAcceptRequest(request, post, user) {
 	return {
 		type: REQUEST_ACCEPT_SUCCESS,
 		request,
-		post
+		post,
+		user
 	}
 }
 
 export const REQUEST_ACCEPT_FAIL = 'REQUEST_ACCEPT_FAIL';
-function failAcceptRequest(request, post) {
+function failAcceptRequest(request, post, user) {
 	return {
 		type: REQUEST_ACCEPT_FAIL,
 		request,
-		post
+		post,
+		user
 	}
 }
 
-export function acceptRequest(request, post, filters) {
+export function acceptRequest(request, post, user, filters) {
 	return async function (dispatch) {
-		dispatch(requestAcceptRequest(request, post));
+		dispatch(requestAcceptRequest(request, post, user));
 
 		// Create accept reply
 		const acceptReply = {
@@ -43,7 +46,10 @@ export function acceptRequest(request, post, filters) {
 		};
 		const createResponse = await fetch('/api/posts/' + post._id, {
 			method: 'POST',
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Authorization": user.token,
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify(acceptReply)
 		});
 
@@ -53,49 +59,55 @@ export function acceptRequest(request, post, filters) {
 		});
 		const editReponse = await fetch('/api/replies/' + request._id, {
 			method: 'PUT',
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Authorization": user.token,
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify(acceptedReply)
 		});
 
 		if (createResponse.ok && editReponse.ok) {
-			dispatch(successAcceptRequest(request, post));
+			dispatch(successAcceptRequest(request, post, user));
 			dispatch(fetchPosts(filters));
 		} else {
-			dispatch(failAcceptRequest(request, post));
+			dispatch(failAcceptRequest(request, post, user));
 		}
 	}
 }
 
 export const REQUEST_DECLINE_REQUEST = 'REQUEST_DECLINE_REQUEST';
-function requestDeclineRequest(request, post) {
+function requestDeclineRequest(request, post, user) {
 	return {
 		type: REQUEST_DECLINE_REQUEST,
 		request,
-		post
+		post,
+		user
 	}
 }
 
 export const REQUEST_DECLINE_SUCCESS = 'REQUEST_DECLINE_SUCCESS';
-function successDeclineRequest(request, post) {
+function successDeclineRequest(request, post, user) {
 	return {
 		type: REQUEST_DECLINE_SUCCESS,
 		request,
-		post
+		post,
+		user
 	}
 }
 
 export const REQUEST_DECLINE_FAIL = 'REQUEST_DECLINE_FAIL';
-function failDeclineRequest(request, post) {
+function failDeclineRequest(request, post, user) {
 	return {
 		type: REQUEST_DECLINE_FAIL,
 		request,
-		post
+		post,
+		user
 	}
 }
 
-export function declineRequest(request, post, filters) {
+export function declineRequest(request, post, user, filters) {
 	return async function (dispatch) {
-		dispatch(requestDeclineRequest(request, post));
+		dispatch(requestDeclineRequest(request, post, user));
 
 		const declineReply = {
 			author: post.author._id,
@@ -105,7 +117,10 @@ export function declineRequest(request, post, filters) {
 		};
 		const createResponse = await fetch('/api/posts/' + post._id, {
 			method: 'POST',
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Authorization": user.token,
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify(declineReply)
 		});
 
@@ -115,15 +130,18 @@ export function declineRequest(request, post, filters) {
 		});
 		const editReponse = await fetch('/api/replies/' + request._id, {
 			method: 'PUT',
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Authorization": user.token,
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify(declined)
 		});
 
 		if (createResponse.ok && editReponse.ok) {
-			dispatch(successDeclineRequest(request, post));
+			dispatch(successDeclineRequest(request, post, user));
 			dispatch(fetchPosts(filters));
 		} else {
-			dispatch(failDeclineRequest(request, post));
+			dispatch(failDeclineRequest(request, post, user));
 		}
 	}
 }

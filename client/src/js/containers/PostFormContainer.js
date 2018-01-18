@@ -112,7 +112,8 @@ class PostFormContainer extends Component {
 					password
 				}
 			},
-			filters
+			filters,
+			currentUser
 		);
 	}
 

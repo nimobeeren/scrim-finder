@@ -16,8 +16,8 @@ const ReplyListContainer = ({ post, expanded, currentUser, filters, acceptReques
 		replies={myReplies}
 		isPostAuthor={!!currentUser && post.author._id === currentUser.id}
 		expanded={expanded}
-		onAccept={reply => acceptRequest(reply, post, filters)}
-		onDecline={reply => declineRequest(reply, post, filters)}/>;
+		onAccept={reply => acceptRequest(reply, post, currentUser, filters)}
+		onDecline={reply => declineRequest(reply, post, currentUser, filters)}/>;
 };
 
 ReplyListContainer.propTypes = {
