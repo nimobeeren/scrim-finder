@@ -12,9 +12,19 @@
 	color: $white;
 }
 
+.filters__header {
+	display: flex;
+	align-items: baseline;
+}
+
+.filters__header > *:not(:first-child) {
+	margin-left: 15px;
+}
+
 .filters h3 {
 	display: inline-block;
-	margin: 0;
+	flex-grow: 1;
+	margin: 0 15px 0 0;
 	font-size: 24px;
 }
 
