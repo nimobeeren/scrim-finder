@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const openid = require('openid');
+const auth = require('../auth');
 const db = require('../db/db');
 const config = require('../config');
 
@@ -15,7 +16,8 @@ relyingParty = new openid.RelyingParty(
 );
 
 /**
- * POST: Creates a new anonymous user, and returns a user identifier, including an authorization token
+ * POST: Creates a new anonymous user, which expires in 24 hours.
+ * Returns a user identifier, including an authorization token.
  */
 router.post('/anonRegister', async (req, res) => {
 	// Creates new anonymous user in database
@@ -23,16 +25,16 @@ router.post('/anonRegister', async (req, res) => {
 	try {
 		user = await db.createUser();
 	} catch (e) {
-		res.status(500).send("Could not create user: " + e);
+		res.status(500).send("Could not create user: " + e.message || e);
 		return;
 	}
 
-	// Generates authorization token for this user
+	// Generate authorization token for this user
 	let token;
 	try {
 		token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
-		res.status(500).send("Could not generate authorization token: " + e.message);
+		res.status(500).send("Could not generate authorization token: " + e.message || e);
 	}
 
 	// Return user identifier, including authorization token
@@ -44,30 +46,26 @@ router.post('/anonRegister', async (req, res) => {
 });
 
 /**
- * POST: Takes an authorization token, and returns a newly signed one
+ * POST: Extends an existing user’s session. The refreshed token expires in 24 hours.
+ * Returns user data.
  */
 router.post('/refresh', async (req, res) => {
-	// Get authorization token from headers
-	const authHeader = req.header("Authorization");
-	const token = authHeader.replace("Bearer: ", "");
-
-	// Verify authorization token
-	let payload;
+	// Validate authentication token and get user ID
+	let userId;
 	try {
-		payload = jwt.verify(token, config.secret);
+		userId = auth.verifyToken(req);
 	} catch (e) {
-		if (e instanceof jwt.JsonWebTokenError) {
-			res.sendStatus(401);
-		} else {
-			res.status(500).send("Could not verify authorization token: " + e.message || e);
-		}
+		res.status(500).send("Could not verify authorization token: " + e.message || e);
+	}
+	if (!userId) {
+		res.sendStatus(401);
 		return;
 	}
 
 	// Set last logged in date in database
 	let user;
 	try {
-		user = await db.loginUser(payload.id);
+		user = await db.loginUser(userId);
 	} catch (e) {
 		res.status(410).send("Anonymous user has expired. Please register a new user. " + e.message || e);
 		return;
@@ -78,17 +76,22 @@ router.post('/refresh', async (req, res) => {
 	try {
 		refreshedToken = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 	} catch (e) {
-		res.status(500).send("Could not generate authorization token: " + e.message);
+		res.status(500).send("Could not generate authorization token: " + e.message || e);
 		return;
 	}
 
-	// Send refreshed authorization token
-	res.status(200).send({
+	// Response contains user data and refreshed token
+	const response = {
 		id: user._id,
 		name: user.name,
-		steamId: user.steamId,
 		token: refreshedToken
-	});
+	};
+	if (user.steamId) {
+		response.steamId = user.steamId; // Add Steam ID if present
+	}
+
+	// Send refreshed authorization token along with user data
+	res.status(200).send(response);
 });
 
 /**
@@ -109,8 +112,8 @@ router.get('/login', (req, res) => {
 });
 
 /**
- * GET: Callback endpoint for OpenID authorization. Redirects to home page, while returning a user identifier,
- * including an authorization token in URL params.
+ * GET: Callback endpoint for OpenID authentication. Redirects to home page, while returning a user identifier,
+ * including an authentication token in URL params.
  */
 router.get('/verify', (req, res) => {
 	// Verify valid OpenID authentication
@@ -137,7 +140,7 @@ router.get('/verify', (req, res) => {
 				try {
 					user = await db.createUser(steamId);
 				} catch (e) {
-					res.status(500).send("Could not create new Steam user: " + e);
+					res.status(500).send("Could not create new Steam user: " + e.message || e);
 					return;
 				}
 			}
@@ -147,7 +150,7 @@ router.get('/verify', (req, res) => {
 			try {
 				token = jwt.sign({ id: user._id }, config.secret, { expiresIn: '24h' });
 			} catch (e) {
-				res.status(500).send("Could not generate authorization token: " + e.message);
+				res.status(500).send("Could not generate authorization token: " + e.message || e);
 				return;
 			}
 
