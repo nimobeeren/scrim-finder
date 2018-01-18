@@ -7,11 +7,11 @@ import Button from "../components/Button";
 const LogInOutButton = ({ currentUser, logOut }) => {
 	if (currentUser && currentUser.steamId) {
 		// User is already logged in
-		return <Button className="btn btn--nav"
+		return <Button className="btn btn--nav btn--shrink"
 					   label="Log out"
 					   onClick={logOut}/>
 	}
-	return <Button className="btn btn--nav"
+	return <Button className="btn btn--nav btn--shrink"
 				   label="Log in"
 				   href="/auth/login"/>
 };

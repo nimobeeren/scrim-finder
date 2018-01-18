@@ -61,17 +61,25 @@
 	@extend .btn--secondary.btn--disabled;
 }
 
-// Circular about button
+// Hide about button
 .btn--about {
-	border-radius: 50%;
-	width: 35px;
-	height: 35px;
+	display: none;
 }
 
-.btn--about::before {
-	content: "i";
-	font-size: 20px;
-	font-weight: bold;
+@media (min-width: $bp-small) {
+	// Circular about button
+	.btn--about {
+		display: block;
+		border-radius: 50%;
+		width: 35px;
+		height: 35px;
+	}
+
+	.btn--about::before {
+		content: "i";
+		font-size: 20px;
+		font-weight: bold;
+	}
 }
 
 @media (min-width: $bp-medium) {

@@ -7,9 +7,11 @@ import './../../styles/NavBar.css';
 const NavBar = () => (
 	<nav>
 		<div className="nav__content">
-			<h1 className="nav__group">CSGO Scrim Finder</h1>
-			<div className="nav__group">
+			<div className="nav__group group--title">
+				<h1>CSGO Scrim Finder</h1>
 				<WelcomeMessageContainer/>
+			</div>
+			<div className="nav__group group--buttons">
 				<Button className="btn btn--nav btn--about btn--secondary"
 						label=""
 						href="https://github.com/nimobeeren/scrim-finder/"/>

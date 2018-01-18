@@ -21,11 +21,14 @@ nav {
 	align-items: center;
 }
 
-.nav__group > *:not(:last-child) {
-	margin-right: 15px;
+.group--title {
+	flex-grow: 1;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 nav h1 {
+	display: block;
 	margin: 0;
 	font-size: 22px;
 	white-space: nowrap;
@@ -33,8 +36,18 @@ nav h1 {
 }
 
 @media (min-width: $bp-small) {
+	.nav__group > *:not(:last-child) {
+		margin-right: 15px;
+	}
+
 	nav h1 {
 		font-size: 28px;
+	}
+}
+
+@media (min-width: $bp-medium) {
+	.nav__group:not(:last-child) {
+		margin-right: 15px;
 	}
 }
 
@@ -43,19 +56,4 @@ nav h1 {
 		position: fixed;
 		top: 0;
 	}
-}
-
-@media (max-width: $bp-large) {
-	nav {
-		height: 100px;
-	}
-
-	.nav__content {
-		display: block;
-	}
-
-	.nav__group > :nth-child(2) {
-		margin-left: auto;
-	}
-
 }
