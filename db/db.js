@@ -108,8 +108,10 @@ module.exports = {
 		return post.save();
 	},
 
-	editReply: function (replyId, newReply) {
-		return Reply.findByIdAndUpdate(ObjectId(replyId), { $set: newReply });
+	editReply: async function (replyId, newReply) {
+		const oldReply = await Reply.findById(replyId);
+		newReply.author = oldReply.author; // leave author unchanged
+		return Reply.findByIdAndUpdate(replyId, { $set: newReply });
 	},
 
 	getUsers: function () {

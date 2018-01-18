@@ -139,10 +139,6 @@ router.route('/posts/:postId')
  */
 router.route('/replies/:replyId')
 	.put(async (req, res) => {
-		console.log('edit request');
-		console.log(req.headers);
-		console.log(req.body);
-
 		// Validate request
 		if (!req.body || !req.params.replyId) {
 			res.sendStatus(400);
