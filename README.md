@@ -198,6 +198,7 @@ Callback endpoint for OpenID authentication. Redirects to home page, while retur
 
 ##### Response
 Redirect to `/`, with the following URL parameters:
+
     {
       id: ObjectId,
       name: String,
