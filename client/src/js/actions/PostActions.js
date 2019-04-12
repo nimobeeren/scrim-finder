@@ -35,7 +35,7 @@ export function fetchPosts(filters = null) {
 		let posts = [
 			{
 				_id: 0,
-				createdAt: new Date(2019, 3, 12, 10),
+				createdAt: new Date(2019, 3, 12, 13),
                 author: "zonic",
                 body: {
                     teamName: "Astralis",
@@ -49,7 +49,7 @@ export function fetchPosts(filters = null) {
 			},
             {
                 _id: 1,
-                createdAt: new Date(2019, 3, 12, 10, 30),
+                createdAt: new Date(2019, 3, 12, 12, 30),
                 author: "flusha",
                 body: {
                     teamName: "Cloud9",
@@ -75,6 +75,32 @@ export function fetchPosts(filters = null) {
                 replies: []
             }
 		];
+
+        posts = posts.filter(post => {
+            if (filters) {
+                if (filters.level && filters.level.length > 0 && !filters.level.includes(post.body.level)) {
+                    return false;
+                }
+                if (filters.maps && filters.maps.length > 0) {
+                    let mapOk = false;
+                    filters.maps.forEach(map => {
+                        if (post.body.maps.includes(map)) {
+                            mapOk = true;
+                        }
+                    });
+                    if (!mapOk) {
+                        return false;
+                    }
+                }
+                if (filters.server !== null && post.body.server !== null) {
+                    if (filters.server !== post.body.server) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        });
 
 		dispatch(receivePosts(filters, posts));
 
