@@ -6,7 +6,7 @@ const User = require('./models/user');
 const steam = require('../steam');
 const config = require('../config');
 
-mongoose.connect(config.mongoServer, { useMongoClient: true });
+mongoose.connect(config.mongoServer, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.Promise = global.Promise;
 
 module.exports = {
