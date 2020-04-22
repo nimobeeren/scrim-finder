@@ -1,42 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Map from '../components/Map';
+import Map from "../components/Map";
 
-const MapPool = (props) => {
-	const { maps, allMaps } = props;
+const MapPool = props => {
+  const { maps, allMaps } = props;
 
-	let sortedMaps;
-	if (!Array.isArray(maps) || maps.length < 1) {
-		// No maps are given
-		sortedMaps = ["any"];
-	} else if (allMaps.every(map => maps.includes(map))) {
-		// All known maps are given
-		sortedMaps = ["any"];
-	} else if (typeof maps === 'string') {
-		// One map is given
-		sortedMaps = [maps]; // single element array
-	} else {
-		// Some maps are given
-		sortedMaps = maps.sort();
-	}
+  let sortedMaps;
+  if (!Array.isArray(maps) || maps.length < 1) {
+    // No maps are given
+    sortedMaps = ["any"];
+  } else if (allMaps.every(map => maps.includes(map))) {
+    // All known maps are given
+    sortedMaps = ["any"];
+  } else if (typeof maps === "string") {
+    // One map is given
+    sortedMaps = [maps]; // single element array
+  } else {
+    // Some maps are given
+    sortedMaps = maps.sort();
+  }
 
-	return sortedMaps.map((map, i) =>
-		<Map name={map} key={i}/>
-	);
+  return sortedMaps.map((map, i) => <Map name={map} key={i} />);
 };
 
 function mapStateToProps(state) {
-	return {
-		allMaps: state.mapNames
-	};
+  return {
+    allMaps: state.mapNames
+  };
 }
 
 MapPool.propTypes = {
-	maps: PropTypes.array
+  maps: PropTypes.array
 };
 MapPool.defaultProps = {
-	maps: ["any"]
+  maps: ["any"]
 };
 
 export default connect(mapStateToProps)(MapPool);

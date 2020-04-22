@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../../styles/ServerDetailsInput.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "../../styles/ServerDetailsInput.css";
 
 const ServerDetailsInput = ({ onIPChange, onPasswordChange }) => (
-	<div className="server-details-input">
-		<input type="text" required placeholder="Server IP" onChange={onIPChange}/>
-		<input type="text" placeholder="Password" onChange={onPasswordChange}/>
-	</div>
+  <div className="server-details-input">
+    <input type="text" required placeholder="Server IP" onChange={onIPChange} />
+    <input type="text" placeholder="Password" onChange={onPasswordChange} />
+  </div>
 );
 
 ServerDetailsInput.propTypes = {
-	onIPChange: PropTypes.func,
-	onPasswordChange: PropTypes.func
+  onIPChange: PropTypes.func,
+  onPasswordChange: PropTypes.func
 };
 
 export default ServerDetailsInput;

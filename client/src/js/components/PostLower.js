@@ -1,50 +1,49 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReplyListContainer from '../containers/ReplyListContainer';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ReplyListContainer from "../containers/ReplyListContainer";
 import ReplyButton from "../containers/ReplyButton";
-import ReplyCountContainer from '../containers/ReplyCountContainer';
-import '../../styles/PostLower.css';
+import ReplyCountContainer from "../containers/ReplyCountContainer";
+import "../../styles/PostLower.css";
 
 class PostLower extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.toggleExpandReplies = this.toggleExpandReplies.bind(this);
+    this.toggleExpandReplies = this.toggleExpandReplies.bind(this);
 
-		this.state = {
-			expanded: false
-		};
-	}
+    this.state = {
+      expanded: false
+    };
+  }
 
-	toggleExpandReplies() {
-		this.setState({
-			expanded: !this.state.expanded
-		});
-	}
+  toggleExpandReplies() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
+  }
 
-	render() {
-		const { post } = this.props,
-			{ expanded } = this.state;
+  render() {
+    const { post } = this.props,
+      { expanded } = this.state;
 
-		return (
-			<div>
-				<div className="lower__controls">
-					<ReplyButton post={post}/>
-					<ReplyCountContainer
-						replies={post.replies}
-						expanded={expanded}
-						onClick={this.toggleExpandReplies}/>
-				</div>
-				<ReplyListContainer
-					post={post}
-					expanded={expanded}/>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <div className="lower__controls">
+          <ReplyButton post={post} />
+          <ReplyCountContainer
+            replies={post.replies}
+            expanded={expanded}
+            onClick={this.toggleExpandReplies}
+          />
+        </div>
+        <ReplyListContainer post={post} expanded={expanded} />
+      </div>
+    );
+  }
 }
 
 PostLower.propTypes = {
-	post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired
 };
 
 export default PostLower;
