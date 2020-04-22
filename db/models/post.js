@@ -15,7 +15,8 @@ const postSchema = new Schema({
 	},
 	replies: [{ type: Schema.Types.ObjectId, ref: 'Reply' }]
 }, {
-	timestamps: true
+	timestamps: true,
+	usePushEach: true
 });
 
 module.exports = mongoose.model('Post', postSchema);
