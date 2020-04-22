@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "proxy": "http://localhost:8000/",
   "dependencies": {
-    "node-sass-chokidar": "0.0.3",
+    "node-sass-chokidar": "^1.4.0",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
