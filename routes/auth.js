@@ -10,8 +10,8 @@ const router = express.Router();
 
 // OpenID relying party
 relyingParty = new openid.RelyingParty(
-	'http://2id60.win.tue.nl:8823/auth/verify',
-	'http://2id60.win.tue.nl:8823/',
+	`${config.host}/auth/verify`,
+	config.host,
 	true
 );
 
