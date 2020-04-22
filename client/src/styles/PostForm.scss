@@ -1,6 +1,13 @@
 @import "globals";
 
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .post-form fieldset {
+  display: flex;
+  flex-direction: column;
   margin: 10px 0;
   border-radius: 10px;
   border: $medium-border;
@@ -8,8 +15,6 @@
 
 .post-form input[type="text"] {
   display: block;
-  box-sizing: border-box;
-  width: 100%;
   font-size: 16px;
 }
 
