@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { createReplyDraft } from "../actions/PostReplyActions";
 import Button from "../components/Button";
 
-const ReplyButton = props => {
+const ReplyButton = (props) => {
   const { post, createReplyDraft } = props;
   return (
     <Button className="btn" label="GO" onClick={() => createReplyDraft(post)} />
@@ -13,19 +13,16 @@ const ReplyButton = props => {
 };
 
 ReplyButton.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      createReplyDraft: createReplyDraft
+      createReplyDraft: createReplyDraft,
     },
     dispatch
   );
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ReplyButton);
+export default connect(null, mapDispatchToProps)(ReplyButton);

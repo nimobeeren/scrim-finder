@@ -8,7 +8,7 @@ export class Checkbox extends Component {
 
     // Set default state
     this.state = {
-      isChecked: this.props.isChecked
+      isChecked: this.props.isChecked,
     };
 
     // Bind event handler
@@ -18,7 +18,7 @@ export class Checkbox extends Component {
   handleChange(e) {
     // Toggle checked state
     const newState = {
-      isChecked: !this.state.isChecked
+      isChecked: !this.state.isChecked,
     };
     this.setState(newState);
 
@@ -49,11 +49,11 @@ export class Checkbox extends Component {
 Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
   isChecked: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 Checkbox.defaultProps = {
   label: "Checkbox",
-  isChecked: false
+  isChecked: false,
 };
 
 export default Checkbox;

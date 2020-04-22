@@ -9,24 +9,24 @@ const config = require("../config");
 mongoose.connect(config.mongoServer, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 mongoose.Promise = global.Promise;
 
 module.exports = {
-  getPost: function(postId) {
+  getPost: function (postId) {
     return Post.findOne(ObjectId(postId))
       .populate("author replies")
       .populate({
         path: "replies",
         populate: {
           path: "author",
-          model: "User"
-        }
+          model: "User",
+        },
       });
   },
 
-  getPosts: function(filters) {
+  getPosts: function (filters) {
     let query = {};
 
     // Include posts that are one of the specified levels
@@ -35,7 +35,7 @@ module.exports = {
         // level can be given as an array...
         if (filters.level.length > 0) {
           query["body.level"] = {
-            $in: filters.level
+            $in: filters.level,
           };
         }
       } else {
@@ -52,8 +52,8 @@ module.exports = {
           query["body.maps"] = {
             $not: {
               $exists: true,
-              $nin: filters.maps
-            }
+              $nin: filters.maps,
+            },
           };
         }
       } else {
@@ -68,8 +68,8 @@ module.exports = {
       query["body.server"] = {
         $not: {
           $exists: true,
-          $nin: [filters.server, null]
-        }
+          $nin: [filters.server, null],
+        },
       };
     }
 
@@ -77,7 +77,7 @@ module.exports = {
     if (filters && typeof filters.maxAge === "number") {
       const oldestDate = Date.now() - filters.maxAge * 60 * 1000;
       query.createdAt = {
-        $gt: oldestDate
+        $gt: oldestDate,
       };
     }
 
@@ -87,16 +87,16 @@ module.exports = {
         path: "replies",
         populate: {
           path: "author",
-          model: "User"
-        }
+          model: "User",
+        },
       });
   },
 
-  createPost: function(post) {
+  createPost: function (post) {
     return new Post(post).save();
   },
 
-  sendReply: async function(reply, postId) {
+  sendReply: async function (reply, postId) {
     let message = new Reply(reply);
     let post = await Post.findOne(ObjectId(postId));
 
@@ -112,20 +112,20 @@ module.exports = {
     return post.save();
   },
 
-  editReply: async function(replyId, newReply) {
+  editReply: async function (replyId, newReply) {
     const oldReply = await Reply.findById(replyId);
     newReply.author = oldReply.author; // leave author unchanged
     return Reply.findByIdAndUpdate(replyId, { $set: newReply });
   },
 
-  getUsers: function() {
+  getUsers: function () {
     return User.find();
   },
 
-  createUser: async function(steamId = null) {
+  createUser: async function (steamId = null) {
     const user = new User({
       steamId,
-      lastLogin: Date.now()
+      lastLogin: Date.now(),
     });
 
     let name;
@@ -146,13 +146,13 @@ module.exports = {
     return user.save();
   },
 
-  loginUser: function(id) {
+  loginUser: function (id) {
     return User.findByIdAndUpdate(ObjectId(id), {
-      $set: { lastLogin: Date.now() }
+      $set: { lastLogin: Date.now() },
     });
   },
 
-  findUserBySteamId: function(steamId) {
+  findUserBySteamId: function (steamId) {
     return User.findOne({ steamId });
-  }
+  },
 };

@@ -1,14 +1,14 @@
-@import 'globals';
+@import "globals";
 
 .welcome-message {
-	display: block;
-	transition: opacity 500ms;
-	span {
-		color: $accent-color;
-		font-weight: bold;
-	}
+  display: block;
+  transition: opacity 500ms;
+  span {
+    color: $accent-color;
+    font-weight: bold;
+  }
 }
 
 .welcome-message__hidden {
-	opacity: 0;
+  opacity: 0;
 }

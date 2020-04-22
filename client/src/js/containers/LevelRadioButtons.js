@@ -7,19 +7,19 @@ const LevelRadioButtons = ({ levelNames, onChange }) => {
   const items = levelNames.map((level, i) => {
     return {
       value: i,
-      label: level
+      label: level,
     };
   });
   return <RadioGroup items={items} defaultItem={"1"} onChange={onChange} />;
 };
 
 LevelRadioButtons.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
-    levelNames: state.levelNames
+    levelNames: state.levelNames,
   };
 }
 

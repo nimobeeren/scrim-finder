@@ -5,10 +5,10 @@ const userSchema = new Schema(
   {
     name: String,
     steamId: String,
-    lastLogin: Date
+    lastLogin: Date,
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

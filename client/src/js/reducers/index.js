@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   mapNames: MapNameReducer,
   pendingReplyPosts: PendingReplyPostsReducer,
   popupType: PopupTypeReducer,
-  posts: PostReducer
+  posts: PostReducer,
 });
 
 export default rootReducer;

@@ -17,7 +17,7 @@ const ReplyForm = ({
   onMapChange,
   onMessageChange,
   onSubmit,
-  onCancel
+  onCancel,
 }) => (
   <Card className="card" title={"Replying to " + post.body.teamName}>
     <form className="post-reply-form" onSubmit={onSubmit}>
@@ -80,7 +80,7 @@ ReplyForm.propTypes = {
   onMapChange: PropTypes.func,
   onMessageChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
 };
 
 export default ReplyForm;

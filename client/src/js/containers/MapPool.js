@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Map from "../components/Map";
 
-const MapPool = props => {
+const MapPool = (props) => {
   const { maps, allMaps } = props;
 
   let sortedMaps;
   if (!Array.isArray(maps) || maps.length < 1) {
     // No maps are given
     sortedMaps = ["any"];
-  } else if (allMaps.every(map => maps.includes(map))) {
+  } else if (allMaps.every((map) => maps.includes(map))) {
     // All known maps are given
     sortedMaps = ["any"];
   } else if (typeof maps === "string") {
@@ -26,15 +26,15 @@ const MapPool = props => {
 
 function mapStateToProps(state) {
   return {
-    allMaps: state.mapNames
+    allMaps: state.mapNames,
   };
 }
 
 MapPool.propTypes = {
-  maps: PropTypes.array
+  maps: PropTypes.array,
 };
 MapPool.defaultProps = {
-  maps: ["any"]
+  maps: ["any"],
 };
 
 export default connect(mapStateToProps)(MapPool);

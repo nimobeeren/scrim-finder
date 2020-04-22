@@ -8,7 +8,7 @@ const ReplyList = ({
   isPostAuthor,
   expanded,
   onAccept,
-  onDecline
+  onDecline,
 }) => {
   let replyElements;
 
@@ -20,7 +20,7 @@ const ReplyList = ({
       </div>
     );
   } else {
-    replyElements = replies.map(reply => (
+    replyElements = replies.map((reply) => (
       <Reply
         key={reply._id}
         reply={reply}
@@ -43,7 +43,7 @@ ReplyList.propTypes = {
   isPostAuthor: PropTypes.bool,
   expanded: PropTypes.bool,
   onAccept: PropTypes.func,
-  onDecline: PropTypes.func
+  onDecline: PropTypes.func,
 };
 
 export default ReplyList;

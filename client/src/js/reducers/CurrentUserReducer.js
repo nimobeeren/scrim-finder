@@ -18,7 +18,7 @@ function currentUserReducer(state, action) {
         name,
         steamId,
         token,
-        authenticated: true
+        authenticated: true,
       };
 
     case LOGOUT:
@@ -63,7 +63,7 @@ function currentUserReducer(state, action) {
             name: null,
             steamId,
             token,
-            authenticated: false
+            authenticated: false,
           };
         }
         return null;

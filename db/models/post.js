@@ -12,13 +12,13 @@ const postSchema = new Schema(
       maps: { type: [String], required: true },
       server: Boolean,
       ip: String,
-      password: String
+      password: String,
     },
-    replies: [{ type: Schema.Types.ObjectId, ref: "Reply" }]
+    replies: [{ type: Schema.Types.ObjectId, ref: "Reply" }],
   },
   {
     timestamps: true,
-    usePushEach: true
+    usePushEach: true,
   }
 );
 

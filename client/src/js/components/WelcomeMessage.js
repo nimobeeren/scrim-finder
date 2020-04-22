@@ -14,7 +14,7 @@ const WelcomeMessage = ({ user }) => {
 };
 
 WelcomeMessage.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
 };
 
 export default WelcomeMessage;

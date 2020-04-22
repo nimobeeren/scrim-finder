@@ -15,7 +15,7 @@ const ServerDetails = ({ ip, password }) => {
 
 ServerDetails.propTypes = {
   ip: PropTypes.string.isRequired,
-  password: PropTypes.string
+  password: PropTypes.string,
 };
 
 export default ServerDetails;

@@ -26,20 +26,17 @@ const LogInOutButton = ({ currentUser, logOut }) => {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   };
 }
 
 function mapDispatchToState(dispatch) {
   return bindActionCreators(
     {
-      logOut
+      logOut,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToState
-)(LogInOutButton);
+export default connect(mapStateToProps, mapDispatchToState)(LogInOutButton);

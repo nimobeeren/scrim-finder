@@ -10,7 +10,7 @@ const CreatePostButton = ({ onClick }) => (
 );
 
 CreatePostButton.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default CreatePostButton;

@@ -1,15 +1,15 @@
-@import 'globals';
+@import "globals";
 
 .replies {
-	display: none;
-	margin-top: 15px;
+  display: none;
+  margin-top: 15px;
 }
 
 .replies--expanded {
-	display: block;
+  display: block;
 }
 
 .replies__reply {
-	padding: 8px;
-	border-top: $light-border;
+  padding: 8px;
+  border-top: $light-border;
 }

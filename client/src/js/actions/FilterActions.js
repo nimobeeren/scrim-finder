@@ -4,12 +4,12 @@ export const FILTER_CHANGE = "FILTER_CHANGE";
 function changeFilter(filters) {
   return {
     type: FILTER_CHANGE,
-    filters
+    filters,
   };
 }
 
 export function changeFilterAndFetch(filters) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(changeFilter(filters));
     dispatch(fetchPosts(filters));
   };

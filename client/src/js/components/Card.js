@@ -14,7 +14,7 @@ const Card = ({ className, title, note, subtitle, children }) => (
 Card.propTypes = {
   title: PropTypes.string,
   note: PropTypes.string,
-  subtitle: PropTypes.string
+  subtitle: PropTypes.string,
 };
 
 export default Card;

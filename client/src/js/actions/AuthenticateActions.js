@@ -4,7 +4,7 @@ export const AUTHENTICATE_REQUEST = "AUTHENTICATE_REQUEST";
 function requestAuthenticate(user) {
   return {
     type: AUTHENTICATE_REQUEST,
-    user
+    user,
   };
 }
 
@@ -12,7 +12,7 @@ export const AUTHENTICATE_SUCCESS = "AUTHENTICATE_SUCCESS";
 function successAuthenticate(user) {
   return {
     type: AUTHENTICATE_SUCCESS,
-    user
+    user,
   };
 }
 
@@ -20,19 +20,19 @@ export const AUTHENTICATE_FAIL = "AUTHENTICATE_FAIL";
 function failAuthenticate(user) {
   return {
     type: AUTHENTICATE_FAIL,
-    user
+    user,
   };
 }
 
 export function authenticate(user) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestAuthenticate(user));
 
     const response = await fetch("/auth/refresh", {
       method: "POST",
       headers: {
-        Authorization: "Bearer: " + user.token
-      }
+        Authorization: "Bearer: " + user.token,
+      },
     });
 
     if (response.ok) {
@@ -49,6 +49,6 @@ export function authenticate(user) {
 export const LOGOUT = "LOGOUT";
 export function logOut() {
   return {
-    type: LOGOUT
+    type: LOGOUT,
   };
 }

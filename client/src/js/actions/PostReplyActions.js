@@ -4,14 +4,14 @@ export const REPLY_DRAFT_CREATE = "REPLY_DRAFT_CREATE";
 export function createReplyDraft(post) {
   return {
     type: REPLY_DRAFT_CREATE,
-    post
+    post,
   };
 }
 
 export const REPLY_DRAFT_CANCEL = "REPLY_DRAFT_CANCEL";
 export function cancelReplyDraft() {
   return {
-    type: REPLY_DRAFT_CANCEL
+    type: REPLY_DRAFT_CANCEL,
   };
 }
 
@@ -21,7 +21,7 @@ function requestSendReply(postId, reply, user) {
     type: REPLY_SEND_REQUEST,
     postId,
     reply,
-    user
+    user,
   };
 }
 
@@ -32,7 +32,7 @@ function successSendReply(postId, reply, user, response) {
     postId,
     reply,
     user,
-    response
+    response,
   };
 }
 
@@ -43,21 +43,21 @@ function failSendReply(postId, reply, user, response) {
     postId,
     reply,
     user,
-    response
+    response,
   };
 }
 
 export function sendReply(postId, reply, user, filters) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestSendReply(postId, reply, user));
 
     const response = await fetch("/api/posts/" + postId, {
       method: "POST",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(reply)
+      body: JSON.stringify(reply),
     });
 
     if (response.ok) {

@@ -7,7 +7,7 @@ const PostList = ({ posts, levelNames }) => {
   if (Array.isArray(posts) && posts.length > 0) {
     return (
       <div className="post-list">
-        {posts.map(post => {
+        {posts.map((post) => {
           return <Post key={post._id} post={post} levelNames={levelNames} />;
         })}
       </div>
@@ -24,7 +24,7 @@ const PostList = ({ posts, levelNames }) => {
 
 PostList.propTypes = {
   posts: PropTypes.array.isRequired,
-  levelNames: PropTypes.array
+  levelNames: PropTypes.array,
 };
 
 export default PostList;

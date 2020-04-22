@@ -9,21 +9,21 @@ const reply = new Schema(
     type: {
       type: String,
       enum: ["text", "request", "accept", "decline"],
-      default: "text"
+      default: "text",
     },
     status: {
       type: String,
-      enum: ["accepted", "declined"]
+      enum: ["accepted", "declined"],
     },
     body: {
       map: String,
       message: String,
       ip: String,
-      password: String
-    }
+      password: String,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

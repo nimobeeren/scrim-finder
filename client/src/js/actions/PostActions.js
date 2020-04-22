@@ -2,7 +2,7 @@ export const POSTS_REQUEST = "POSTS_REQUEST";
 function requestPosts(filters) {
   return {
     type: POSTS_REQUEST,
-    filters
+    filters,
   };
 }
 
@@ -12,7 +12,7 @@ function receivePosts(filters, posts) {
     type: POSTS_RECEIVE,
     filters,
     posts,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   };
 }
 
@@ -20,12 +20,12 @@ export const POSTS_FAIL = "POSTS_FAIL";
 function failPosts(filters) {
   return {
     type: POSTS_FAIL,
-    filters
+    filters,
   };
 }
 
 export function fetchPosts(filters = null) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestPosts(filters));
 
     const query = encodeURIComponent(JSON.stringify(filters));

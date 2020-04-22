@@ -6,7 +6,7 @@ const mapNameReducer = () => [
   "mirage",
   "nuke",
   "overpass",
-  "train"
+  "train",
 ];
 
 export default mapNameReducer;

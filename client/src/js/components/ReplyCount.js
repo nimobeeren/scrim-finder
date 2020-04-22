@@ -17,11 +17,11 @@ const ReplyCount = ({ count, expanded, onClick }) => {
 ReplyCount.propTypes = {
   count: PropTypes.number,
   expanded: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 ReplyCount.defaultProps = {
   count: 0,
-  expanded: false
+  expanded: false,
 };
 
 export default ReplyCount;

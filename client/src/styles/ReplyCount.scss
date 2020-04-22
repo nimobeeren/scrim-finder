@@ -1,13 +1,13 @@
 .reply-count {
-	cursor: pointer;
-	color: dimgray;
-	border-color: dimgray;
+  cursor: pointer;
+  color: dimgray;
+  border-color: dimgray;
 }
 
 .reply-count__label {
-	display: inline-block;
+  display: inline-block;
 }
 
 .reply-count:hover .reply-count__label {
-	text-decoration: underline;
+  text-decoration: underline;
 }

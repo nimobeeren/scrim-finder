@@ -11,7 +11,7 @@ const ServerDetailsInput = ({ onIPChange, onPasswordChange }) => (
 
 ServerDetailsInput.propTypes = {
   onIPChange: PropTypes.func,
-  onPasswordChange: PropTypes.func
+  onPasswordChange: PropTypes.func,
 };
 
 export default ServerDetailsInput;

@@ -8,7 +8,7 @@ const WelcomeMessageContainer = ({ currentUser }) => {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   };
 }
 

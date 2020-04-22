@@ -15,14 +15,14 @@ const CreatePostContainer = ({ drafting, createPostDraft }) => {
 
 function mapStateToProps(state) {
   return {
-    drafting: state.draftingPost
+    drafting: state.draftingPost,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      createPostDraft
+      createPostDraft,
     },
     dispatch
   );

@@ -1,12 +1,12 @@
 .server-details-input {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .server-details-input input {
-	margin-top: 8px;
+  margin-top: 8px;
 }
 
 .server-details-input input:not(:last-child) {
-	margin-right: 16px;
+  margin-right: 16px;
 }

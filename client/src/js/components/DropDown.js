@@ -16,14 +16,14 @@ class DropDown extends Component {
 
     // Set the selected item
     this.state = {
-      selectedItem: selectedItem
+      selectedItem: selectedItem,
     };
   }
 
   handleChange(e) {
     // Set the selected item
     this.setState({
-      selectedItem: e.target.value
+      selectedItem: e.target.value,
     });
 
     // Call the passed event handler
@@ -41,7 +41,7 @@ class DropDown extends Component {
     const { items, onChange, autoFocus, required } = this.props;
     return (
       <select onChange={onChange} autoFocus={autoFocus} required={required}>
-        {items.map(item => (
+        {items.map((item) => (
           <option key={item} value={item}>
             {item}
           </option>
@@ -56,7 +56,7 @@ DropDown.propTypes = {
   defaultItem: PropTypes.string,
   onChange: PropTypes.func,
   autoFocus: PropTypes.bool,
-  required: PropTypes.bool
+  required: PropTypes.bool,
 };
 
 export default DropDown;

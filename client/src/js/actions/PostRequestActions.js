@@ -6,7 +6,7 @@ function requestAcceptRequest(request, post, user) {
     type: REQUEST_ACCEPT_REQUEST,
     request,
     post,
-    user
+    user,
   };
 }
 
@@ -16,7 +16,7 @@ function successAcceptRequest(request, post, user) {
     type: REQUEST_ACCEPT_SUCCESS,
     request,
     post,
-    user
+    user,
   };
 }
 
@@ -26,12 +26,12 @@ function failAcceptRequest(request, post, user) {
     type: REQUEST_ACCEPT_FAIL,
     request,
     post,
-    user
+    user,
   };
 }
 
 export function acceptRequest(request, post, user, filters) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestAcceptRequest(request, post, user));
 
     // Create accept reply
@@ -41,29 +41,29 @@ export function acceptRequest(request, post, user, filters) {
       type: "accept",
       body: {
         ip: post.body.ip,
-        password: post.body.password
-      }
+        password: post.body.password,
+      },
     };
     const createResponse = await fetch("/api/posts/" + post._id, {
       method: "POST",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(acceptReply)
+      body: JSON.stringify(acceptReply),
     });
 
     // Set status of request to accepted
     const acceptedReply = Object.assign({}, request, {
-      status: "accepted"
+      status: "accepted",
     });
     const editReponse = await fetch("/api/replies/" + request._id, {
       method: "PUT",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(acceptedReply)
+      body: JSON.stringify(acceptedReply),
     });
 
     if (createResponse.ok && editReponse.ok) {
@@ -81,7 +81,7 @@ function requestDeclineRequest(request, post, user) {
     type: REQUEST_DECLINE_REQUEST,
     request,
     post,
-    user
+    user,
   };
 }
 
@@ -91,7 +91,7 @@ function successDeclineRequest(request, post, user) {
     type: REQUEST_DECLINE_SUCCESS,
     request,
     post,
-    user
+    user,
   };
 }
 
@@ -101,40 +101,40 @@ function failDeclineRequest(request, post, user) {
     type: REQUEST_DECLINE_FAIL,
     request,
     post,
-    user
+    user,
   };
 }
 
 export function declineRequest(request, post, user, filters) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestDeclineRequest(request, post, user));
 
     const declineReply = {
       author: post.author._id,
       recipient: request.author._id,
       type: "decline",
-      body: {}
+      body: {},
     };
     const createResponse = await fetch("/api/posts/" + post._id, {
       method: "POST",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(declineReply)
+      body: JSON.stringify(declineReply),
     });
 
     // Set status of request to accepted
     const declined = Object.assign({}, request, {
-      status: "declined"
+      status: "declined",
     });
     const editReponse = await fetch("/api/replies/" + request._id, {
       method: "PUT",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(declined)
+      body: JSON.stringify(declined),
     });
 
     if (createResponse.ok && editReponse.ok) {

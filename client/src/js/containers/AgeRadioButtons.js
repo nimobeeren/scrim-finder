@@ -7,24 +7,24 @@ const AgeRadioButtons = ({ onChange }) => (
     items={[
       {
         value: "5mins",
-        label: "< 5 mins"
+        label: "< 5 mins",
       },
       {
         value: "15mins",
-        label: "< 15 mins"
+        label: "< 15 mins",
       },
       {
         value: "1hour",
-        label: "< 1 hour"
+        label: "< 1 hour",
       },
       {
         value: "3hours",
-        label: "< 3 hours"
+        label: "< 3 hours",
       },
       {
         value: "any",
-        label: "Any"
-      }
+        label: "Any",
+      },
     ]}
     defaultItem={"any"}
     onChange={onChange}
@@ -32,7 +32,7 @@ const AgeRadioButtons = ({ onChange }) => (
 );
 
 AgeRadioButtons.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default AgeRadioButtons;

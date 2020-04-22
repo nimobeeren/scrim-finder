@@ -12,13 +12,13 @@ class PostLower extends Component {
     this.toggleExpandReplies = this.toggleExpandReplies.bind(this);
 
     this.state = {
-      expanded: false
+      expanded: false,
     };
   }
 
   toggleExpandReplies() {
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
     });
   }
 
@@ -43,7 +43,7 @@ class PostLower extends Component {
 }
 
 PostLower.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 export default PostLower;

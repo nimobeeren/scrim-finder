@@ -11,11 +11,11 @@ const ReplyListContainer = ({
   currentUser,
   filters,
   acceptRequest,
-  declineRequest
+  declineRequest,
 }) => {
   // Find replies with the current user as recipient, or no recipient at all
   // TODO: Don't send these replies to the client at all
-  const myReplies = post.replies.filter(reply => {
+  const myReplies = post.replies.filter((reply) => {
     return (
       !reply.recipient || (currentUser && reply.recipient === currentUser.id)
     );
@@ -26,21 +26,21 @@ const ReplyListContainer = ({
       replies={myReplies}
       isPostAuthor={!!currentUser && post.author._id === currentUser.id}
       expanded={expanded}
-      onAccept={reply => acceptRequest(reply, post, currentUser, filters)}
-      onDecline={reply => declineRequest(reply, post, currentUser, filters)}
+      onAccept={(reply) => acceptRequest(reply, post, currentUser, filters)}
+      onDecline={(reply) => declineRequest(reply, post, currentUser, filters)}
     />
   );
 };
 
 ReplyListContainer.propTypes = {
   post: PropTypes.object.isRequired,
-  expanded: PropTypes.bool
+  expanded: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    filters: state.filters
+    filters: state.filters,
   };
 }
 
@@ -48,13 +48,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       acceptRequest,
-      declineRequest
+      declineRequest,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReplyListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ReplyListContainer);

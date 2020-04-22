@@ -61,7 +61,7 @@ router
     // Create new post based on request body, with verified author
     const post = Object.assign({}, req.body, {
       author: authorId,
-      replies: [] // don't allow setting replies during post create request
+      replies: [], // don't allow setting replies during post create request
     });
 
     // Add post to database
@@ -119,7 +119,7 @@ router
 
     // Create new reply with verified author
     const reply = Object.assign({}, req.body, {
-      author: authorId
+      author: authorId,
       // TODO: Only let the post author set `status` field
     });
 
@@ -167,7 +167,7 @@ router.route("/replies/:replyId").put(async (req, res) => {
 
   // Create new reply with verified author and modified body
   const newReply = Object.assign({}, req.body, {
-    author: authorId
+    author: authorId,
     // TODO: Only let the post author set `status` field
   });
 

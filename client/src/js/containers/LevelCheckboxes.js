@@ -7,19 +7,19 @@ const LevelCheckboxes = ({ levelNames, onChange }) => {
   const items = levelNames.map((level, i) => {
     return {
       value: i,
-      label: level
+      label: level,
     };
   });
   return <CheckboxGroup items={items} onChange={onChange} />;
 };
 
 LevelCheckboxes.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
-    levelNames: state.levelNames
+    levelNames: state.levelNames,
   };
 }
 

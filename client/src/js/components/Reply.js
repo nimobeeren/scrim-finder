@@ -37,11 +37,13 @@ const Reply = ({ reply, isPostAuthor, onAccept, onDecline }) => {
           {getPersonalizedRequest(ip, isPostAuthor)}
           {message ? ": " : ""}
           <i>{message}</i>
-          {// Show server details when applicable
-          accepted && isPostAuthor && ip && (
-            <ServerDetails key="server" ip={ip} password={password} />
-          )}
-        </div>
+          {
+            // Show server details when applicable
+            accepted && isPostAuthor && ip && (
+              <ServerDetails key="server" ip={ip} password={password} />
+            )
+          }
+        </div>,
       ];
 
       const acceptButton = (
@@ -125,7 +127,7 @@ Reply.propTypes = {
   reply: PropTypes.object.isRequired,
   isPostAuthor: PropTypes.bool,
   onAccept: PropTypes.func,
-  onDecline: PropTypes.func
+  onDecline: PropTypes.func,
 };
 
 export default Reply;

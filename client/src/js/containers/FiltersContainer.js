@@ -15,8 +15,8 @@ class FiltersContainer extends Component {
         level: [],
         maps: [],
         server: null,
-        maxAge: "any"
-      }
+        maxAge: "any",
+      },
     };
 
     // Bind event handlers
@@ -29,7 +29,7 @@ class FiltersContainer extends Component {
 
   handleExpandedToggle() {
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
     });
   }
 
@@ -40,7 +40,7 @@ class FiltersContainer extends Component {
 
   handleLevelChange(e, state) {
     let newState = this.state;
-    newState.filters.level = state.checkedItems.map(n => parseInt(n, 10));
+    newState.filters.level = state.checkedItems.map((n) => parseInt(n, 10));
     this.setState(newState);
     this.handleFilterChange(e, newState);
   }
@@ -55,8 +55,8 @@ class FiltersContainer extends Component {
   handleServerChange(e, newValue) {
     let newState = Object.assign({}, this.state, {
       filters: {
-        server: newValue
-      }
+        server: newValue,
+      },
     });
 
     this.setState(newState);
@@ -113,13 +113,10 @@ class FiltersContainer extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      handleChange: changeFilterAndFetch
+      handleChange: changeFilterAndFetch,
     },
     dispatch
   );
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(FiltersContainer);
+export default connect(null, mapDispatchToProps)(FiltersContainer);

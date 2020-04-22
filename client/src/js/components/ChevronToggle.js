@@ -11,7 +11,7 @@ const ChevronToggle = ({ className, pointUp, onClick }) => (
 ChevronToggle.propTypes = {
   className: PropTypes.string,
   pointUp: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default ChevronToggle;

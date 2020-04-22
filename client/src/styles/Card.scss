@@ -1,42 +1,42 @@
-@import 'globals';
+@import "globals";
 
 .card {
-	box-sizing: border-box;
-	width: $content-width;
-	margin: 15px auto;
-	padding: 15px;
-	background: $white;
-	border-radius: 3px;
-	color: black;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  box-sizing: border-box;
+  width: $content-width;
+  margin: 15px auto;
+  padding: 15px;
+  background: $white;
+  border-radius: 3px;
+  color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .maps {
-	height: 60px;
+  height: 60px;
 }
 
 .card--secondary {
-	background: transparent;
-	border: 2px solid $white;
-	color: $white;
+  background: transparent;
+  border: 2px solid $white;
+  color: $white;
 }
 
 .card h3 {
-	display: inline;
-	max-width: 30px;
-	margin: 0 8px 0 0;
-	font-size: 24px;
-	white-space: nowrap;
+  display: inline;
+  max-width: 30px;
+  margin: 0 8px 0 0;
+  font-size: 24px;
+  white-space: nowrap;
 }
 
 .card__note {
-	@extend .card__subtitle;
-	display: inline-block;
-	white-space: nowrap;
+  @extend .card__subtitle;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .card__subtitle {
-	font-size: 14px;
-	color: dimgray;
+  font-size: 14px;
+  color: dimgray;
 }

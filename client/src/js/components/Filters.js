@@ -8,14 +8,14 @@ import ChevronToggle from "./ChevronToggle";
 import Button from "./Button";
 import "../../styles/Filters.css";
 
-const Filters = props => {
+const Filters = (props) => {
   const {
     expanded,
     onExpandedToggle,
     onLevelChange,
     onMapChange,
     onServerChange,
-    onAgeChange
+    onAgeChange,
   } = props;
 
   return (
@@ -65,7 +65,7 @@ Filters.propTypes = {
   onLevelChange: PropTypes.func,
   onMapChange: PropTypes.func,
   onServerChange: PropTypes.func,
-  onAgeChange: PropTypes.func
+  onAgeChange: PropTypes.func,
 };
 
 export default Filters;

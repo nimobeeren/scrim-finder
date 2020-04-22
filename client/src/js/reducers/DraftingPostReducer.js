@@ -1,7 +1,7 @@
 import {
   POST_CREATE_REQUEST,
   POST_DRAFT_CANCEL,
-  POST_DRAFT_CREATE
+  POST_DRAFT_CREATE,
 } from "../actions/CreatePostActions";
 
 function draftingPostReducer(state = false, action) {

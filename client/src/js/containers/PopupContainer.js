@@ -12,7 +12,7 @@ const PopupContainer = ({ popupType }) => {
 
 function mapStateToProps(state) {
   return {
-    popupType: state.popupType
+    popupType: state.popupType,
   };
 }
 

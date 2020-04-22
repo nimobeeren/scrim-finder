@@ -13,7 +13,7 @@ module.exports = {
    * @param steamId
    * @returns {Promise<any>}
    */
-  getPlayerSummary: function(steamId) {
+  getPlayerSummary: function (steamId) {
     return new Promise((resolve, reject) => {
       // Get API key
       const key = config.steamApiKey;
@@ -32,7 +32,7 @@ module.exports = {
         "/?" +
         querystring.encode({
           key,
-          steamids: steamId
+          steamids: steamId,
         });
 
       // Make request and parse response
@@ -47,5 +47,5 @@ module.exports = {
         }
       });
     });
-  }
+  },
 };

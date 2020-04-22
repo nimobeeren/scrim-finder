@@ -3,14 +3,14 @@ import { fetchPosts } from "./PostActions";
 export const POST_DRAFT_CREATE = "POST_DRAFT_CREATE";
 export function createPostDraft() {
   return {
-    type: POST_DRAFT_CREATE
+    type: POST_DRAFT_CREATE,
   };
 }
 
 export const POST_DRAFT_CANCEL = "POST_DRAFT_CANCEL";
 export function cancelPostDraft() {
   return {
-    type: POST_DRAFT_CANCEL
+    type: POST_DRAFT_CANCEL,
   };
 }
 
@@ -19,7 +19,7 @@ function requestCreatePost(post, user) {
   return {
     type: POST_CREATE_REQUEST,
     post,
-    user
+    user,
   };
 }
 
@@ -30,7 +30,7 @@ function successCreatePost(post, filters, user, response) {
     post,
     filters,
     user,
-    response
+    response,
   };
 }
 
@@ -40,20 +40,20 @@ function failCreatePost(post, user, response) {
     type: POST_CREATE_FAIL,
     post,
     user,
-    response
+    response,
   };
 }
 
 export function createPost(post, filters, user) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestCreatePost(post, user));
     const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
         Authorization: user.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(post)
+      body: JSON.stringify(post),
     });
 
     if (response.ok) {

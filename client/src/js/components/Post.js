@@ -154,10 +154,10 @@ class Post extends Component {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  levelNames: PropTypes.array
+  levelNames: PropTypes.array,
 };
 Post.defaultProps = {
-  levelNames: ["Unknown"]
+  levelNames: ["Unknown"],
 };
 
 export default Post;

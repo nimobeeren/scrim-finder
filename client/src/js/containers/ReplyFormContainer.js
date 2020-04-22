@@ -24,37 +24,37 @@ class ReplyFormContainer extends Component {
       ip: null,
       password: null,
       map: defaultMap,
-      message: null
+      message: null,
     };
   }
 
   handleServerChange(e, newServer) {
     this.setState({
-      server: newServer
+      server: newServer,
     });
   }
 
   handleIPChange(e) {
     this.setState({
-      ip: e.target.value
+      ip: e.target.value,
     });
   }
 
   handlePasswordChange(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
   handleMapChange(e) {
     this.setState({
-      map: e.target.value
+      map: e.target.value,
     });
   }
 
   handleMessageChange(e) {
     this.setState({
-      message: e.target.value
+      message: e.target.value,
     });
   }
 
@@ -67,7 +67,7 @@ class ReplyFormContainer extends Component {
       {
         author: currentUser.id,
         type: "request",
-        body: { map, message, ip, password }
+        body: { map, message, ip, password },
       },
       currentUser,
       filters
@@ -125,7 +125,7 @@ function mapStateToProps(state) {
     activePost: state.activePost,
     allMaps: state.mapNames,
     currentUser: state.currentUser,
-    filters: state.filters
+    filters: state.filters,
   };
 }
 
@@ -133,13 +133,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       sendReply,
-      cancelReply: cancelReplyDraft
+      cancelReply: cancelReplyDraft,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReplyFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ReplyFormContainer);

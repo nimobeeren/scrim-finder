@@ -1,79 +1,79 @@
-@import 'globals';
+@import "globals";
 
 .filters {
-	box-sizing: border-box;
-	padding: 10px 25px;
-	background: darken($primary-color, 5%);
+  box-sizing: border-box;
+  padding: 10px 25px;
+  background: darken($primary-color, 5%);
 }
 
 .filters__content {
-	max-width: $content-width;
-	margin: 0 auto;
-	color: $white;
+  max-width: $content-width;
+  margin: 0 auto;
+  color: $white;
 }
 
 .filters__header {
-	display: flex;
-	align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .filters__header > *:not(:first-child) {
-	margin-left: 15px;
+  margin-left: 15px;
 }
 
 .filters h3 {
-	display: inline-block;
-	flex-grow: 1;
-	margin: 0 15px 0 0;
-	font-size: 24px;
+  display: inline-block;
+  flex-grow: 1;
+  margin: 0 15px 0 0;
+  font-size: 24px;
 }
 
 .filters__fields {
-	display: none;
-	margin-bottom: 15px;
+  display: none;
+  margin-bottom: 15px;
 }
 
 .fields--expanded {
-	display: block;
+  display: block;
 }
 
 .filters fieldset {
-	border-radius: 10px;
-	border: $medium-border;
+  border-radius: 10px;
+  border: $medium-border;
 }
 
 .filters label {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 // Filters are displayed horizontally and above post list
 @media (min-width: $bp-medium) {
-	.fields--expanded {
-		display: flex;
-	}
+  .fields--expanded {
+    display: flex;
+  }
 
-	.filters fieldset {
-		flex-grow: 1;
-		flex-basis: 0; // needed for fields to be equal width
-	}
+  .filters fieldset {
+    flex-grow: 1;
+    flex-basis: 0; // needed for fields to be equal width
+  }
 }
 
 // Filters are vertical again, on the side of the page
 @media (min-width: $bp-large) {
-	.filters {
-		position: fixed;
-		top: $nav-height;
-		height: calc(100% - #{$nav-height});
-		overflow-Y: auto;
-		width: $aside-width;
-	}
+  .filters {
+    position: fixed;
+    top: $nav-height;
+    height: calc(100% - #{$nav-height});
+    overflow-y: auto;
+    width: $aside-width;
+  }
 
-	.filters__content {
-		padding-bottom: 10px;
-	}
+  .filters__content {
+    padding-bottom: 10px;
+  }
 
-	.filters__fields {
-		display: block;
-	}
+  .filters__fields {
+    display: block;
+  }
 }

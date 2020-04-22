@@ -21,7 +21,7 @@ class LoginHelper extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   };
 }
 
@@ -29,13 +29,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       authenticate,
-      anonymousRegister
+      anonymousRegister,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginHelper);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginHelper);

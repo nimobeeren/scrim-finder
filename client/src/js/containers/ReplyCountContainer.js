@@ -21,16 +21,16 @@ const ReplyCountContainer = ({ replies, expanded, onClick, currentUser }) => {
 ReplyCountContainer.propTypes = {
   replies: PropTypes.array,
   expanded: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 ReplyCountContainer.defaultProps = {
   replies: [],
-  expanded: false
+  expanded: false,
 };
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   };
 }
 

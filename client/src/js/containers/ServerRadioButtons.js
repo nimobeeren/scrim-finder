@@ -7,16 +7,16 @@ const ServerRadioButtons = ({ allowUndecided, onChange }) => {
   allowUndecided &&
     items.push({
       value: "any",
-      label: "On/Off"
+      label: "On/Off",
     });
   items.push(
     {
       value: "on",
-      label: "On"
+      label: "On",
     },
     {
       value: "off",
-      label: "Off"
+      label: "Off",
     }
   );
 
@@ -26,7 +26,7 @@ const ServerRadioButtons = ({ allowUndecided, onChange }) => {
       defaultItem={allowUndecided ? "any" : "off"}
       onChange={
         onChange &&
-        (e => {
+        ((e) => {
           switch (e.target.value) {
             case "on":
               onChange(e, true);
@@ -45,10 +45,10 @@ const ServerRadioButtons = ({ allowUndecided, onChange }) => {
 
 ServerRadioButtons.propTypes = {
   allowUndecided: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 ServerRadioButtons.defaultProps = {
-  allowUndecided: true
+  allowUndecided: true,
 };
 
 export default ServerRadioButtons;

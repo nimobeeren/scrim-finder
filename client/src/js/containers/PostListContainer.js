@@ -22,20 +22,17 @@ function mapStateToProps(state) {
   return {
     posts: state.posts.items,
     levelNames: state.levelNames,
-    filters: state.filters
+    filters: state.filters,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      fetchPosts
+      fetchPosts,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);

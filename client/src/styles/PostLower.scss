@@ -1,8 +1,8 @@
-@import 'globals';
-@import 'Map.scss'; // for map styling
+@import "globals";
+@import "Map.scss"; // for map styling
 
 .lower__controls {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

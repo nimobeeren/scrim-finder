@@ -24,43 +24,43 @@ class PostFormContainer extends Component {
       maps: [],
       server: null,
       ip: null,
-      password: null
+      password: null,
     };
   }
 
   handleTeamNameChange(e) {
     this.setState({
-      teamName: e.target.value
+      teamName: e.target.value,
     });
   }
 
   handleLevelChange(e) {
     this.setState({
-      level: e.target.value
+      level: e.target.value,
     });
   }
 
   handleMapsChange(e, state) {
     this.setState({
-      maps: state.checkedItems
+      maps: state.checkedItems,
     });
   }
 
   handleServerChange(e, newServer) {
     this.setState({
-      server: newServer
+      server: newServer,
     });
   }
 
   handleIPChange(e) {
     this.setState({
-      ip: e.target.value
+      ip: e.target.value,
     });
   }
 
   handlePasswordChange(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
@@ -109,8 +109,8 @@ class PostFormContainer extends Component {
           maps,
           server,
           ip,
-          password
-        }
+          password,
+        },
       },
       filters,
       currentUser
@@ -140,7 +140,7 @@ class PostFormContainer extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    filters: state.filters
+    filters: state.filters,
   };
 }
 
@@ -148,13 +148,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       createPost,
-      handleCancel: cancelPostDraft
+      handleCancel: cancelPostDraft,
     },
     dispatch
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostFormContainer);

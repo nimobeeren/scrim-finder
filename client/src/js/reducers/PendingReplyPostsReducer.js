@@ -4,7 +4,7 @@ import {
   REQUEST_ACCEPT_SUCCESS,
   REQUEST_DECLINE_FAIL,
   REQUEST_DECLINE_REQUEST,
-  REQUEST_DECLINE_SUCCESS
+  REQUEST_DECLINE_SUCCESS,
 } from "../actions/PostRequestActions";
 
 function pendingReplyPosts(state = [], action) {

@@ -19,14 +19,14 @@ class RadioGroup extends Component {
 
     // Set the selected item
     this.state = {
-      selectedItem: selectedItem
+      selectedItem: selectedItem,
     };
   }
 
   handleChange(e) {
     // Set the selected item
     const newState = {
-      selectedItem: e.target.value
+      selectedItem: e.target.value,
     };
     this.setState(newState);
 
@@ -45,7 +45,7 @@ class RadioGroup extends Component {
     const { items } = this.props;
     return (
       <div>
-        {items.map(item => (
+        {items.map((item) => (
           <label className="radio" key={item.value}>
             <input
               type="radio"
@@ -64,7 +64,7 @@ class RadioGroup extends Component {
 RadioGroup.propTypes = {
   items: PropTypes.array.isRequired,
   defaultItem: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default RadioGroup;

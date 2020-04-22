@@ -8,7 +8,7 @@ class CheckboxGroup extends Component {
 
     // Set default state
     this.state = {
-      checkedItems: this.props.defaultChecked || []
+      checkedItems: this.props.defaultChecked || [],
     };
 
     // Bind event handler
@@ -30,7 +30,7 @@ class CheckboxGroup extends Component {
 
     // Set new state
     const newState = {
-      checkedItems: newChecked
+      checkedItems: newChecked,
     };
     this.setState(newState);
 
@@ -43,7 +43,7 @@ class CheckboxGroup extends Component {
 
   render() {
     const { items } = this.props;
-    return items.map(item => (
+    return items.map((item) => (
       <Checkbox
         key={item.value}
         value={item.value}
@@ -58,7 +58,7 @@ class CheckboxGroup extends Component {
 CheckboxGroup.propTypes = {
   items: PropTypes.array.isRequired,
   defaultChecked: PropTypes.array,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default CheckboxGroup;

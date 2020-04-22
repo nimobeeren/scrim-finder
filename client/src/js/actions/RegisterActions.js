@@ -1,7 +1,7 @@
 export const ANONYMOUS_REGISTER_REQUEST = "ANONYMOUS_REGISTER_REQUEST";
 function requestAnonymousRegister() {
   return {
-    type: ANONYMOUS_REGISTER_REQUEST
+    type: ANONYMOUS_REGISTER_REQUEST,
   };
 }
 
@@ -9,23 +9,23 @@ export const ANONYMOUS_REGISTER_SUCCESS = "ANONYMOUS_REGISTER_SUCCESS";
 function successAnonymousRegister(user) {
   return {
     type: ANONYMOUS_REGISTER_SUCCESS,
-    user
+    user,
   };
 }
 
 export const ANONYMOUS_REGISTER_FAIL = "ANONYMOUS_REGISTER_FAIL";
 function failAnonymousRegister() {
   return {
-    type: ANONYMOUS_REGISTER_FAIL
+    type: ANONYMOUS_REGISTER_FAIL,
   };
 }
 
 export function anonymousRegister() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(requestAnonymousRegister());
 
     const response = await fetch("/auth/anonRegister", {
-      method: "POST"
+      method: "POST",
     });
 
     if (response.ok) {

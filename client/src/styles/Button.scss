@@ -1,108 +1,108 @@
-@import 'globals';
+@import "globals";
 
 .btn {
-	width: 100px;
-	height: 40px;
-	background: $accent-color;
-	border: none;
-	border-radius: 3px;
-	font-size: 18px;
-	text-align: center;
-	font-family: $font-stack;
-	color: $white;
-	cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background: $accent-color;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: center;
+  font-family: $font-stack;
+  color: $white;
+  cursor: pointer;
 }
 
 .btn:hover {
-	background: darken($accent-color, 5%);
+  background: darken($accent-color, 5%);
 }
 
 .btn--small {
-	width: 80px;
-	height: 35px;
+  width: 80px;
+  height: 35px;
 }
 
 // Small button only on small screens
 .btn--shrink {
-	@extend .btn--small;
+  @extend .btn--small;
 }
 
 .btn--secondary {
-	background: transparent;
-	border: 2px solid $accent-color;
-	color: $accent-color;
+  background: transparent;
+  border: 2px solid $accent-color;
+  color: $accent-color;
 }
 
 .btn--secondary:hover {
-	background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .btn--large {
-	width: 150px;
-	height: 60px;
-	font-size: 20px;
+  width: 150px;
+  height: 60px;
+  font-size: 20px;
 }
 
 .btn--disabled {
-	background: lighten($accent-color, 25%);
-	cursor: default;
+  background: lighten($accent-color, 25%);
+  cursor: default;
 }
 
 .btn--disabled:hover {
-	@extend .btn--disabled;
+  @extend .btn--disabled;
 }
 
 .btn--secondary.btn--disabled {
-	border-color: lighten($accent-color, 25%);
-	color: lighten($accent-color, 25%);
+  border-color: lighten($accent-color, 25%);
+  color: lighten($accent-color, 25%);
 }
 
 .btn--secondary.btn--disabled:hover {
-	@extend .btn--secondary.btn--disabled;
+  @extend .btn--secondary.btn--disabled;
 }
 
 // Hide about button
 .btn--about {
-	display: none;
+  display: none;
 }
 
 @media (min-width: $bp-small) {
-	// Circular about button
-	.btn--about {
-		display: block;
-		border-radius: 50%;
-		width: 35px;
-		height: 35px;
-	}
+  // Circular about button
+  .btn--about {
+    display: block;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
 
-	.btn--about::before {
-		content: "i";
-		font-size: 20px;
-		font-weight: bold;
-	}
+  .btn--about::before {
+    content: "i";
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 @media (min-width: $bp-medium) {
-	// Normal sized button on medium screens
-	.btn--shrink {
-		width: 100px;
-		height: 40px;
-	}
+  // Normal sized button on medium screens
+  .btn--shrink {
+    width: 100px;
+    height: 40px;
+  }
 
-	.btn--about {
-		width: 40px;
-		height: 40px;
-	}
+  .btn--about {
+    width: 40px;
+    height: 40px;
+  }
 
-	// Normal about button
-	.btn--about {
-		width: 100px;
-		border-radius: 3px;
-	}
+  // Normal about button
+  .btn--about {
+    width: 100px;
+    border-radius: 3px;
+  }
 
-	.btn--about::before {
-		content: "About";
-		font-size: 18px;
-		font-weight: normal;
-	}
+  .btn--about::before {
+    content: "About";
+    font-size: 18px;
+    font-weight: normal;
+  }
 }

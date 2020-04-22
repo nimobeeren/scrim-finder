@@ -1,14 +1,14 @@
-@import 'globals';
+@import "globals";
 
 .post-list {
-	margin: 0 15px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+  margin: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .post-list--empty {
-	color: $white;
-	font-size: 24px;
-	text-align: center;
+  color: $white;
+  font-size: 24px;
+  text-align: center;
 }

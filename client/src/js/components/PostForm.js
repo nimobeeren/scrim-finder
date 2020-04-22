@@ -17,7 +17,7 @@ const PostForm = ({
   onIPChange,
   onPasswordChange,
   onSubmit,
-  onCancel
+  onCancel,
 }) => (
   <form className="post-form" onSubmit={onSubmit}>
     <fieldset>
@@ -67,7 +67,7 @@ PostForm.propTypes = {
   onIPChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
 };
 
 export default PostForm;

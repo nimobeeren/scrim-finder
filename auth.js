@@ -7,7 +7,7 @@ module.exports = {
    * @param req
    * @returns {*} user ID when valid, false when invalid, null when missing
    */
-  verifyToken: function(req) {
+  verifyToken: function (req) {
     // Get authorization header value
     let token = req.header("Authorization");
     if (token) {
@@ -38,5 +38,5 @@ module.exports = {
     } else {
       return payload.id;
     }
-  }
+  },
 };

@@ -43,7 +43,7 @@ router.post("/anonRegister", async (req, res) => {
   res.status(200).send({
     id: user._id,
     name: user.name,
-    token
+    token,
   });
 });
 
@@ -84,7 +84,7 @@ router.post("/refresh", async (req, res) => {
   let refreshedToken;
   try {
     refreshedToken = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: "24h"
+      expiresIn: "24h",
     });
   } catch (e) {
     res
@@ -97,7 +97,7 @@ router.post("/refresh", async (req, res) => {
   const response = {
     id: user._id,
     name: user.name,
-    token: refreshedToken
+    token: refreshedToken,
   };
   if (user.steamId) {
     response.steamId = user.steamId; // Add Steam ID if present
@@ -134,7 +134,7 @@ router.get("/login", (req, res) => {
  */
 router.get("/verify", (req, res) => {
   // Verify valid OpenID authentication
-  relyingParty.verifyAssertion(req, async function(err, result) {
+  relyingParty.verifyAssertion(req, async function (err, result) {
     if (err || !result || !result.authenticated) {
       res.status(500).write("Could not verify authentication");
       err && res.write(": " + err.message);
@@ -183,7 +183,7 @@ router.get("/verify", (req, res) => {
         id: user._id,
         name: user.name,
         steamId,
-        token
+        token,
       });
 
       // Redirect to the home page, passing user identifier as a JSON-encoded URL parameter

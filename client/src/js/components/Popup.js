@@ -30,7 +30,7 @@ const Popup = ({ popupType }) => {
 };
 
 Popup.propTypes = {
-  popupType: PropTypes.string.isRequired
+  popupType: PropTypes.string.isRequired,
 };
 
 export default Popup;
